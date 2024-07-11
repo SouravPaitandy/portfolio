@@ -1,0 +1,235 @@
+.hero-image{
+    background: url('../assets/lines.webp');
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    inset: 0; 
+    position: absolute;
+    /* transition: all var(--transitionDuration) ease; */
+    z-index: -1;
+}
+
+.hero-image:hover{
+  background: 112% 112%;
+}
+
+.hero-name{
+  text-shadow: 0 0 5px rgba(0, 0, 0, .35);
+}
+
+/* button {
+  font-size: 1.5rem !important;
+  padding: 0.8em 2em !important;
+  background-color: #000 !important;
+  border: 2px solid rgb(71, 235, 6);
+  border-radius: 1em !important;
+  font-weight: bolder !important;
+  transition: cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s !important;
+  box-shadow: -5px 5px 0px 0px rgb(71, 235, 6) !important;
+}
+
+button:hover {
+  transform: translate(5px, -5px) !important;
+} */
+
+.dark .button {
+  --color: rgb(0, 255, 0);
+  padding: 0.8em 1.7em;
+  background-color: transparent;
+  border-radius: .3em;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: .5s;
+  font-weight: 400;
+  font-size: 17px;
+  border: 1px solid;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: var(--color);
+  z-index: 1;
+ }
+
+ .button {
+  --color: rgb(65, 105, 225);
+  padding: 0.8em 1.7em;
+  background-color: transparent;
+  border-radius: .3em;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: .5s;
+  font-weight: 400;
+  font-size: 17px;
+  border: 1px solid;
+  font-family: inherit;
+  text-transform: uppercase;
+  color: var(--color);
+  z-index: 1;
+ }
+ 
+ .button::before, .button::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+  background-color: var(--color);
+  transition: 1s ease;
+ }
+ 
+ .button::before {
+  top: -1em;
+  left: -1em;
+ }
+ 
+ .button::after {
+  left: calc(100% + 1em);
+  top: calc(100% + 1em);
+ }
+ 
+ .button:hover::before, .button:hover::after {
+  height: 410px;
+  width: 410px;
+ }
+ 
+ .dark .button:hover {
+  color: rgb(10, 25, 30);
+  border-color: lime;
+ }
+
+ .button:hover{
+  color: beige;
+  border-color: rgb(65, 105, 225);
+ }
+ 
+ .button:active {
+  filter: brightness(.8);
+ }
+
+ .hero-icons{
+  background-color: #fbfbfb;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+ }
+
+ .dark .hero-icons{
+  background-color: #1a1a1a;
+  box-shadow: rgba(125, 125, 128, 0.28) 0px 7px 29px 0px;
+ }
+
+ .dark .hero-icons .hero-icon img{
+  filter: invert(1);
+  color: bisque;
+ }
+
+ .scrolling-mouse{
+  margin-top: 15rem;
+  width: 25px;
+  height: 40px;
+  border-radius: 60px;
+  border: 2px solid #223;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 3px #223;
+ }
+
+ .dark .scrolling-mouse{
+  margin-top: 15rem;
+  width: 25px;
+  height: 40px;
+  border-radius: 60px;
+  border: 2px solid rgb(177, 177, 177);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 3px rgb(183, 183, 183);
+ }
+
+ .scrolling-mouse::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  top: 8px;
+  left: 40%;
+  background-color: #333;
+  border-radius: 50%;
+  opacity: 1;
+  animation: wheel 1.3s infinite ease;
+}
+
+.dark .scrolling-mouse::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  top: 8px;
+  left: 40%;
+  background-color: rgb(177, 177, 177);
+  border-radius: 50%;
+  opacity: 1;
+  animation: wheel 1.3s infinite ease;
+}
+
+@keyframes wheel{
+  0%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50%{
+    opacity: .5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+
+  }
+}
+
+
+@media (max-width: 768px) {
+  .hero-image {
+    position: absolute !important;
+    /* top: 0 !important;
+    left: 0 !important; */
+    width: 100% !important;
+    /* height: 30vh !important;  Adjust the height of the image on smaller screens */
+    background-size: cover !important;
+    background-position: center !important;
+    z-index: -1 !important;
+  }
+
+  .hero {
+    min-height: 80vh !important; /* Adjust the minimum height of the hero section */
+    padding-top: 30vh !important; /* Add padding-top equal to the height of the hero image */
+  }
+
+  .hero-icons{
+    display: none !important;
+  }
+
+  .hero-name {
+    font-size: 2rem !important; /* Adjust the font size for smaller screens */
+    margin-bottom: .5rem !important; /* Adjust the bottom margin */
+  }
+
+  h3 {
+    font-size: 1rem !important; /* Adjust the font size for smaller screens */
+    max-width: 80% !important; /* Adjust the maximum width for better readability */
+    margin-bottom: 1rem !important; /* Adjust the bottom margin */
+  }
+
+  .scrolling-mouse {
+    display: none !important; /* Hide the scrolling mouse on smaller screens */
+  }
+
+  .button {
+    font-size: 1rem !important; /* Adjust the font size for smaller screens */
+    padding: 0.5rem 1rem !important; /* Adjust the padding for smaller screens */
+  }
+}
+
+ 
+  

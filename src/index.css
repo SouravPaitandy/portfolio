@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root{
+  scroll-behavior: smooth;
+} */
+
+.dark ::selection{
+  background-color: var(--selection-bg-color, #00ff00);
+  color: rgb(33, 33, 33);
+
+}
+
+::selection{
+  background-color: var(--selection-bg-color, blue);
+  color: rgb(238, 238, 238);
+}
+
+.dark body{
+  margin: 0;
+  padding: 0;
+  font-family: "Space Mono", monospace; 
+  background-color: rgb(33, 33, 33);
+  color: rgb(209, 207, 207);
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: "Space Mono", monospace; 
+  background-color: rgb(238, 238, 238);
+  color: rgb(19, 19, 19);
+}
+
+body .hero-image{
+  filter: opacity(.25) grayscale(.75) invert(1);
+}
+
+.dark body .hero-image{
+  filter: opacity(.25) grayscale(.75);
+}
+.space-mono-regular {
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.space-mono-bold {
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.roboto-regular-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  
+.roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
