@@ -34,7 +34,7 @@ export default function Projects() {
                 
             </div>
           <div className="card">
-            <img src={import.meta.env.BASE_URL === "/" ? "/src/assets/project1.png" : import.meta.env.BASE_URL + "/src/assets/project1.png"} alt="SimonSays" />
+            <img src="/portfolio/src/assets/project1.png" alt="SimonSays" />
             <div className="card__content">
               <p className="card__title roboto-regular">Simon Says</p>
               <p className="card__description roboto-regular">

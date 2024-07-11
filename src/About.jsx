@@ -62,7 +62,7 @@ export default function About() {
               <span className="tooltip">Javascript</span>
               <span className="text ">
                 <img
-                  src={import.meta.env.BASE_URL === "/"? "/src/assets/skills3.png" : import.meta.env.BASE_URL + "/src/assets/skills3.png"}
+                  src= "/portfolio/src/assets/skills3.png"
                   alt="Javascript"
                   className="project-img"
                 />
@@ -72,7 +72,7 @@ export default function About() {
               <span className="tooltip">Node.js</span>
               <span className="text ">
                 <img
-                  src={import.meta.env.BASE_URL === "/"? "/src/assets/skills12.png" : import.meta.env.BASE_URL + "/src/assets/skills12.png"}
+                  src="/portfolio/src/assets/skills12.png"
                   alt="Node.js"
                   className="project-img"
                 />
@@ -82,7 +82,7 @@ export default function About() {
               <span className="tooltip">Express</span>
               <span className="text ">
                 <img
-                  src={import.meta.env.BASE_URL === "/"? "/src/assets/skills13.png" : import.meta.env.BASE_URL + "/src/assets/skills13.png"}
+                  src="/portfolio/src/assets/skills13.png"
                   alt="Express"
                   className="project-img"
                 />
@@ -92,7 +92,7 @@ export default function About() {
               <span className="tooltip">MongoDB</span>
               <span className="text ">
                 <img
-                  src={import.meta.env.BASE_URL === "/"? "/src/assets/mDB.ico" : import.meta.env.BASE_URL + "/src/assets/mDB.ico"}
+                  src="/portfolio/src/assets/mDB.ico"
                   alt="MongoDB"
                   className="project-img"
                 />
@@ -142,7 +142,7 @@ export default function About() {
               <span className="tooltip">CSS3</span>
               <span className="text ">
                 <img
-                  src={import.meta.env.BASE_URL === "/"? "/src/assets/skills2.png" : import.meta.env.BASE_URL + "/src/assets/skills2.png"}
+                  src="/portfolio/src/assets/skills2.png"
                   alt="CSS3"
                   className="project-img"
                 />
@@ -152,7 +152,7 @@ export default function About() {
               <span className="tooltip">Redux</span>
               <span className="text ">
                 <img
-                  src={import.meta.env.BASE_URL === "/"? "/src/assets/skills10.png" : import.meta.env.BASE_URL + "/src/assets/skills10.png"}
+                  src="/portfolio/src/assets/skills10.png"
                   alt="Redux"
                   className="project-img"
                 />
@@ -162,7 +162,7 @@ export default function About() {
               <span className="tooltip">Bootstrap</span>
               <span className="text ">
                 <img
-                  src={import.meta.env.BASE_URL === "/"? "/src/assets/skills4.png" : import.meta.env.BASE_URL + "/src/assets/skills4.png"}
+                  src="/portfolio/src/assets/skills4.png"
                   alt="Bootstrap"
                   className="project-img"
                 />
@@ -172,7 +172,7 @@ export default function About() {
               <span className="tooltip">Tailwind</span>
               <span className="text ">
                 <img
-                  src={import.meta.env.BASE_URL === "/"? "/src/assets/skills5.png" : import.meta.env.BASE_URL + "/src/assets/skills5.png"}
+                  src="/portfolio/src/assets/skills5.png"
                   alt="Tailwind"
                   className="project-img"
                 />
