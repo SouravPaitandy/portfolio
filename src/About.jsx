@@ -102,7 +102,7 @@ export default function About() {
               <span className="tooltip">React</span>
               <span className="text ">
                 <img
-                  src={import.meta.env.BASE_URL === "/"? "/src/assets/skills9.png" : import.meta.env.BASE_URL + "/src/assets/skills9.png"}
+                  src= "/portfolio/src/assets/skills9.png"
                   alt="React"
                   className="project-img"
                 />
@@ -112,7 +112,7 @@ export default function About() {
               <span className="tooltip">Next.js</span>
               <span className="text ">
               <img
-                  src={import.meta.env.BASE_URL === "/"? "/src/assets/skills11.png" : import.meta.env.BASE_URL + "/src/assets/skills11.png"}
+                  src="/portfolio/src/assets/skills11.png"
                   alt="Next.js"
                   className="project-img dark:filter-none invert"
                 />
@@ -122,7 +122,7 @@ export default function About() {
               <span className="tooltip">SQL</span>
               <span className="text ">
                 <img
-                  src={import.meta.env.BASE_URL === "/"? "/src/assets/skills14.png" : import.meta.env.BASE_URL + "/src/assets/skills14.png"}
+                  src= "/portfolio/src/assets/skills14.png"
                   alt="SQL"
                   className="project-img"
                 />
@@ -132,7 +132,7 @@ export default function About() {
               <span className="tooltip">HTML5</span>
               <span className="text ">
                 <img
-                  src={import.meta.env.BASE_URL === "/"? "/src/assets/skills1.png" : import.meta.env.BASE_URL + "/src/assets/skills1.png"}
+                  src="/portfolio/src/assets/skills1.png"
                   alt="HTML5"
                   className="project-img"
                 />
