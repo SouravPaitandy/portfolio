@@ -23,7 +23,9 @@ jobs:
         run: npm ci
 
       - name: Build project
-        run: npm run build
+        run: |
+           npm run build
+           touch dist/.nojekyll  # Add this line
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
