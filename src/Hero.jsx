@@ -20,7 +20,7 @@ export default function Hero() {
   return (
     <section
       id="hero-section"
-      className="hero pt-40 flex flex-col justify-center relative min-h-lvh items-center"
+      className="hero md:pt-40 flex flex-col justify-center relative min-h-lvh items-center"
     >
       <div className="hero-image"></div>
       <motion.h1 
