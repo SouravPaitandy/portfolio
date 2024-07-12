@@ -7,5 +7,6 @@ export default defineConfig({
   base: "/portfolio/", // Change this line
   build: {
     outDir: "dist",
+    assetsDir: "assets"
   }
 })

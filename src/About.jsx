@@ -1,6 +1,7 @@
 import "./Styles/about.css";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion"; 
+import * as Images from './assets';
 
 export default function About() {
   return (
@@ -62,7 +63,7 @@ export default function About() {
               <span className="tooltip">Javascript</span>
               <span className="text ">
                 <img
-                  src= "/portfolio/src/assets/skills3.png"
+                  src= {Images.image3}
                   alt="Javascript"
                   className="project-img"
                 />
@@ -72,7 +73,7 @@ export default function About() {
               <span className="tooltip">Node.js</span>
               <span className="text ">
                 <img
-                  src="/portfolio/src/assets/skills12.png"
+                  src={Images.image9}
                   alt="Node.js"
                   className="project-img"
                 />
@@ -82,7 +83,7 @@ export default function About() {
               <span className="tooltip">Express</span>
               <span className="text ">
                 <img
-                  src="/portfolio/src/assets/skills13.png"
+                  src={Images.image10}   //{import.meta.env.BASE_URL + './assets/skills13.png'}
                   alt="Express"
                   className="project-img"
                 />
@@ -92,7 +93,7 @@ export default function About() {
               <span className="tooltip">MongoDB</span>
               <span className="text ">
                 <img
-                  src="/portfolio/src/assets/mDB.ico"
+                  src={Images.image24}              
                   alt="MongoDB"
                   className="project-img"
                 />
@@ -102,7 +103,7 @@ export default function About() {
               <span className="tooltip">React</span>
               <span className="text ">
                 <img
-                  src= "/portfolio/src/assets/skills9.png"
+                  src= {Images.image6}
                   alt="React"
                   className="project-img"
                 />
@@ -112,7 +113,7 @@ export default function About() {
               <span className="tooltip">Next.js</span>
               <span className="text ">
               <img
-                  src="/portfolio/src/assets/skills11.png"
+                  src={Images.image8}
                   alt="Next.js"
                   className="project-img dark:filter-none invert"
                 />
@@ -122,7 +123,7 @@ export default function About() {
               <span className="tooltip">SQL</span>
               <span className="text ">
                 <img
-                  src= "/portfolio/src/assets/skills14.png"
+                  src= {Images.image11}
                   alt="SQL"
                   className="project-img"
                 />
@@ -132,7 +133,7 @@ export default function About() {
               <span className="tooltip">HTML5</span>
               <span className="text ">
                 <img
-                  src="/portfolio/src/assets/skills1.png"
+                  src={Images.image1}
                   alt="HTML5"
                   className="project-img"
                 />
@@ -142,7 +143,7 @@ export default function About() {
               <span className="tooltip">CSS3</span>
               <span className="text ">
                 <img
-                  src="/portfolio/src/assets/skills2.png"
+                  src={Images.image2}
                   alt="CSS3"
                   className="project-img"
                 />
@@ -152,7 +153,7 @@ export default function About() {
               <span className="tooltip">Redux</span>
               <span className="text ">
                 <img
-                  src="/portfolio/src/assets/skills10.png"
+                  src={Images.image7}
                   alt="Redux"
                   className="project-img"
                 />
@@ -162,7 +163,7 @@ export default function About() {
               <span className="tooltip">Bootstrap</span>
               <span className="text ">
                 <img
-                  src="/portfolio/src/assets/skills4.png"
+                  src={Images.image4}
                   alt="Bootstrap"
                   className="project-img"
                 />
@@ -172,7 +173,7 @@ export default function About() {
               <span className="tooltip">Tailwind</span>
               <span className="text ">
                 <img
-                  src="/portfolio/src/assets/skills5.png"
+                  src={Images.image5}
                   alt="Tailwind"
                   className="project-img"
                 />

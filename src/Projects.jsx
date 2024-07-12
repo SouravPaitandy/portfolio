@@ -1,5 +1,6 @@
 import "./Styles/projects.css";
 import { motion } from "framer-motion";
+import * as Images from "./assets"
 
 export default function Projects() {
   
@@ -34,7 +35,7 @@ export default function Projects() {
                 
             </div>
           <div className="card">
-            <img src="/portfolio/src/assets/project1.png" alt="SimonSays" />
+            <img src={Images.image19} alt="SimonSays" />
             <div className="card__content">
               <p className="card__title roboto-regular">Simon Says</p>
               <p className="card__description roboto-regular">

@@ -3,6 +3,7 @@ import "./index.css";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { Link } from "react-scroll";
 import {motion} from 'framer-motion';
+import * as Images from './assets';
 
 export default function Hero() {
   const [text] = useTypewriter({
@@ -55,7 +56,7 @@ export default function Hero() {
         whileInView={{opacity:1, y: 0, transition:{duration:.4}}}
         className="hero-icon w-10 h-10 flex justify-center items-center rounded-md hover:bg-blue-300 dark:hover:bg-green-700">
             <a href="https://www.linkedin.com/in/sourav-paitandy/" target="_blank" rel="noopener noreferrer">
-               <img src="/portfolio/src/assets/linkedin-dark.svg" alt="LinkedIn" className="h-7 w-7" />
+               <img src={Images.image16} alt="LinkedIn" className="h-7 w-7" />
             </a>
         </motion.div>
         
@@ -64,7 +65,7 @@ export default function Hero() {
         whileInView={{opacity:1, y: 0, transition:{duration:.4}}}
         className="hero-icon w-10 h-10 flex justify-center items-center rounded-md hover:bg-blue-300 dark:hover:bg-green-700">
             <a href="https://github.com/SouravPaitandy" target="_blank" rel="noopener noreferrer">
-               <img src="/portfolio/src/assets/github-dark.svg" alt="GitHub" className="h-7 w-7" />
+               <img src={Images.image13} alt="GitHub" className="h-7 w-7" />
             </a>
         </motion.div>
 
@@ -73,7 +74,7 @@ export default function Hero() {
         whileInView={{opacity:1, y: 0, transition:{duration:.4}}}
         className="hero-icon w-10 h-10 flex justify-center items-center rounded-md hover:bg-blue-300 dark:hover:bg-green-700">
             <a href="https://www.instagram.com/paitandy_ji/" target="_blank" rel="noopener noreferrer">
-                <img src= "/portfolio/src/assets/instagram-dark.svg" alt="Instagram" className="h-7 w-7" />
+                <img src= {Images.image14} alt="Instagram" className="h-7 w-7" />
             </a>
         </motion.div>
 
@@ -82,7 +83,7 @@ export default function Hero() {
         whileInView={{opacity:1, y: 0, transition:{duration:.4}}}
         className="hero-icon w-10 h-10 flex justify-center items-center rounded-md hover:bg-blue-300 dark:hover:bg-green-700">
             <a href="https://twitter.com/PaitandySourav" target="_blank" rel="noopener noreferrer">
-                <img src= "/portfolio/src/assets/x-dark.svg" alt="Instagram" className="h-7 w-7" />
+                <img src= {Images.image22} alt="Instagram" className="h-7 w-7" />
             </a>
         </motion.div>
       </motion.div>
