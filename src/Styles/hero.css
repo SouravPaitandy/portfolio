@@ -201,24 +201,20 @@ button:hover {
     z-index: -1 !important;
   }
 
-  .hero {
-    min-height: 80vh !important; /* Adjust the minimum height of the hero section */
-    padding-top: 30vh !important; /* Add padding-top equal to the height of the hero image */
-  }
 
   .hero-icons{
     display: none !important;
   }
 
   .hero-name {
-    font-size: 2rem !important; /* Adjust the font size for smaller screens */
+    font-size: 2.3rem !important; /* Adjust the font size for smaller screens */
     margin-bottom: .5rem !important; /* Adjust the bottom margin */
   }
 
   h3 {
-    font-size: 1rem !important; /* Adjust the font size for smaller screens */
+    font-size: 1.3rem !important; /* Adjust the font size for smaller screens */
     max-width: 80% !important; /* Adjust the maximum width for better readability */
-    margin-bottom: 1rem !important; /* Adjust the bottom margin */
+    margin-bottom: 1.3rem !important; /* Adjust the bottom margin */
   }
 
   .scrolling-mouse {
@@ -228,6 +224,7 @@ button:hover {
   .button {
     font-size: 1rem !important; /* Adjust the font size for smaller screens */
     padding: 0.5rem 1rem !important; /* Adjust the padding for smaller screens */
+    margin-top: 2.5rem;
   }
 }
 

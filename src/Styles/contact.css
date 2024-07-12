@@ -409,30 +409,30 @@
 
 @media (max-width: 455px) {
   .form-container{
-    width: 250px !important;
-    padding: 14px 12px !important;
-    font-size: 10px !important;
+    width: 350px !important;
+    padding: 26px 20px !important;
+    font-size: 16px !important;
   }
 
   .form{
-    gap: 15px !important;
+    gap: 18px !important;
   }
 
   .form-container .form-group label {
-    margin-bottom: 3px !important;
-    font-size: 10px !important; 
+    margin-bottom: 6px !important;
+    font-size: 16px !important; 
   }
 
   .form-container .form-submit-btn {
     padding: 7px 16px !important;
-    font-size: 16px !important;
+    font-size: 18px !important;
     gap: 8px !important;
     margin-top: 3px !important;
-    height: 40px !important;
+    height: 45px !important;
   }
 
   .error span{
-    font-size: 12px !important;
+    font-size: 18px !important;
   }
 
   .footer-hr{
@@ -447,10 +447,10 @@
   }
 
   .social-container h3{
-    font-size: 14px !important;
+    font-size: 16px !important;
   }
   .social-container h5{
-    font-size: 10px !important;
+    font-size: 14px !important;
   }
 
   .example-2{
@@ -461,7 +461,7 @@
     margin-left: 0 !important;
     margin-right: 0 !important;
     max-width: 100% !important;
-    font-size: 10px;
+    font-size: 16px;
   }
 }
 

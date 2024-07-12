@@ -129,7 +129,8 @@ const Social = () => {
         </div>
       </motion.div>
       <div className="footer-copy roboto-regular mx-44 mt-6  text-[12px] max-w-[70%] border-t-[1px] border-slate-900 dark:border-slate-400 border-opacity-50 dark:border-opacity-50 pt-5 text-center">
-        &copy; Copyright {new Date().getFullYear()}. Made with{" "}
+        {/* &copy; Copyright {new Date().getFullYear()}.  */}
+        Made with{" "}
         <span className="text-red-800 ">&#10084;</span> by{" "}
         <Link  to="hero-section"
           smooth={true}

@@ -36,7 +36,7 @@ export default function About() {
               Hi there! I&apos;m a Computer Science Engineering student at NSHM
               Knowledge Campus, Durgapur, affiliated with MAKAUT, passionate
               about web development and problem-solving. Skilled in C, Java,
-              Python, HTML5, CSS, JavaScript, React, Vue, SQL, and NoSQL
+              Python, HTML5, CSS, JavaScript, React, Next.js, Node, Express, SQL, and NoSQL
               databases.
             </p>
             <p>
@@ -46,12 +46,14 @@ export default function About() {
               impactful solutions.
             </p>
           </motion.div>
+          {/* <button> */}
           <Link to="project-section" smooth={true} duration={500}>
             <motion.button 
              initial={{opacity:0, y: 50}}
              whileInView={{opacity:1, y: 0, transition:{duration:.4}}}
             className="project-btn mt-3 w-min">Projects</motion.button>
           </Link>
+          {/* </button> */}
         </div>
         <div className="skills flex flex-col gap-3">
           <div className="title2 text-2xl font-bold mb-5">My Toolkit</div>
