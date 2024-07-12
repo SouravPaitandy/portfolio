@@ -11,16 +11,16 @@ export default function Hero() {
       "Front-end Developer",
       "MERNstack Developer",
       "React Developer",
-      "Fullstack web Developer",
+      "Fullstack Web Developer",
     ],
     loop: {},
-    typeSpeed: 60,
+    typeSpeed: 120,
     deleteSpeed: 120,
   });
   return (
     <section
       id="hero-section"
-      className="hero flex flex-col justify-center relative min-h-lvh items-center"
+      className="hero pt-40 flex flex-col justify-center relative min-h-lvh items-center"
     >
       <div className="hero-image"></div>
       <motion.h1 

@@ -17,6 +17,10 @@
   text-shadow: 0 0 5px rgba(0, 0, 0, .35);
 }
 
+.dark .hero-name{
+  text-shadow: 0 0 5px rgba(46, 46, 46, 0.35);
+}
+
 /* button {
   font-size: 1.5rem !important;
   padding: 0.8em 2em !important;
@@ -126,7 +130,7 @@ button:hover {
  }
 
  .scrolling-mouse{
-  margin-top: 15rem;
+  margin-top: 6rem;
   width: 25px;
   height: 40px;
   border-radius: 60px;
@@ -137,7 +141,7 @@ button:hover {
  }
 
  .dark .scrolling-mouse{
-  margin-top: 15rem;
+  margin-top: 6rem;
   width: 25px;
   height: 40px;
   border-radius: 60px;
