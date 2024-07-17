@@ -6,6 +6,11 @@
   scroll-behavior: smooth;
 } */
 
+/* html {
+  scroll-behavior: smooth;
+} */
+
+
 .dark ::selection{
   background-color: var(--selection-bg-color, #00ff00);
   color: rgb(33, 33, 33);

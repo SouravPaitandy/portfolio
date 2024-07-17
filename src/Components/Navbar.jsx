@@ -149,7 +149,7 @@ export default function Navbar() {
             {/* ... (navigation links remain the same but wrapped in a div) */}
             <Link
             to="about-section"
-            smooth={true}
+            // smooth={true}
             duration={500}
             className= "nav-link relative bg-clip-text bg-[-100%] transition-full duration-300 ease-in-out mr-6 text-xl font-bold cursor-pointer hover:bg-[0] hover:before:w-full "
           >
@@ -159,7 +159,7 @@ export default function Navbar() {
           </Link>
           <Link
             to="project-section"
-            smooth={true}
+            // smooth={true}
             duration={500}
             className= "nav-link relative bg-clip-text bg-[-100%] transition-full duration-300 ease-in-out mr-6 text-xl font-bold cursor-pointer hover:bg-[0] hover:before:w-full "
           >
@@ -168,7 +168,7 @@ export default function Navbar() {
           </Link>
           <Link
             to="contact-section"
-            smooth={true}
+            // smooth={true}
             duration={500}
             className= "nav-link relative bg-clip-text bg-[-100%] transition-full duration-300 ease-in-out mr-8 text-xl font-bold cursor-pointer hover:bg-[0] hover:before:w-full "
           >
