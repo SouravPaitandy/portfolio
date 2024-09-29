@@ -2,6 +2,7 @@ import "./Styles/about.css";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion"; 
 import * as Images from './assets';
+import ResumeViewer from "./ResumeViewer";
 
 export default function About() {
   return (
@@ -56,15 +57,24 @@ export default function About() {
                 impactful solutions.
               </p>
             </div>
-            <Link to="project-section" smooth={true} duration={500}>
+            <div className="flex gap-4">
+              <Link to="project-section" smooth={true} duration={500}>
+                <motion.button 
+                  initial={{opacity:0, y: 20}}
+                  whileInView={{opacity:1, y: 0, transition:{duration:0.4}}}
+                  className="project-btn mt-8 px-6 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                >
+                 Projects
+                </motion.button>
+              </Link>
               <motion.button 
                 initial={{opacity:0, y: 20}}
                 whileInView={{opacity:1, y: 0, transition:{duration:0.4}}}
                 className="project-btn mt-8 px-6 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
               >
-                Projects
+                <ResumeViewer heading="My Resume"/>
               </motion.button>
-            </Link>
+            </div>
           </motion.div>
           
           <motion.div 
