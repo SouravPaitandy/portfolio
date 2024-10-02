@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
-import myResume from './assets/Sourav-Paitandy.pdf';
-
 const ResumeViewer = ({ heading }) => {
+  const resumeUrl = '/Sourav-Paitandy.pdf';
   const handleResumeClick = () => {
-    const newWindow = window.open(myResume, '_blank');
+    const newWindow = window.open(resumeUrl, '_blank');
     
     if (newWindow) {
       setTimeout(() => {
