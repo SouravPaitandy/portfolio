@@ -19,7 +19,7 @@ const projectsData = [
     title: "VoxAI",
     shortDescription: "VoxAI Assistant - Voice-Activated AI Web Application",
     githubLink: "https://github.com/SouravPaitandy/voxai-virtual-ai-assistant",
-    skills: ["React", 'React Router', 'Tailwind CSS', 'Axios', 'Google Gemini API', 'Web Speech API', 'HTML5 Canvas', 'Vite'],
+    skills: ["React", 'React Router', 'Tailwind CSS', 'Axios', 'Google Gemini API', 'Web Speech API', 'Vite'],
     liveLink: "https://voxai-project.vercel.app/",
     image: Images.image25,
     longDescription: "Developed a state-of-the-art voice-activated AI assistant web application that leverages speech recognition, text-to-speech synthesis, and Google's Gemini API for natural language processing."

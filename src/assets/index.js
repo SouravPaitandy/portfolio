@@ -22,5 +22,5 @@ export { default as image20 } from './nextJS.png';
 export { default as image21 } from './react.svg';
 export { default as image22 } from './x-dark.svg';
 export { default as image24} from './mDB.ico';
-export { default as image25} from './project2.png';
+export { default as image25} from './project-2.png';
 // ... and so on for all your images

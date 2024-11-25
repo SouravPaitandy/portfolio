@@ -46,7 +46,7 @@ export default function ProjectCard({ project, onShowSkills }) {
         </button>
       </div>
       <div className="card">
-        <img src={project.image} alt={project.title} />
+        <img src={project.image} alt={project.title} className="max-w-72" />
         <div className="card__content">
           <p className="card__title roboto-regular">{project.title}</p>
           <p className="card__description roboto-regular">{project.longDescription}</p>
