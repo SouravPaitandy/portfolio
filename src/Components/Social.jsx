@@ -11,22 +11,22 @@ const Social = () => {
       whileInView={{opacity:1, y: 0, transition:{duration:.4}}}
       className="social-container flex justify-between gap-40 mb-8">
         <div className="footer-des ">
-          <h3 className="font-bold text-lg dark:text-green-500 text-blue-800 mb-3">SOURAV PAITANDY</h3>
+          <h3 className="font-bold text-lg dark:text-teal-500 text-teal-800 mb-3">SOURAV PAITANDY</h3>
           <h5>
             Let&apos;s connect and explore how we can collaborate to create
             impactful solutions.
           </h5>
         </div>
         <div className="footer-insp">
-          <h3 className="font-bold text-lg dark:text-green-500 text-blue-800 mb-3">Inspired by</h3>
+          <h3 className="font-bold text-lg dark:text-teal-500 text-teal-800 mb-3">Inspired by</h3>
           <h5>
-            <a href="https://catalinonutu.com/" target="_blank" className="dark:text-green-500 text-blue-800 hover:underline">Cătălin Onuțu</a>&apos;s &{" "}
-            <a href="https://www.rammaheshwari.com/" target="_blank" className="dark:text-green-500 text-blue-800 hover:underline">Ram Maheshwari</a>&apos;s
+            <a href="https://catalinonutu.com/" target="_blank" className="dark:text-cyan-500 text-cyan-800 hover:underline">Cătălin Onuțu</a>&apos;s &{" "}
+            <a href="https://www.rammaheshwari.com/" target="_blank" className="dark:text-cyan-500 text-cyan-800 hover:underline">Ram Maheshwari</a>&apos;s
             Websites.
           </h5>
         </div>
         <div className="social-icons">
-          <h3 className="font-bold text-lg dark:text-green-500 text-blue-800 mb-3">Social Links</h3>
+          <h3 className="font-bold text-lg dark:text-teal-500 text-teal-800 mb-3">Social Links</h3>
           <ul className="example-2 flex gap-2"> {/* Added flex and gap for better spacing */}
             <li className="icon-content transition-transform duration-200 hover:scale-105"> {/* Added hover effect */}
               <a
@@ -139,7 +139,7 @@ const Social = () => {
         <Link  to="hero-section"
           smooth={true}
           duration={1000}
-          className="cursor-pointer text-color opacity-50 hover:opacity-100">
+          className="cursor-pointer text-teal-800 dark:text-teal-500 opacity-50 hover:opacity-100">
             Sourav Paitandy
         </Link>
       </div>

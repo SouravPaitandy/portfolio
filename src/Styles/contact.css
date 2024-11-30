@@ -438,9 +438,9 @@
   .footer-hr{
     width: 100% !important;
   }
-  .footer-container{
+  /* .footer-container{
     max-width: 100% !important;
-  }
+  } */
   .social-container{
     gap: 1.5rem !important;
     flex-direction: column;

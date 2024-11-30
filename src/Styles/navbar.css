@@ -6,22 +6,26 @@
 
 .logo:hover{ 
   .nav-img{
-    box-shadow: 0 0 10px #4169E1;
+    box-shadow: 0 0 10px #0f766e;
     transition: box-shadow ease-in-out;
   }
   .nav-name{
-    text-shadow: 0px 3px 6px  #426ae18a;
+    text-shadow: 0px 3px 6px  #0f766e;
     transition: text-shadow ease-in-out;
   }
 }
 
 .dark .logo:hover{
   .nav-img{
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    box-shadow: 0 0 10px #2dd4bf;
     transition: box-shadow ease-in-out;
   }
-  .nav-name{
+  /* .nav-name{
     text-shadow: none;
+  } */
+  .nav-name{
+    text-shadow: 0px 2px 4px  #0f766e;
+    transition: text-shadow ease-in-out;
   }
 }
 
