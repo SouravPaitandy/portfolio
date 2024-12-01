@@ -142,7 +142,7 @@ export default function Contact() {
               w-5 h-5 transition-all duration-300 
               ${hasError 
                 ? 'text-red-500' 
-                : 'text-gray-400 group-focus-within:text-blue-500 dark:group-focus-within:text-blue-300'}
+                : 'text-gray-400 group-focus-within:text-teal-600 dark:group-focus-within:text-teal-400'}
             `} 
           />
         </div>
@@ -157,7 +157,7 @@ export default function Contact() {
             bg-white dark:bg-gray-800 
             ${hasError 
               ? 'border-red-500 focus:ring-red-500' 
-              : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'}
+              : 'border-gray-300 focus:border-teal-700 focus:ring-teal-500'}
             focus:outline-none focus:ring-2 
             transition-all duration-300 ease-in-out
             ${isTextArea && 'resize-none'}
@@ -230,14 +230,14 @@ export default function Contact() {
             Get In Touch
           </h1>
           <p className="mt-4 text-gray-600 dark:text-gray-300">
-            Have a question or want to collaborate? Send me a message!
+            Have a question, valuable feedback or want to collaborate? Send me a message!
           </p>
         </motion.div>
 
         <form ref={form} onSubmit={sendEmail} className="space-y-6">
-          {renderInputField('from_name', 'Your Name', User)}
+          {renderInputField('from_name', 'Name', User)}
           {renderInputField('from_email', 'Email', Mail, 'email')}
-          {renderInputField('message', 'Your Message', MessageSquare, 'text', true)}
+          {renderInputField('message', 'Message/Feedback', MessageSquare, 'text', true)}
 
         <AnimatePresence>
           {formState.message && (
