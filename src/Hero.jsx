@@ -412,7 +412,6 @@ export default function EnhancedHero() {
       overflow-hidden bg-gradient-to-br from-teal-50 to-cyan-100
       dark:from-slate-900 dark:to-cyan-900 
       text-gray-900 dark:text-white z-30"
-      // ref={heroRef}
   >
        {/* Advanced WebGL Background */}
        {document.body.clientWidth > 640 && themeMode === 'dark' && <WebGLBackground />}
@@ -428,12 +427,12 @@ export default function EnhancedHero() {
 
       {/* Hero Content with Parallax Effect */}
       <div 
-       ref={heroRef}
+       ref={document.body.clientWidth > 640 ? heroRef : null}
         className="relative z-10 max-w-4xl px-6 text-center"
-        style={{
+        style={document.body.clientWidth > 640 ? {
           transform: `translate(${parallaxX}px, ${parallaxY}px)`,
           transition: 'transform 0.1s ease-out'
-        }}
+        } : {}}
       >
         {/* <div className='bg-yellow-600/40 border-2 border-yellow-500 backdrop-blur-md rounded-full mb-6'> */}
         {/* Animated Name with 3D Text Effect */}
@@ -605,8 +604,8 @@ export default function EnhancedHero() {
           repeat: Infinity, 
           ease: "easeInOut" 
         }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 
-          w-10 h-14 border-2 border-blue-600 dark:border-purple-500 
+        className="absolute bottom-8 left-[47%] md:left-1/2 transform -translate-x-1/2 
+          w-9 h-12 md:w-7 md:h-10 border-2 border-blue-600 dark:border-purple-500 
           rounded-full flex justify-center items-center"
       >
         <motion.div
@@ -619,7 +618,7 @@ export default function EnhancedHero() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="w-2 h-3 bg-blue-600 dark:bg-purple-500 rounded-full"
+          className="w-2 h-3 md:w-1.5 md:h-2 bg-blue-600 dark:bg-purple-500 rounded-full"
         />
       </motion.div>
     </motion.section>

@@ -92,14 +92,12 @@ const { x: parallaxX, y: parallaxY } = useParallax(aboutRef);
         </motion.h2>
         <div className="content-wrapper flex flex-col lg:flex-row gap-12 lg:gap-16 w-full">
           <div
-            ref={aboutRef} 
-            style={{
+            ref={document.body.clientWidth > 640 ? aboutRef : null} 
+            style={document.body.clientWidth > 640 ? {
               transform: `translate(${parallaxX}px, ${parallaxY}px)`,
               transition: 'transform 0.1s ease-out'
-            }}
+            } : {}}
             className="description flex-1 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-xl shadow-lg p-8 border border-cyan-200 dark:border-cyan-800 transition-all duration-300 hover:shadow-xl"
-            // initial={{ opacity: 0, y: 50 }}
-            // whileInView={{ opacity: 1, y: 0 }}
           >
             <h3 className="text-2xl font-bold mb-6 text-cyan-700 dark:text-cyan-300">Get to know me!</h3>
             <div className="roboto-regular des-text space-y-4 text-slate-700 dark:text-slate-300">
@@ -144,13 +142,11 @@ const { x: parallaxX, y: parallaxY } = useParallax(aboutRef);
           
           <motion.div 
             className="skills flex-1 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-xl shadow-lg p-8 border border-cyan-200 dark:border-cyan-800 transition-all duration-300 hover:shadow-xl"
-            // initial={{ opacity: 0, y: 50 }}
-            // whileInView={{ opacity: 1, y: 0 }}
-            ref={aboutRef} 
-            style={{
+            ref={document.body.clientWidth > 640 ? aboutRef : null} 
+            style={document.body.clientWidth > 640 ? {
               transform: `translate(${parallaxX}px, ${parallaxY}px)`,
               transition: 'transform 0.1s ease-out'
-            }}
+            } : {}}
           >
             <h3 className="text-2xl font-bold mb-6 text-cyan-700 dark:text-cyan-300">My Toolkit</h3>
             <div className="tech-lists grid grid-cols-3 sm:grid-cols-4 gap-6">

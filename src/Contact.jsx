@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, AlertCircle, Check, MessageSquare, Mail, User } from 'lucide-react';
 import { z } from 'zod';
@@ -128,6 +128,43 @@ export default function Contact() {
     }
   };
 
+  function useParallax(ref, rate = 0.03) {
+    const [offset, setOffset] = useState({ x: 0, y: 0 });
+  
+    useEffect(() => {
+      const handleMove = (e) => {
+        if (ref.current) {
+          const { left, top, width, height } = ref.current.getBoundingClientRect();
+          const x = (e.clientX - (left + width / 2)) * rate;
+          const y = (e.clientY - (top + height / 2)) * rate;
+          setOffset({ x, y });
+        }
+      };
+  
+      const debouncedMove = debounce(handleMove, 10);
+      window.addEventListener('mousemove', debouncedMove);
+      return () => window.removeEventListener('mousemove', debouncedMove);
+    }, [ref, rate]);
+  
+    return offset;
+  }
+  
+  function debounce(func, wait) {
+    let timeout = null;
+    return function executedFunction(...args) {
+      const later = () => {
+        if (timeout) clearTimeout(timeout);
+        func(...args);
+      };
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
+  const contactRef = useRef(null);
+  // console.log(contactRef)
+  const { x: parallaxX, y: parallaxY } = useParallax(contactRef);
+
   // Dynamic input field rendering with advanced feedback
   const renderInputField = (name, label, icon, type = 'text', isTextArea = false) => {
     const hasError = formState.errors[name];
@@ -135,7 +172,12 @@ export default function Contact() {
     const IconComponent = icon;
 
     return (
-      <div className="relative group">
+      <motion.div 
+      initial={document.body.clientWidth > 640 ? isTextArea ? { opacity: 0, x: -50} : { opacity: 0, x: 50}: 
+               isTextArea ? { opacity: 0, x: -20} : { opacity: 0, x: 20}}
+      whileInView={{ opacity: 1, x:0 }}
+      transition={{ duration: 0.5 }}
+        className="relative group">
         <div className={`absolute inset-y-0 left-0 pl-3 flex ${isTextArea ? 'items-start pt-4' : 'items-center'} pointer-events-none`}>
           <IconComponent 
             className={`
@@ -191,7 +233,7 @@ export default function Contact() {
             <span className="text-xs">{formState.errors[name][0]}</span>
           </motion.div>
         )}
-      </div>
+      </motion.div>
     );
   };
 
@@ -215,14 +257,16 @@ export default function Contact() {
           h-1.5 w-24 sm:w-32 border-none mt-6 mb-12 sm:mb-16 rounded-full mx-auto"
       ></motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
+      <div
+        ref={document.body.clientWidth > 640 ? contactRef : null} 
+        style={document.body.clientWidth > 640 ? {
+          transform: `translate(${parallaxX}px, ${parallaxY}px)`,
+          transition: 'transform 0.1s ease-out'
+        } : {}}
         className="w-full md:max-w-xl mb-10 bg-slate-100/50 dark:bg-gray-900/50 shadow-2xl rounded-2xl p-8 md:p-12">
         <motion.div 
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          initial={{ scale: 0.7, opacity: 0, y:20 }}
+          whileInView={{ scale: 1, opacity: 1, y:0 }}
           transition={{ duration: 0.5 }}
           className="text-center mb-10"
         >
@@ -258,9 +302,12 @@ export default function Contact() {
           )}
         </AnimatePresence>
 
-        <motion.button 
+        <motion.button
+          initial={{ scale: 0.7, opacity: 0, y:20 }}
+          whileInView={{ scale: 1, opacity: 1, y:0 }}
+          transition={{ duration: 0.2 }} 
           whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileTap={{ scale: 0.8 }}
           type="submit" 
           disabled={formState.status === 'submitting'}
           className={`
@@ -268,7 +315,7 @@ export default function Contact() {
             transition duration-300 ease-in-out 
             text-white font-semibold
             ${formState.status === 'submitting' 
-              ? 'bg-gray-400 cursor-not-allowed' 
+              ? 'bg-cyan-900 text-white dark:bg-cyan-700 cursor-not-allowed' 
               : 'bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700'}
           `}
         >
@@ -282,7 +329,7 @@ export default function Contact() {
           )}
         </motion.button>
       </form>
-    </motion.div>
+    </div>
 
     {/* Social Links Section */}
     {/* <motion.div 
