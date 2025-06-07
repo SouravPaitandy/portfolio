@@ -3,7 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, AlertCircle, Check, MessageSquare, Mail, User } from 'lucide-react';
 import { z } from 'zod';
 import Social from './Components/Social';
-import emailjs from '@emailjs/browser';
+// Remove EmailJS import
+// import emailjs from '@emailjs/browser';
+// Add Formspree import
+import { useForm } from '@formspree/react';
 
 // Enhanced Zod schema with more detailed validations
 const ContactSchema = z.object({
@@ -20,6 +23,9 @@ const ContactSchema = z.object({
 });
 
 export default function Contact() {
+  // Initialize formspree with your form ID
+  const [formspreeState, formspreeSubmit] = useForm("mvgaanrg"); // Replace with your Formspree form ID
+  
   const [formState, setFormState] = useState({
     status: 'idle',
     errors: {},
@@ -62,11 +68,11 @@ export default function Contact() {
     }
   }, []);
 
-  // Enhanced email sending with sophisticated error handling
+  // Update sendEmail function to use Formspree
   const sendEmail = async (e) => {
     e.preventDefault();
     
-    // Validate and get character count
+    // Validate and get character count (keep this part)
     const validation = validateForm();
     setFormState(prev => ({ 
       ...prev, 
@@ -75,7 +81,7 @@ export default function Contact() {
       characterCount: validation.characterCount
     }));
 
-    // Early return if validation fails
+    // Early return if validation fails (keep this part)
     if (Object.keys(validation.errors).length > 0) {
       setFormState(prev => ({ 
         ...prev, 
@@ -84,19 +90,18 @@ export default function Contact() {
       return;
     }
 
-    try {
-      await emailjs.send(
-        import.meta.env.VITE_REACT_APP_MY_SERVICE_ID,
-        import.meta.env.VITE_REACT_APP_MY_TEMPLATE_ID,
-        {
-          from_name: form.current.from_name.value,
-          from_email: form.current.from_email.value,
-          message: form.current.message.value
-        },
-        import.meta.env.VITE_REACT_APP_MY_PUBLIC_KEY
-      );
-
-      // Success handling with vibrant feedback
+    // Replace EmailJS with Formspree submission
+    const formData = {
+      name: form.current.from_name.value,
+      email: form.current.from_email.value,
+      message: form.current.message.value
+    };
+    
+    await formspreeSubmit(formData);
+    
+    // Handle response based on Formspree state
+    if (formspreeState.succeeded) {
+      // Success handling
       setFormState({
         status: 'success',
         errors: {},
@@ -111,13 +116,12 @@ export default function Contact() {
       setTimeout(() => {
         setFormState(prev => ({ ...prev, status: 'idle', message: '' }));
       }, 3000);
-
-    } catch (error) {
-      // Detailed error handling
+    } else if (formspreeState.errors) {
+      // Error handling
       setFormState({
         status: 'error',
         errors: {},
-        message: `Submission failed. ${error.text || 'Please check your connection and try again.'}`,
+        message: `Submission failed. Please check your connection and try again.`,
         characterCount: { message: 0 }
       });
 
