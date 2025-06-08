@@ -428,3 +428,20 @@ canvas {
   }
 /* } */
 
+/* Add to your Hero.css or relevant stylesheet */
+.visitor-counter {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.visitor-counter > div {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.visitor-counter > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+

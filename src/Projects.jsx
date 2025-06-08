@@ -111,7 +111,8 @@ const ProjectCard = ({
   progress,
   toggleSkillsPopup,
   setIsInteracting,
-  openGallery
+  openGallery,
+  toggleDetailsModal
 }) => {
   // More dynamic transform values
   const rotation = useTransform(progress, [0, 1], [8, 0]);
@@ -293,6 +294,7 @@ const ProjectCard = ({
                       e.stopPropagation();
                       toggleSkillsPopup();
                     }}
+                    title={`View all ${project.skills.length} skills`}
                   >
                     +{project.skills.length - 4}
                   </motion.span>
@@ -323,6 +325,7 @@ const ProjectCard = ({
                     boxShadow: `0 4px 12px -4px ${project.color}40`,
                   }}
                   whileTap={{ scale: 0.98 }}
+                  title="View code on GitHub"
                 >
                   <Github size={16} />
                   <span className="hidden sm:inline">Code</span>
@@ -342,6 +345,7 @@ const ProjectCard = ({
                     boxShadow: `0 6px 16px -4px ${project.color}70`,
                   }}
                   whileTap={{ scale: 0.98 }}
+                  title="View live work"
                 >
                   <ExternalLink size={16} />
                   <span className="hidden sm:inline">Live Demo</span>
@@ -353,8 +357,9 @@ const ProjectCard = ({
                   whileHover={{ x: 3 }}
                   onClick={(e) => {
                     e.stopPropagation();
-                    toggleSkillsPopup();
+                    toggleDetailsModal();
                   }}
+                  title="View project details"
                 >
                   <span className="hidden sm:inline">View Details</span>
                   <ArrowRight size={16} />
@@ -789,6 +794,228 @@ const ProjectGalleryModal = ({ project, onClose, setIsInteracting }) => {
   );
 };
 
+// Add this component alongside your other modal components
+const ProjectDetailsModal = ({ project, onClose, openGallery }) => {
+  return (
+    <motion.div
+      className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="bg-white dark:bg-gray-800/90 p-6 sm:p-8 rounded-xl shadow-2xl max-w-5xl max-h-[90vh] overflow-y-auto"
+        initial={{ scale: 0.9, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.9, y: 20 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex justify-between items-center mb-6">
+          <div>
+            <span
+              className="text-xs uppercase tracking-wider font-semibold px-3 py-1 rounded-full"
+              style={{
+                backgroundColor: `${project.color}15`,
+                color: project.color,
+                border: `1px solid ${project.color}30`,
+              }}
+            >
+              {project.projectType}
+            </span>
+            <h3 
+              className="text-2xl font-bold mt-3" 
+              style={{ 
+                color: project.color,
+                textShadow: `0 1px 3px ${project.color}30`
+              }}
+            >
+              {project.title}
+            </h3>
+          </div>
+          
+          <motion.button
+            className="p-2 rounded-full bg-gray-100 dark:bg-gray-700/50 hover:bg-gray-200 dark:hover:bg-gray-700"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onClose}
+          >
+            <X size={20} />
+          </motion.button>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div className="md:col-span-2">
+            <div className="prose prose-sm dark:prose-invert max-w-none">
+              <h4 className="text-lg font-medium mb-2 text-gray-700 dark:text-gray-300">Project Overview</h4>
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                {project.longDescription}
+              </p>
+              
+              {/* Add more sections like challenges, solutions, etc. if needed */}
+              <h4 className="text-lg font-medium mt-6 mb-2 text-gray-700 dark:text-gray-300">Key Features</h4>
+              <ul className="list-disc text-xs pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+                {/* Generate some example features based on the project description and technologies */}
+                {project.id === "collab-hub" ? (
+                  <>
+                    <li>Real-time collaboration using WebSockets and Socket.io</li>
+                    <li>User authentication and project permission management</li>
+                    <li>Dynamic project sharing and contributor invitations</li>
+                    <li>Responsive design with Tailwind CSS</li>
+                  </>
+                ) : project.id === "vox-ai" ? (
+                  <>
+                    <li>Voice recognition with   Web Speech API</li>
+                    <li>Natural language processing via Google Gemini API</li>
+                    <li>Voice response synthesis</li>
+                    <li>Conversational memory and context retention</li>
+                  </>
+                ) : (
+                  <>
+                    <li>Interactive game mechanics with vanilla JavaScript</li>
+                    <li>Pattern memory challenges with increasing difficulty</li>
+                    <li>Score tracking and visual/audio feedback</li>
+                    <li>Mobile-responsive gameplay</li>
+                  </>
+                )}
+              </ul>
+            </div>
+          </div>
+          
+          <div className="md:col-span-1">
+            <div 
+              className="rounded-lg overflow-hidden shadow-lg border"
+              style={{ borderColor: `${project.color}30` }}
+            >
+              <img 
+                src={project.image} 
+                alt={project.title}
+                className="w-full aspect-video object-cover"
+              />
+            </div>
+            
+            <div className="mt-4 space-y-3">
+              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Technologies Used</h4>
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="text-xs px-3 py-1 rounded-md"
+                    style={{
+                      backgroundColor: `${project.color}15`,
+                      color: project.color,
+                      border: `1px solid ${project.color}30`,
+                    }}
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              
+              {/* Project Links */}
+              <div className="flex flex-col gap-2 mt-6">
+                <a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm w-full justify-center"
+                  style={{
+                    backgroundColor: `${project.color}15`,
+                    color: project.color,
+                    border: `1px solid ${project.color}30`,
+                  }}
+                >
+                  <Github size={16} />
+                  <span>View Code</span>
+                </a>
+                
+                <a
+                  href={project.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm text-white w-full justify-center"
+                  style={{
+                    background: `linear-gradient(to right, ${project.color}, ${adjustColorBrightness(project.color, -30)})`,
+                    boxShadow: `0 4px 12px -4px ${project.color}60`,
+                  }}
+                >
+                  <ExternalLink size={16} />
+                  <span>Live Demo</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Show gallery preview if there are additional images */}
+        {project.additionalImages && project.additionalImages.length > 0 && (
+          <div className="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6">
+            <div className="flex justify-between items-center mb-4">
+              <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300">Project Gallery</h4>
+              <button 
+                className="text-sm flex items-center gap-1"
+                style={{ color: project.color }}
+                onClick={() => {
+                  onClose();
+                  // Add a small delay before opening the gallery
+                  setTimeout(() => openGallery(project), 100);
+                }}
+              >
+                <span>View All</span>
+                <ArrowRight size={14} />
+              </button>
+            </div>
+            
+            <div className="flex gap-2 overflow-x-auto py-2 px-1">
+              <div className="min-w-[100px] aspect-video rounded-md overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={`${project.title} thumbnail`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              {project.additionalImages.slice(0, 3).map((img, index) => (
+                <div key={index} className="min-w-[100px] aspect-video rounded-md overflow-hidden">
+                  <img 
+                    src={img} 
+                    alt={`${project.title} thumbnail ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+              
+              {project.additionalImages.length > 3 && (
+                <div className="min-w-[100px] aspect-video rounded-md overflow-hidden relative">
+                  <img 
+                    src={project.additionalImages[3]} 
+                    alt={`${project.title} thumbnail 4`}
+                    className="w-full h-full object-cover filter brightness-50"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center text-white font-medium">
+                    +{project.additionalImages.length - 3}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+        
+        <div className="mt-6 flex justify-end">
+          <motion.button
+            className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-6 rounded-lg transition-all duration-300 ease-in-out flex items-center gap-2"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={onClose}
+          >
+            Close
+          </motion.button>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 export default function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showSkillsPopup, setShowSkillsPopup] = useState(false);
@@ -797,6 +1024,8 @@ export default function Projects() {
   const [isInteracting, setIsInteracting] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
   const [galleryProject, setGalleryProject] = useState(null);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+
 
   const progress = useMotionValue(0);
   const touchStartRef = useRef(null);
@@ -917,6 +1146,13 @@ export default function Projects() {
     setTimeout(() => setIsInteracting(false), 500);
   }, []);
 
+   // Toggle details modal
+  const toggleDetailsModal = useCallback(() => {
+    const newState = !showDetailsModal;
+    setShowDetailsModal(newState);
+    setIsInteracting(newState); // Pause auto-rotation when showing details
+  }, [showDetailsModal]);
+
   return (
     <motion.section
       id="project-section"
@@ -943,15 +1179,15 @@ export default function Projects() {
             </span>
           </motion.div>
 
-          <motion.h2
+          <motion.h1
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white"
           >
             <span className="text-cyan-600 dark:text-cyan-400">Featured</span>{" "}
             Projects
-          </motion.h2>
+          </motion.h1>
 
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}
@@ -1033,7 +1269,7 @@ export default function Projects() {
                       <ProjectCard
                         project={project}
                         isActive={isActive}
-                         onClick={() => {
+                        onClick={() => {
                         setCurrentIndex(index);
                         // Set interacting when clicking on a project
                         if (isActive) setIsInteracting(true);
@@ -1042,6 +1278,7 @@ export default function Projects() {
                         toggleSkillsPopup={toggleSkillsPopup}
                         setIsInteracting={setIsInteracting}
                         openGallery={openGallery}
+                        toggleDetailsModal={toggleDetailsModal}
                       />
                     </motion.div>
                   );
@@ -1140,11 +1377,10 @@ export default function Projects() {
 
                     <div className="absolute top-3 right-3">
                       <span
-                        className="px-2 py-1 text-xs rounded-full uppercase font-semibold"
+                        className="px-2 py-1 text-xs rounded-full backdrop-blur-xl uppercase font-bold"
                         style={{
-                          backgroundColor: `${project.color}30`,
-                          color: project.color,
-                          backdropFilter: "blur(4px)",
+                          backgroundColor: `${project.title === 'Simon Says' ? `${project.color}40` : `${project.color}90`}`,
+                          color: `${project.title === 'Simon Says' ? project.color : 'gray/50'}`
                         }}
                       >
                         {project.projectType}
@@ -1164,7 +1400,7 @@ export default function Projects() {
                       {project.shortDescription}
                     </p>
 
-                    <div className="grid-card-skills flex flex-wrap gap-2 mb-6">
+                    <div className="grid-card-skills flex items-center flex-wrap gap-2 mb-6">
                       {project.skills.slice(0, 3).map((skill, i) => (
                         <span
                           key={i}
@@ -1179,15 +1415,17 @@ export default function Projects() {
                       ))}
                       {project.skills.length > 3 && (
                         <span
-                          className="text-xs px-2 py-0.5 rounded cursor-pointer"
+                          className="text-sm font-semibold px-2 py-0.5 rounded cursor-pointer transition-transform duration-300 ease-in-out hover:translate-x-1"
                           style={{
                             backgroundColor: `${project.color}20`,
                             color: project.color,
+                            border: `1px solid ${project.color}50`
                           }}
                           onClick={() => {
                             setCurrentIndex(index);
                             toggleSkillsPopup();
                           }}
+                          title={`+${project.skills.length - 3} more`}
                         >
                           +{project.skills.length - 3}
                         </span>
@@ -1201,6 +1439,7 @@ export default function Projects() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="p-2 rounded"
+                          title="See Code"
                           style={{ color: project.color }}
                         >
                           <Github size={18} />
@@ -1210,6 +1449,7 @@ export default function Projects() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="p-2 rounded"
+                          title="View live"
                           style={{ color: project.color }}
                         >
                           <ExternalLink size={18} />
@@ -1217,15 +1457,17 @@ export default function Projects() {
                       </div>
 
                       <button
+                        className="group text-xs flex items-center gap-1 p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700/40 transition-colors"
+                        style={{ color: project.color }}
+                        title="View Project Details"
                         onClick={() => {
                           setCurrentIndex(index);
-                          setViewMode("carousel");
+                          setShowDetailsModal(true);
+                          setIsInteracting(true); // Pause auto-rotation when viewing details
                         }}
-                        className="text-xs flex items-center gap-1 p-2 rounded"
-                        style={{ color: project.color }}
                       >
-                        <span>View Project</span>
-                        <ArrowRight size={14} />
+                        <span>View Project Details</span>
+                        <ArrowRight size={14} className="transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
                       </button>
                     </div>
                   </div>
@@ -1274,6 +1516,20 @@ export default function Projects() {
               setShowSkillsPopup(false);
               setTimeout(() => setIsInteracting(false), 500);
             }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Add details modal */}
+      <AnimatePresence>
+        {showDetailsModal && (
+          <ProjectDetailsModal
+            project={projectsData[currentIndex]}
+            onClose={() => {
+              setShowDetailsModal(false);
+              setTimeout(() => setIsInteracting(false), 500);
+            }}
+            openGallery={openGallery}
           />
         )}
       </AnimatePresence>
