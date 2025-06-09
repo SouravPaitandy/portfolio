@@ -114,11 +114,12 @@ export default function Navbar() {
     <>
       <nav
         className={`flex justify-between items-center 
-          dark:bg-neutral-900 dark:text-white bg-[#F5F5F5] 
-          text-black shadow-lg h-16 w-full fixed top-0 z-50 
-          ${!isHidden ? 'translate-y-0' : '-translate-y-full'}
+           dark:text-white
+          text-black h-16 w-full fixed top-0 z-50 
+          ${!isHidden ? 'bg-[#F5F5F5] dark:bg-neutral-900 shadow-lg' : 'bg-transparent'}
           transition-all duration-500 ease-in-out px-4 md:px-8`}
         aria-label="Main Navigation"
+        // ${!isHidden ? 'translate-y-0' : '-translate-y-full'}
       >
         <div className="logo ml-4 cursor-pointer flex items-center space-x-4">
           <Link
@@ -133,7 +134,7 @@ export default function Navbar() {
               dark:border-teal-400 border-teal-700"
             >
             </div>
-            <span className="nav-name font-bold text-xl md:text-3xl">
+            <span className="nav-name font-bold dark:text-gray-300 text-gray-700 text-xl md:text-3xl">
               <span className="text-teal-700 dark:text-teal-400 roboto-regular font-extrabold">
                 &lt;
               </span>

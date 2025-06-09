@@ -19,11 +19,10 @@ import {
   Image as ImageIcon,
   MinusCircle,
   PlusCircle,
-  LayoutGrid
+  LayoutGrid,
 } from "lucide-react";
 import * as Images from "./assets";
 import "./Styles/projects.css";
-
 
 // Import images moved to separate file for cleaner code
 const projectsData = [
@@ -44,7 +43,12 @@ const projectsData = [
     ],
     liveLink: "https://collab-hub.vercel.app/",
     image: Images.collabhub,
-    additionalImages: [Images.addImage1, Images.addImage2, Images.addImage3, Images.addImage4],
+    additionalImages: [
+      Images.addImage1,
+      Images.addImage2,
+      Images.addImage3,
+      Images.addImage4,
+    ],
     longDescription:
       "Developed a collaborative platform for developers to connect, share projects, and work together in real-time. Utilized Next.js for server-side rendering and Socket.io for real-time communication.",
     technologies: ["Next.js", "MongoDB", "Socket.io"],
@@ -112,7 +116,7 @@ const ProjectCard = ({
   toggleSkillsPopup,
   setIsInteracting,
   openGallery,
-  toggleDetailsModal
+  toggleDetailsModal,
 }) => {
   // More dynamic transform values
   const rotation = useTransform(progress, [0, 1], [8, 0]);
@@ -130,7 +134,7 @@ const ProjectCard = ({
       className={`project-card-wrapper ${isActive ? "active" : ""}`}
       style={{
         scale,
-        opacity:1,
+        opacity: 1,
         rotateY: rotation,
         y: translateY,
         x: isActive ? 0 : -20,
@@ -139,18 +143,18 @@ const ProjectCard = ({
       animate={{ scale: isActive ? 1 : 0.9 }}
       whileHover={{ scale: isActive ? 1.02 : 0.92 }}
       onClick={(e) => {
-          onClick(e);
-          if (isActive) setIsInteracting(true); // Set interacting when clicking active card
-        }}
-        onHoverStart={() => {
-          if (isActive) setIsInteracting(true); // Set interacting when hovering active card
-        }}
-        onHoverEnd={() => {
-          if (isActive) {
-            // Add a small delay before allowing auto-rotation again
-            setTimeout(() => setIsInteracting(false), 500);
-          }
-        }}
+        onClick(e);
+        if (isActive) setIsInteracting(true); // Set interacting when clicking active card
+      }}
+      onHoverStart={() => {
+        if (isActive) setIsInteracting(true); // Set interacting when hovering active card
+      }}
+      onHoverEnd={() => {
+        if (isActive) {
+          // Add a small delay before allowing auto-rotation again
+          setTimeout(() => setIsInteracting(false), 500);
+        }
+      }}
       transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }} // Improved easing
     >
       <motion.div
@@ -398,15 +402,16 @@ const ProjectCard = ({
             </div>
 
             {/* Add gallery indicator badge if project has additional images */}
-            {project.additionalImages && project.additionalImages.length > 0 && (
-              <div 
-                className="absolute top-2 left-2 bg-black/50 backdrop-blur-sm px-2 py-1 rounded-md text-xs text-white flex items-center gap-1 z-10"
-                style={{ border: `1px solid ${project.color}40` }}
-              >
-                <ImageIcon size={12} />
-                <span>{project.additionalImages.length + 1} images</span>
-              </div>
-            )}
+            {project.additionalImages &&
+              project.additionalImages.length > 0 && (
+                <div
+                  className="absolute top-2 left-2 bg-black/50 backdrop-blur-sm px-2 py-1 rounded-md text-xs text-white flex items-center gap-1 z-10"
+                  style={{ border: `1px solid ${project.color}40` }}
+                >
+                  <ImageIcon size={12} />
+                  <span>{project.additionalImages.length + 1} images</span>
+                </div>
+              )}
 
             <motion.img
               src={project.image}
@@ -420,26 +425,34 @@ const ProjectCard = ({
             />
 
             {/* Add a gallery button overlay if there are additional images */}
-            {isActive && project.additionalImages && project.additionalImages.length > 0 && (
-              <motion.button
-                className="absolute bottom-3 right-3 z-50 bg-black/50 backdrop-blur-sm text-white px-3 py-2 rounded-lg flex items-center gap-2 text-sm"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  openGallery(project);
-                  setIsInteracting(true);
-                }}
-                whileHover={{ 
-                  backgroundColor: `rgba(${parseInt(project.color.slice(1, 3), 16)}, ${parseInt(project.color.slice(3, 5), 16)}, ${parseInt(project.color.slice(5, 7), 16)}, 0.7)`,
-                  scale: 1.05
-                }}
-              >
-                <ImageIcon size={16} />
-                View Gallery
-              </motion.button>
-            )}
+            {isActive &&
+              project.additionalImages &&
+              project.additionalImages.length > 0 && (
+                <motion.button
+                  className="absolute bottom-3 right-3 z-50 bg-black/50 backdrop-blur-sm text-white px-3 py-2 rounded-lg flex items-center gap-2 text-sm"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openGallery(project);
+                    setIsInteracting(true);
+                  }}
+                  whileHover={{
+                    backgroundColor: `rgba(${parseInt(
+                      project.color.slice(1, 3),
+                      16
+                    )}, ${parseInt(project.color.slice(3, 5), 16)}, ${parseInt(
+                      project.color.slice(5, 7),
+                      16
+                    )}, 0.7)`,
+                    scale: 1.05,
+                  }}
+                >
+                  <ImageIcon size={16} />
+                  View Gallery
+                </motion.button>
+              )}
 
             {/* Image Overlay with Tech Icons - Enhanced */}
             <motion.div
@@ -581,33 +594,37 @@ const SkillsModal = ({ project, onClose }) => {
 const ProjectGalleryModal = ({ project, onClose, setIsInteracting }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
-  
+
   const allImages = [project.image, ...(project.additionalImages || [])];
 
   useEffect(() => {
     setIsInteracting(true);
   }, [setIsInteracting]);
-  
+
   // Go to next image
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev === allImages.length - 1 ? 0 : prev + 1));
+    setCurrentImageIndex((prev) =>
+      prev === allImages.length - 1 ? 0 : prev + 1
+    );
   };
-  
+
   // Go to previous image
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev === 0 ? allImages.length - 1 : prev - 1));
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? allImages.length - 1 : prev - 1
+    );
   };
 
   // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'ArrowLeft') prevImage();
-      if (e.key === 'Escape') onClose();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+      if (e.key === "Escape") onClose();
     };
-    
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
   return (
@@ -629,11 +646,12 @@ const ProjectGalleryModal = ({ project, onClose, setIsInteracting }) => {
         {/* Gallery Header */}
         <div className="flex justify-between items-center mb-4 px-2">
           <div>
-            <h3 
+            <h3
               className="text-xl md:text-2xl font-bold text-white flex items-center"
               style={{ color: project.color }}
             >
-              {project.title} <span className="ml-2 text-gray-300 text-sm">Gallery</span>
+              {project.title}{" "}
+              <span className="ml-2 text-gray-300 text-sm">Gallery</span>
             </h3>
             <p className="text-gray-400 text-sm mt-1">
               {currentImageIndex + 1} of {allImages.length} images
@@ -643,16 +661,19 @@ const ProjectGalleryModal = ({ project, onClose, setIsInteracting }) => {
           <div className="flex items-center gap-3">
             {/* Zoom Control */}
             <motion.button
-              className={`p-2 rounded-full ${isZoomed ? 'bg-white/20' : 'bg-transparent'}`}
+              className={`p-2 rounded-full ${
+                isZoomed ? "bg-white/20" : "bg-transparent"
+              }`}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsZoomed(!isZoomed)}
               aria-label={isZoomed ? "Zoom out" : "Zoom in"}
             >
-              {isZoomed ? 
-                <MinusCircle size={20} className="text-white" /> : 
+              {isZoomed ? (
+                <MinusCircle size={20} className="text-white" />
+              ) : (
                 <PlusCircle size={20} className="text-white" />
-              }
+              )}
             </motion.button>
 
             {/* Thumbnails Toggle - For future implementation */}
@@ -690,7 +711,9 @@ const ProjectGalleryModal = ({ project, onClose, setIsInteracting }) => {
             <motion.img
               src={allImages[currentImageIndex]}
               alt={`${project.title} - Image ${currentImageIndex + 1}`}
-              className={`object-contain max-h-[70vh] transition-all duration-300 ${isZoomed ? 'scale-150' : 'scale-100'}`}
+              className={`object-contain max-h-[70vh] transition-all duration-300 ${
+                isZoomed ? "scale-150" : "scale-100"
+              }`}
               style={{
                 filter: "drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3))",
               }}
@@ -715,7 +738,7 @@ const ProjectGalleryModal = ({ project, onClose, setIsInteracting }) => {
             >
               <ChevronLeft size={24} className="text-white" />
             </motion.button>
-            
+
             <motion.button
               className="bg-black/30 hover:bg-black/50 p-3 rounded-full backdrop-blur-sm"
               whileHover={{ scale: 1.1 }}
@@ -736,12 +759,14 @@ const ProjectGalleryModal = ({ project, onClose, setIsInteracting }) => {
             <motion.div
               key={index}
               className={`relative cursor-pointer rounded-md overflow-hidden ${
-                index === currentImageIndex ? 'ring-2 ring-offset-2' : 'opacity-60 hover:opacity-100'
+                index === currentImageIndex
+                  ? "ring-2 ring-offset-2"
+                  : "opacity-60 hover:opacity-100"
               }`}
-              style={{ 
+              style={{
                 ringColor: project.color,
                 minWidth: "80px",
-                height: "50px"
+                height: "50px",
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -759,9 +784,11 @@ const ProjectGalleryModal = ({ project, onClose, setIsInteracting }) => {
         {/* Project Info Footer */}
         <div className="mt-4 flex flex-wrap justify-between items-center">
           <div className="text-sm text-gray-400">
-            <p className="font-medium" style={{ color: project.color }}>{project.projectType}</p>
+            <p className="font-medium" style={{ color: project.color }}>
+              {project.projectType}
+            </p>
           </div>
-          
+
           <div className="flex gap-2 mt-2 md:mt-0">
             <motion.a
               href={project.githubLink}
@@ -774,13 +801,17 @@ const ProjectGalleryModal = ({ project, onClose, setIsInteracting }) => {
               <Github size={16} />
               <span>Code</span>
             </motion.a>
-            
+
             <motion.a
               href={project.liveLink}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 px-4 py-2 rounded-lg text-white text-sm"
-              style={{ background: `linear-gradient(to right, ${project.color}, ${adjustColorBrightness(project.color, -30)})` }}
+              style={{
+                background: `linear-gradient(to right, ${
+                  project.color
+                }, ${adjustColorBrightness(project.color, -30)})`,
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -823,17 +854,17 @@ const ProjectDetailsModal = ({ project, onClose, openGallery }) => {
             >
               {project.projectType}
             </span>
-            <h3 
-              className="text-2xl font-bold mt-3" 
-              style={{ 
+            <h3
+              className="text-2xl font-bold mt-3"
+              style={{
                 color: project.color,
-                textShadow: `0 1px 3px ${project.color}30`
+                textShadow: `0 1px 3px ${project.color}30`,
               }}
             >
               {project.title}
             </h3>
           </div>
-          
+
           <motion.button
             className="p-2 rounded-full bg-gray-100 dark:bg-gray-700/50 hover:bg-gray-200 dark:hover:bg-gray-700"
             whileHover={{ scale: 1.1 }}
@@ -843,29 +874,37 @@ const ProjectDetailsModal = ({ project, onClose, openGallery }) => {
             <X size={20} />
           </motion.button>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <div className="md:col-span-2">
             <div className="prose prose-sm dark:prose-invert max-w-none">
-              <h4 className="text-lg font-medium mb-2 text-gray-700 dark:text-gray-300">Project Overview</h4>
+              <h4 className="text-lg font-medium mb-2 text-gray-700 dark:text-gray-300">
+                Project Overview
+              </h4>
               <p className="text-sm text-gray-700 dark:text-gray-300">
                 {project.longDescription}
               </p>
-              
+
               {/* Add more sections like challenges, solutions, etc. if needed */}
-              <h4 className="text-lg font-medium mt-6 mb-2 text-gray-700 dark:text-gray-300">Key Features</h4>
+              <h4 className="text-lg font-medium mt-6 mb-2 text-gray-700 dark:text-gray-300">
+                Key Features
+              </h4>
               <ul className="list-disc text-xs pl-5 space-y-1 text-gray-700 dark:text-gray-300">
                 {/* Generate some example features based on the project description and technologies */}
                 {project.id === "collab-hub" ? (
                   <>
-                    <li>Real-time collaboration using WebSockets and Socket.io</li>
-                    <li>User authentication and project permission management</li>
+                    <li>
+                      Real-time collaboration using WebSockets and Socket.io
+                    </li>
+                    <li>
+                      User authentication and project permission management
+                    </li>
                     <li>Dynamic project sharing and contributor invitations</li>
                     <li>Responsive design with Tailwind CSS</li>
                   </>
                 ) : project.id === "vox-ai" ? (
                   <>
-                    <li>Voice recognition with   Web Speech API</li>
+                    <li>Voice recognition with Web Speech API</li>
                     <li>Natural language processing via Google Gemini API</li>
                     <li>Voice response synthesis</li>
                     <li>Conversational memory and context retention</li>
@@ -873,7 +912,9 @@ const ProjectDetailsModal = ({ project, onClose, openGallery }) => {
                 ) : (
                   <>
                     <li>Interactive game mechanics with vanilla JavaScript</li>
-                    <li>Pattern memory challenges with increasing difficulty</li>
+                    <li>
+                      Pattern memory challenges with increasing difficulty
+                    </li>
                     <li>Score tracking and visual/audio feedback</li>
                     <li>Mobile-responsive gameplay</li>
                   </>
@@ -881,21 +922,23 @@ const ProjectDetailsModal = ({ project, onClose, openGallery }) => {
               </ul>
             </div>
           </div>
-          
+
           <div className="md:col-span-1">
-            <div 
+            <div
               className="rounded-lg overflow-hidden shadow-lg border"
               style={{ borderColor: `${project.color}30` }}
             >
-              <img 
-                src={project.image} 
+              <img
+                src={project.image}
                 alt={project.title}
                 className="w-full aspect-video object-cover"
               />
             </div>
-            
+
             <div className="mt-4 space-y-3">
-              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Technologies Used</h4>
+              <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Technologies Used
+              </h4>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech, index) => (
                   <span
@@ -911,7 +954,7 @@ const ProjectDetailsModal = ({ project, onClose, openGallery }) => {
                   </span>
                 ))}
               </div>
-              
+
               {/* Project Links */}
               <div className="flex flex-col gap-2 mt-6">
                 <a
@@ -928,14 +971,16 @@ const ProjectDetailsModal = ({ project, onClose, openGallery }) => {
                   <Github size={16} />
                   <span>View Code</span>
                 </a>
-                
+
                 <a
                   href={project.liveLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm text-white w-full justify-center"
                   style={{
-                    background: `linear-gradient(to right, ${project.color}, ${adjustColorBrightness(project.color, -30)})`,
+                    background: `linear-gradient(to right, ${
+                      project.color
+                    }, ${adjustColorBrightness(project.color, -30)})`,
                     boxShadow: `0 4px 12px -4px ${project.color}60`,
                   }}
                 >
@@ -946,13 +991,15 @@ const ProjectDetailsModal = ({ project, onClose, openGallery }) => {
             </div>
           </div>
         </div>
-        
+
         {/* Show gallery preview if there are additional images */}
         {project.additionalImages && project.additionalImages.length > 0 && (
           <div className="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6">
             <div className="flex justify-between items-center mb-4">
-              <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300">Project Gallery</h4>
-              <button 
+              <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300">
+                Project Gallery
+              </h4>
+              <button
                 className="text-sm flex items-center gap-1"
                 style={{ color: project.color }}
                 onClick={() => {
@@ -965,30 +1012,33 @@ const ProjectDetailsModal = ({ project, onClose, openGallery }) => {
                 <ArrowRight size={14} />
               </button>
             </div>
-            
+
             <div className="flex gap-2 overflow-x-auto py-2 px-1">
               <div className="min-w-[100px] aspect-video rounded-md overflow-hidden">
-                <img 
-                  src={project.image} 
+                <img
+                  src={project.image}
                   alt={`${project.title} thumbnail`}
                   className="w-full h-full object-cover"
                 />
               </div>
-              
+
               {project.additionalImages.slice(0, 3).map((img, index) => (
-                <div key={index} className="min-w-[100px] aspect-video rounded-md overflow-hidden">
-                  <img 
-                    src={img} 
+                <div
+                  key={index}
+                  className="min-w-[100px] aspect-video rounded-md overflow-hidden"
+                >
+                  <img
+                    src={img}
                     alt={`${project.title} thumbnail ${index + 1}`}
                     className="w-full h-full object-cover"
                   />
                 </div>
               ))}
-              
+
               {project.additionalImages.length > 3 && (
                 <div className="min-w-[100px] aspect-video rounded-md overflow-hidden relative">
-                  <img 
-                    src={project.additionalImages[3]} 
+                  <img
+                    src={project.additionalImages[3]}
                     alt={`${project.title} thumbnail 4`}
                     className="w-full h-full object-cover filter brightness-50"
                   />
@@ -1000,7 +1050,7 @@ const ProjectDetailsModal = ({ project, onClose, openGallery }) => {
             </div>
           </div>
         )}
-        
+
         <div className="mt-6 flex justify-end">
           <motion.button
             className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium py-2 px-6 rounded-lg transition-all duration-300 ease-in-out flex items-center gap-2"
@@ -1025,7 +1075,6 @@ export default function Projects() {
   const [showGallery, setShowGallery] = useState(false);
   const [galleryProject, setGalleryProject] = useState(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
-
 
   const progress = useMotionValue(0);
   const touchStartRef = useRef(null);
@@ -1100,7 +1149,12 @@ export default function Projects() {
 
   // Auto-rotate carousel
   useEffect(() => {
-    if (viewMode !== "carousel" || isInteracting || isDragging || showSkillsPopup) {
+    if (
+      viewMode !== "carousel" ||
+      isInteracting ||
+      isDragging ||
+      showSkillsPopup
+    ) {
       // Clear any existing timer when user is interacting
       if (autoRotateTimerRef.current) {
         clearTimeout(autoRotateTimerRef.current);
@@ -1117,8 +1171,14 @@ export default function Projects() {
         clearTimeout(autoRotateTimerRef.current);
       }
     };
-  }, [nextProject, isDragging, viewMode, isInteracting, showSkillsPopup, currentIndex]);
-
+  }, [
+    nextProject,
+    isDragging,
+    viewMode,
+    isInteracting,
+    showSkillsPopup,
+    currentIndex,
+  ]);
 
   // Toggle skills popup
   const toggleSkillsPopup = useCallback(() => {
@@ -1137,16 +1197,16 @@ export default function Projects() {
     setShowGallery(true);
     setIsInteracting(true); // Pause auto-rotation when viewing gallery
   }, []);
-  
+
   // Add function to close gallery
   const closeGallery = useCallback(() => {
     setShowGallery(false);
-    
+
     // Add a small delay before allowing auto-rotation again
     setTimeout(() => setIsInteracting(false), 500);
   }, []);
 
-   // Toggle details modal
+  // Toggle details modal
   const toggleDetailsModal = useCallback(() => {
     const newState = !showDetailsModal;
     setShowDetailsModal(newState);
@@ -1183,7 +1243,7 @@ export default function Projects() {
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-gray-100"
           >
             <span className="text-cyan-600 dark:text-cyan-400">Featured</span>{" "}
             Projects
@@ -1270,10 +1330,10 @@ export default function Projects() {
                         project={project}
                         isActive={isActive}
                         onClick={() => {
-                        setCurrentIndex(index);
-                        // Set interacting when clicking on a project
-                        if (isActive) setIsInteracting(true);
-                      }}
+                          setCurrentIndex(index);
+                          // Set interacting when clicking on a project
+                          if (isActive) setIsInteracting(true);
+                        }}
                         progress={progress}
                         toggleSkillsPopup={toggleSkillsPopup}
                         setIsInteracting={setIsInteracting}
@@ -1323,27 +1383,33 @@ export default function Projects() {
               </div>
 
               {/* Add carousel status indicator showing auto-rotation state */}
-            {viewMode === "carousel" && (
-              <div 
-                className={`absolute bottom-[-6] z-40 left-4 text-xs flex items-center gap-1.5 ${
-                  isInteracting || showSkillsPopup ? "text-amber-500" : "text-green-500"
-                }`}
-              >
-                <span 
-                  className={`inline-block h-2 w-2 rounded-full ${
-                    isInteracting || showSkillsPopup ? "bg-amber-500" : "bg-green-500 animate-pulse"
+              {viewMode === "carousel" && (
+                <div
+                  className={`absolute bottom-[-6] z-40 left-4 text-xs flex items-center gap-1.5 ${
+                    isInteracting || showSkillsPopup
+                      ? "text-amber-500"
+                      : "text-green-500"
                   }`}
-                />
-                <span>
-                  {isInteracting || showSkillsPopup ? "Auto-rotation paused" : "Auto-rotating"}
-                </span>
-              </div>
-            )}
-          </motion.div>
+                >
+                  <span
+                    className={`inline-block h-2 w-2 rounded-full ${
+                      isInteracting || showSkillsPopup
+                        ? "bg-amber-500"
+                        : "bg-green-500 animate-pulse"
+                    }`}
+                  />
+                  <span>
+                    {isInteracting || showSkillsPopup
+                      ? "Auto-rotation paused"
+                      : "Auto-rotating"}
+                  </span>
+                </div>
+              )}
+            </motion.div>
           ) : (
             <motion.div
               key="grid"
-              className="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -1355,12 +1421,35 @@ export default function Projects() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                  className="grid-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="grid-card relative bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-visible"
                   style={{
                     border: `1px solid ${project.color}20`,
                     boxShadow: `0 10px 30px -15px ${project.color}30`,
                   }}
                 >
+                  <motion.div
+                    className="project-number text-transparent absolute -top-10 -left-8 z-30 text-[120px] font-bold font-mono"
+                    style={{
+                      backgroundImage: `linear-gradient(155deg, 
+      ${project.color} 0%, 
+      ${project.color} 35%,
+      #ffffff 50%,
+      ${project.color} 75%,
+      ${project.color} 100%)`,
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      textShadow: `0 2px 10px ${project.color}40`,
+                      // opacity: 0.85,
+                      filter: "drop-shadow(0px 3px 5px rgba(0,0,0,0.15))",
+                      pointerEvents: "none", // Ensures clicks pass through to the card
+                    }}
+                    animate={{
+                      scale: isInteracting ? 0.8 : 1,
+                      y: isInteracting ? -20 : 0,
+                    }}
+                  >
+                    {index + 1}
+                  </motion.div>
                   <div className="grid-card-image-container relative aspect-video overflow-hidden">
                     <div
                       className="absolute inset-0 z-0 bg-gradient-to-br"
@@ -1379,8 +1468,16 @@ export default function Projects() {
                       <span
                         className="px-2 py-1 text-xs rounded-full backdrop-blur-xl uppercase font-bold"
                         style={{
-                          backgroundColor: `${project.title === 'Simon Says' ? `${project.color}40` : `${project.color}90`}`,
-                          color: `${project.title === 'Simon Says' ? project.color : 'gray/50'}`
+                          backgroundColor: `${
+                            project.title === "Simon Says"
+                              ? `${project.color}40`
+                              : `${project.color}90`
+                          }`,
+                          color: `${
+                            project.title === "Simon Says"
+                              ? project.color
+                              : "white"
+                          }`,
                         }}
                       >
                         {project.projectType}
@@ -1419,7 +1516,7 @@ export default function Projects() {
                           style={{
                             backgroundColor: `${project.color}20`,
                             color: project.color,
-                            border: `1px solid ${project.color}50`
+                            border: `1px solid ${project.color}50`,
                           }}
                           onClick={() => {
                             setCurrentIndex(index);
@@ -1467,7 +1564,10 @@ export default function Projects() {
                         }}
                       >
                         <span>View Project Details</span>
-                        <ArrowRight size={14} className="transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
+                        <ArrowRight
+                          size={14}
+                          className="transition-transform duration-300 ease-in-out group-hover:translate-x-1"
+                        />
                       </button>
                     </div>
                   </div>
@@ -1496,7 +1596,7 @@ export default function Projects() {
         </motion.div>
       </div>
 
-       {/* Add gallery modal */}
+      {/* Add gallery modal */}
       <AnimatePresence>
         {showGallery && galleryProject && (
           <ProjectGalleryModal
@@ -1506,7 +1606,7 @@ export default function Projects() {
           />
         )}
       </AnimatePresence>
-      
+
       {/* Skills popup modal remains the same */}
       <AnimatePresence>
         {showSkillsPopup && (

@@ -74,7 +74,7 @@ const { x: parallaxX, y: parallaxY } = useParallax(aboutRef);
           whileInView={{opacity:1, y: 0, transition:{duration:0.6}}}
           className="about-h1 text-4xl sm:text-5xl font-bold text-center mb-6 text-cyan-800 dark:text-cyan-200"
         >
-          About Me
+          About <span className="text-gray-800 dark:text-gray-100">Me</span>
         </motion.h1>
         <motion.div 
           initial={{opacity:0, scaleX: 0}}
@@ -86,9 +86,9 @@ const { x: parallaxX, y: parallaxY } = useParallax(aboutRef);
           whileInView={{opacity:1, y: 0, transition:{duration:0.6}}}
           className="mb-16 sm:mb-20 text-slate-700 dark:text-cyan-100 text-lg sm:text-xl text-center max-w-2xl mx-auto roboto-regular-italic font-semibold leading-relaxed"
         >
-          Developing software for <span className="text-cyan-600 dark:text-cyan-400 font-bold">1+</span> years |
-          Passionate about Building <span className="text-cyan-600 dark:text-cyan-400 font-bold">Dynamic</span>{" "}
-          Web Applications
+          Developing software for <span className="text-cyan-600 dark:text-cyan-400 font-bold">2+</span> years |
+          Building <span className="text-cyan-600 dark:text-cyan-400 font-bold">Dynamic</span>{" "}
+          web apps with modern technologies
         </motion.h2>
         <div className="content-wrapper flex flex-col lg:flex-row gap-12 lg:gap-16 w-full">
           <div
@@ -102,19 +102,17 @@ const { x: parallaxX, y: parallaxY } = useParallax(aboutRef);
             <h3 className="text-2xl font-bold mb-6 text-cyan-700 dark:text-cyan-300">Get to know me!</h3>
             <div className="roboto-regular des-text space-y-4 text-slate-700 dark:text-slate-300">
               <p>
-                Hi there! I&apos;m a Computer Science Engineering student at NSHM
-                Knowledge Campus, Durgapur, affiliated with MAKAUT, passionate
-                about web development and problem-solving.
+                Hi there! I’m Sourav, a Computer Science Engineering student at NSHM Knowledge Campus, Durgapur (MAKAUT), with a strong passion for web development and problem-solving.
               </p>
               <p>
-                Skilled in C, Java, Python, HTML5, CSS, JavaScript, React, Next.js, 
-                Node, Express, SQL, and NoSQL databases.
+                I enjoy building clean, responsive, and dynamic applications — from crafting smooth frontends to designing efficient backends. My current stack includes C, Java, Python, HTML5, CSS, JavaScript, React, Next.js, Node.js, Express, and both SQL & NoSQL databases.
               </p>
               <p>
-                I&apos;m on the lookout for opportunities to apply my skills and
-                contribute to innovative projects in the field of web development.
-                Let&apos;s connect and explore how we can collaborate to create
-                impactful solutions.
+              I’m actively seeking opportunities where I can apply my skills, grow through real-world challenges, and contribute to innovative, impactful projects in the tech space.
+              </p>
+              <p>
+                🚀 Let’s build something amazing together!
+                👉 Explore my projects or get in touch to collaborate or just say hi!
               </p>
             </div>
             <div className="flex gap-4">
@@ -137,6 +135,16 @@ const { x: parallaxX, y: parallaxY } = useParallax(aboutRef);
               >
                 <ResumeViewer heading="My Resume"/>
               </motion.button>
+              <a href="https://www.linkedin.com/in/sourav-paitandy/" target="_blank" rel="noopener noreferrer">
+                <motion.button 
+                  aria-label="Let's Connect on LinkedIn"
+                  initial={{opacity:0, y: 20}}
+                  whileInView={{opacity:1, y: 0, transition:{duration:0.4}}}
+                  className="mt-8 px-6 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 dark:from-cyan-700 dark:to-teal-800 text-white font-semibold rounded-full shadow-md hover:shadow-lg dark:hover:shadow-slate-900 hover:shadow-slate-400 hover:scale-110 transition-all duration-300 transform focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                >
+                  LinkedIn
+                </motion.button>
+              </a>
             </div>
           </div>
           

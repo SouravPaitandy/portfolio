@@ -251,7 +251,7 @@ export default function Contact() {
         whileInView={{opacity:1, y: 0, transition:{duration:0.6}}}
         className="about-h1 text-5xl font-bold text-center text-cyan-800 dark:text-cyan-200"
       >
-        Contact Me
+        Contact <span className="text-gray-800 dark:text-gray-100">Me</span>
       </motion.h1>
 
       <motion.div 
