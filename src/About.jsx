@@ -102,21 +102,22 @@ const { x: parallaxX, y: parallaxY } = useParallax(aboutRef);
             <h3 className="text-2xl font-bold mb-6 text-cyan-700 dark:text-cyan-300">Get to know me!</h3>
             <div className="roboto-regular des-text space-y-4 text-slate-700 dark:text-slate-300">
               <p>
-                Hi there! I’m Sourav, a Computer Science Engineering student at NSHM Knowledge Campus, Durgapur (MAKAUT), with a strong passion for web development and problem-solving.
+                Hi there! I&apos;m Sourav, a Computer Science Engineering student at NSHM Knowledge Campus, Durgapur (MAKAUT), with a strong passion for web development and problem-solving.
               </p>
               <p>
                 I enjoy building clean, responsive, and dynamic applications — from crafting smooth frontends to designing efficient backends. My current stack includes C, Java, Python, HTML5, CSS, JavaScript, React, Next.js, Node.js, Express, and both SQL & NoSQL databases.
               </p>
               <p>
-              I’m actively seeking opportunities where I can apply my skills, grow through real-world challenges, and contribute to innovative, impactful projects in the tech space.
+              I&apos;m actively seeking opportunities where I can apply my skills, grow through real-world challenges, and contribute to innovative, impactful projects in the tech space.
               </p>
               <p>
-                🚀 Let’s build something amazing together!
+                🚀 Let&apos;s build something amazing together!
                 👉 Explore my projects or get in touch to collaborate or just say hi!
               </p>
             </div>
-            <div className="flex gap-4">
-              <Link to="project-section" smooth={true} duration={500}>
+            <div className="flex flex-col md:flex-row gap-2 md:gap-4">
+              <div className='flex gap-4'>
+                <Link to="project-section" smooth={true} duration={500}>
                 <motion.button 
                   aria-label="View Projects"
                   initial={{opacity:0, y: 20}}
@@ -135,6 +136,7 @@ const { x: parallaxX, y: parallaxY } = useParallax(aboutRef);
               >
                 <ResumeViewer heading="My Resume"/>
               </motion.button>
+              </div>
               <a href="https://www.linkedin.com/in/sourav-paitandy/" target="_blank" rel="noopener noreferrer">
                 <motion.button 
                   aria-label="Let's Connect on LinkedIn"

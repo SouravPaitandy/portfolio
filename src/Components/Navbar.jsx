@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/display-name */
-import { useState, useEffect, useCallback, useMemo } from 'react';
-import { Link } from 'react-scroll';
-import Toggler from './Theme_btn';
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { Link } from "react-scroll";
+import Toggler from "./Theme_btn";
 import "../Styles/navbar.css";
 
 export default function Navbar() {
   const [isHidden, setIsHidden] = useState(true);
-  const [activeLink, setActiveLink] = useState('hero-section');
+  const [activeLink, setActiveLink] = useState("hero-section");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Debounced scroll handler to improve performance
@@ -18,7 +18,7 @@ export default function Navbar() {
 
   // Optimized active section detection
   const handleActiveSection = useCallback(() => {
-    const sections = document.querySelectorAll('section');
+    const sections = document.querySelectorAll("section");
     const viewportMiddle = window.innerHeight / 2;
 
     for (const section of sections) {
@@ -32,83 +32,101 @@ export default function Navbar() {
 
   // Memoized event listeners with debounce
   useEffect(() => {
-    const debouncedScroll = window.requestAnimationFrame ? 
-      () => window.requestAnimationFrame(handleScroll) : 
-      handleScroll;
+    const debouncedScroll = window.requestAnimationFrame
+      ? () => window.requestAnimationFrame(handleScroll)
+      : handleScroll;
 
-    const debouncedActiveSectionDetection = window.requestAnimationFrame ? 
-      () => window.requestAnimationFrame(handleActiveSection) : 
-      handleActiveSection;
+    const debouncedActiveSectionDetection = window.requestAnimationFrame
+      ? () => window.requestAnimationFrame(handleActiveSection)
+      : handleActiveSection;
 
-    window.addEventListener('scroll', debouncedScroll);
-    window.addEventListener('scroll', debouncedActiveSectionDetection);
+    window.addEventListener("scroll", debouncedScroll);
+    window.addEventListener("scroll", debouncedActiveSectionDetection);
 
     return () => {
-      window.removeEventListener('scroll', debouncedScroll);
-      window.removeEventListener('scroll', debouncedActiveSectionDetection);
+      window.removeEventListener("scroll", debouncedScroll);
+      window.removeEventListener("scroll", debouncedActiveSectionDetection);
     };
   }, [handleScroll, handleActiveSection]);
 
   // Memoized navigation links
-  const NavLink = useMemo(() => ({ to, children }) => (
-    <Link
-      to={to}
-      smooth={true}
-      duration={500}
-      offset={-70}
-      aria-current={activeLink === to ? 'page' : undefined}
-      className={`relative group px-5 py-3 text-xl font-extrabold uppercase 
+  const NavLink = useMemo(
+    () =>
+      ({ to, children }) =>
+        (
+          <Link
+            to={to}
+            smooth={true}
+            duration={1000}
+            offset={-70}
+            aria-current={activeLink === to ? "page" : undefined}
+            className={`relative group px-5 py-3 text-xl font-extrabold uppercase 
         transition-all duration-300 ease-in-out overflow-hidden cursor-pointer 
-        ${activeLink === to
-          ? 'text-teal-700 dark:text-teal-400 bg-blue-50 dark:bg-neutral-800'
-          : 'text-gray-700 dark:text-gray-300 hover:text-teal-700 dark:hover:text-teal-400'
+        ${
+          activeLink === to
+            ? "text-teal-700 dark:text-teal-400 bg-blue-50 dark:bg-neutral-800"
+            : "text-gray-700 dark:text-gray-300 hover:text-teal-700 dark:hover:text-teal-400"
         }`}
-      onClick={() => {
-        setActiveLink(to);
-        setIsMenuOpen(false);
-      }}
-    >
-      <span className="relative z-10">{children}</span>
-      {activeLink !== to && (
-        <>
-          <span className="absolute inset-0 bg-blue-50 dark:bg-neutral-800 
+            onClick={() => {
+              setActiveLink(to);
+              setIsMenuOpen(false);
+            }}
+          >
+            <span className="relative z-10">{children}</span>
+            {activeLink !== to && (
+              <>
+                <span
+                  className="absolute inset-0 bg-blue-50 dark:bg-neutral-800 
             transform -translate-x-full group-hover:translate-x-0 
-            transition-transform duration-300 ease-out"></span>
-          <span className="absolute bottom-0 left-0 w-full h-1 
+            transition-transform duration-300 ease-out"
+                ></span>
+                <span
+                  className="absolute bottom-0 left-0 w-full h-1 
             bg-teal-700 dark:bg-teal-400 transform scale-x-0 
             group-hover:scale-x-100 transition-transform duration-300 
-            ease-out origin-left"></span>
-        </>
-      )}
-      {activeLink === to && (
-        <span className="absolute bottom-0 left-0 w-full h-1 
-          bg-teal-700 dark:bg-teal-400"></span>
-      )}
-    </Link>
-  ), [activeLink]);
+            ease-out origin-left"
+                ></span>
+              </>
+            )}
+            {activeLink === to && (
+              <span
+                className="absolute bottom-0 left-0 w-full h-1 
+          bg-teal-700 dark:bg-teal-400"
+              ></span>
+            )}
+          </Link>
+        ),
+    [activeLink]
+  );
 
   // Memoized mobile navigation links
-  const MobileNavLink = useMemo(() => ({ to, children }) => (
-    <Link
-      to={to}
-      smooth={true}
-      duration={500}
-      offset={-70}
-      aria-current={activeLink === to ? 'page' : undefined}
-      className={`block w-full py-4 px-6 text-lg font-bold 
+  const MobileNavLink = useMemo(
+    () =>
+      ({ to, children }) =>
+        (
+          <Link
+            to={to}
+            smooth={true}
+            duration={1000}
+            offset={-70}
+            aria-current={activeLink === to ? "page" : undefined}
+            className={`block w-full py-4 px-6 text-lg font-bold 
         transition-all duration-300 ease-in-out 
-        ${activeLink === to
-          ? 'bg-blue-50 dark:bg-neutral-800 text-teal-700 dark:text-teal-400'
-          : 'hover:bg-gray-100 dark:hover:bg-neutral-700'
+        ${
+          activeLink === to
+            ? "bg-blue-50 dark:bg-neutral-800 text-teal-700 dark:text-teal-400"
+            : "hover:bg-gray-100 dark:hover:bg-neutral-700"
         }`}
-      onClick={() => {
-        setActiveLink(to);
-        setIsMenuOpen(false);
-      }}
-    >
-      {children}
-    </Link>
-  ), [activeLink]);
+            onClick={() => {
+              setActiveLink(to);
+              setIsMenuOpen(false);
+            }}
+          >
+            {children}
+          </Link>
+        ),
+    [activeLink]
+  );
 
   return (
     <>
@@ -116,7 +134,11 @@ export default function Navbar() {
         className={`flex justify-between items-center 
            dark:text-white
           text-black h-16 w-full fixed top-0 z-50 
-          ${!isHidden ? 'bg-[#F5F5F5] dark:bg-neutral-900 shadow-lg' : 'bg-transparent'}
+          ${
+            !isHidden
+              ? "bg-[#F5F5F5] dark:bg-neutral-900 shadow-lg"
+              : "bg-transparent"
+          }
           transition-all duration-500 ease-in-out px-4 md:px-8`}
         aria-label="Main Navigation"
         // ${!isHidden ? 'translate-y-0' : '-translate-y-full'}
@@ -125,15 +147,14 @@ export default function Navbar() {
           <Link
             to="hero-section"
             smooth={true}
-            duration={500}
+            duration={1000}
             className="flex items-center space-x-2"
             aria-label="Return to Home"
           >
-            <div 
+            <div
               className="nav-img h-12 w-12 rounded-full border-2 
               dark:border-teal-400 border-teal-700"
-            >
-            </div>
+            ></div>
             <span className="nav-name font-bold dark:text-gray-300 text-gray-700 text-xl md:text-3xl">
               <span className="text-teal-700 dark:text-teal-400 roboto-regular font-extrabold">
                 &lt;
@@ -160,10 +181,10 @@ export default function Navbar() {
         <button
           className="md:hidden text-2xl focus:outline-none mr-4"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}
         >
-          {isMenuOpen ? '✕' : '☰'}
+          {isMenuOpen ? "✕" : "☰"}
         </button>
       </nav>
 
@@ -171,35 +192,63 @@ export default function Navbar() {
       <div
         className={`fixed inset-0 bg-black bg-opacity-50 z-40 
           transition-opacity duration-300 
-          ${isMenuOpen && !isHidden 
-            ? 'opacity-100' 
-            : 'opacity-0 pointer-events-none'
-          }`}
+          ${isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         onClick={() => setIsMenuOpen(false)}
         aria-hidden="true"
       ></div>
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden fixed top-16 right-0 w-64 h-full 
-          bg-white dark:bg-neutral-900 shadow-lg z-40 
-          transform transition-transform duration-300 ease-in-out 
-          ${isMenuOpen && !isHidden 
-            ? 'translate-x-0' 
-            : 'translate-x-full'
-          }`}
+        className={`md:hidden fixed top-16 right-0 w-72 h-[calc(100vh-4rem)] 
+    bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md shadow-xl z-40 
+    transform transition-transform duration-400 ease-out rounded-l-2xl
+    border-l border-t border-gray-200 dark:border-neutral-700
+    ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
         role="menu"
       >
-        <div className="flex flex-col h-full">
-          <nav className="py-6">
-            <MobileNavLink to="hero-section">Home</MobileNavLink>
-            <MobileNavLink to="about-section">About</MobileNavLink>
-            <MobileNavLink to="project-section">Projects</MobileNavLink>
-            <MobileNavLink to="contact-section">Contact</MobileNavLink>
-            {/* <div className="mt-4 pl-6 flex justify-start">
-            <Toggler />
-            </div> */}
-          </nav>
+        <div className="flex flex-col h-full justify-between">
+          <div>
+            {/* Welcome Message */}
+            <div className="px-6 pt-8 pb-6 border-b border-gray-100 dark:border-neutral-800">
+              <h3 className="text-lg font-bold text-teal-700 dark:text-teal-400">
+                Navigation
+              </h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                Explore my portfolio sections
+              </p>
+            </div>
+
+            {/* Main Navigation Links with Icons */}
+            <nav className="py-4">
+              <MobileNavLink to="hero-section" behavior="smooth">
+                <div className="flex items-center space-x-4">
+                  <span className="text-teal-600 dark:text-teal-500">🏠</span>
+                  <span>Home</span>
+                </div>
+              </MobileNavLink>
+
+              <MobileNavLink to="about-section">
+                <div className="flex items-center space-x-4">
+                  <span className="text-teal-600 dark:text-teal-500">👨‍💻</span>
+                  <span>About</span>
+                </div>
+              </MobileNavLink>
+
+              <MobileNavLink to="project-section">
+                <div className="flex items-center space-x-4">
+                  <span className="text-teal-600 dark:text-teal-500">🚀</span>
+                  <span>Projects</span>
+                </div>
+              </MobileNavLink>
+
+              <MobileNavLink to="contact-section">
+                <div className="flex items-center space-x-4">
+                  <span className="text-teal-600 dark:text-teal-500">✉️</span>
+                  <span>Contact</span>
+                </div>
+              </MobileNavLink>
+            </nav>
+          </div>
         </div>
       </div>
     </>

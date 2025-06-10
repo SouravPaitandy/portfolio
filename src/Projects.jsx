@@ -1082,6 +1082,8 @@ export default function Projects() {
   const carouselRef = useRef(null);
   const autoRotateTimerRef = useRef(null);
 
+  const isMobile = window.innerWidth <= 768;
+
   // Progress calculation for card animations
   const calculateProgress = useCallback(
     (index) => {
@@ -1270,7 +1272,7 @@ export default function Projects() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex justify-center mt-8"
+            className={`flex justify-center mt-8 ${isMobile ? "hidden" : ""}`}
           >
             <button
               onClick={toggleViewMode}
@@ -1286,7 +1288,7 @@ export default function Projects() {
 
         {/* Projects Display */}
         <AnimatePresence mode="wait">
-          {viewMode === "carousel" ? (
+          {viewMode === "carousel" && !isMobile ? (
             <motion.div
               key="carousel"
               className="projects-carousel relative max-w-6xl mx-auto"
@@ -1428,7 +1430,7 @@ export default function Projects() {
                   }}
                 >
                   <motion.div
-                    className="project-number text-transparent absolute -top-10 -left-8 z-30 text-[120px] font-bold font-mono"
+                    className="project-number text-transparent absolute -top-16 md:-top-10 -left-5 md:-left-8 z-30 text-[120px] font-bold font-mono"
                     style={{
                       backgroundImage: `linear-gradient(155deg, 
       ${project.color} 0%, 
