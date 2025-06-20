@@ -24,10 +24,13 @@ export { default as image22 } from './x-dark.svg';
 export { default as image23 } from './project-2.png';
 export { default as image24} from './mDB.ico';
 export { default as collabhub } from './collabhub.png';
+export { default as drawsync } from './drawsync.png';
 //Additional images for projects
 export { default as addImage1} from './Cscreenshot (4).png';
 export { default as addImage2} from './Cscreenshot (5).png';
 export { default as addImage3} from './Cscreenshot (6).png';
 export { default as addImage4} from './Cscreenshot (7).png';
 export { default as addImage5 } from './Vscreenshot.jpeg';
+export { default as addImage6 } from './Dscreenshot1.png';
+export { default as addImage7 } from './Dscreenshot2.png';
 // ... and so on for all your images

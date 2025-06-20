@@ -58,6 +58,36 @@ const projectsData = [
     gradient: ["#0891b2", "#0e7490"],
   },
   {
+    id: "drawsync",
+    title: "DrawSync",
+    shortDescription:
+      "A real-time collaborative drawing application built with Next.js that enables multiple users to create and edit drawings simultaneously.",
+    githubLink: "https://github.com/SouravPaitandy/drawsync",
+    skills: [
+      "React",
+      "Next.js",
+      "Liveblocks",
+      "Canvas API",
+      "Tailwind CSS",
+      "Real-time Collaboration",
+      "Responsive Design",
+      "Touch Support",
+    ],
+    liveLink: "https://drawsync.vercel.app",
+    image: Images.drawsync,
+    additionalImages: [
+      Images.addImage6,
+      Images.addImage7,
+    ],
+    longDescription:
+      "DrawSync is a feature-rich collaborative drawing application that allows users to create, share, and collaborate on digital drawings in real-time. Implemented with Next.js and Canvas API, it features an infinite canvas with pan and zoom capabilities, multiple drawing tools including pen, line, rectangle, and ellipse, and an eraser tool. The app includes user presence indicators showing who's currently drawing, a real-time activity feed tracking changes, and touch screen support for mobile devices. Other features include canvas history with undo/redo functionality, dark/light theme support, and the ability to export drawings as PNG files.",
+    technologies: ["Next.js", "Liveblocks", "Canvas API", "Tailwind CSS"],
+    projectType: "Full Stack",
+    color: "#2563eb", // Blue-600 for a drawing app
+    shadowColor: "rgba(37, 99, 235, 0.5)",
+    gradient: ["#2563eb", "#4f46e5"], // Blue to indigo gradient
+  },
+  {
     id: "vox-ai",
     title: "VoxAI",
     shortDescription: "VoxAI Assistant - Voice-Activated AI Web Application",
@@ -83,28 +113,6 @@ const projectsData = [
     color: "#0d9488", // Adjusted teal-600 for better contrast
     shadowColor: "rgba(13, 148, 136, 0.5)",
     gradient: ["#0d9488", "#0f766e"],
-  },
-  {
-    id: "simon-says",
-    title: "Simon Says",
-    shortDescription: "Online version of classic game of memory, Simon Says.",
-    githubLink: "https://github.com/SouravPaitandy/SimonGame",
-    skills: [
-      "JavaScript",
-      "HTML5",
-      "CSS",
-      "Game Development",
-      "DOM Manipulation",
-    ],
-    liveLink: "https://souravpaitandy.github.io/SimonGame/",
-    image: Images.image19,
-    longDescription:
-      "Recreated the classic Simon game in HTML, CSS, and JavaScript to showcase front-end skills. Features real-time scoring, error tracking, and responsive design for an engaging user experience.",
-    technologies: ["Vanilla JS", "HTML5", "CSS3"],
-    projectType: "Web",
-    color: "#2563eb", // Changed to blue-600 for variety
-    shadowColor: "rgba(37, 99, 235, 0.5)",
-    gradient: ["#2563eb", "#1d4ed8"],
   },
 ];
 
