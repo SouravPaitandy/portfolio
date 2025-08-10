@@ -27,6 +27,43 @@ import "./Styles/projects.css";
 // Import images moved to separate file for cleaner code
 const projectsData = [
   {
+    id: "jagjit-kaur-fashion",
+    title: "Jagjit Kaur - Heritage Fashion Collection",
+    shortDescription:
+      "A premium e-commerce platform for handcrafted Indian traditional wear featuring elegant sarees, lehengas, and artisan-made garments.",
+    githubLink: "https://github.com/SouravPaitandy/jagjitkaur-website", // Update with actual repo
+    skills: [
+      "React",
+      "Next.js",
+      "Firebase",
+      "Firestore",
+      "Firebase Auth",
+      "Tailwind CSS",
+      "Framer Motion",
+      "React Context API",
+      "Google Analytics",
+      "Responsive Design",
+      "Admin Dashboard",
+      "E-commerce",
+      "WhatsApp Integration",
+    ],
+    liveLink: "https://jkbyjagjitkaur.com",
+    image: Images.jagjitkaur, // You'll need to add the main image
+    additionalImages: [
+      Images.jk1,
+      Images.jk2,
+      Images.jk3,
+      Images.jk4,
+    ],
+    longDescription:
+      "Developed a sophisticated e-commerce platform for Jagjit Kaur's heritage fashion collection, featuring handcrafted Indian traditional wear. The application includes a complete admin management system with product upload, analytics dashboard, and admin account management. Implemented real-time Firebase integration for product management, user authentication, and data storage. Features include advanced product filtering, cart and wishlist functionality, WhatsApp integration for customer communication, and comprehensive analytics tracking with Google Analytics and Hotjar. The platform showcases premium sarees, lehengas, and traditional Indian wear with elegant design aesthetics and smooth user experience.",
+    technologies: ["Next.js", "Firebase", "Tailwind CSS", "Framer Motion"],
+    projectType: "Full Stack E-commerce",
+    color: "#8b5a2b", // Warm brown representing traditional/heritage theme
+    shadowColor: "rgba(139, 90, 43, 0.5)",
+    gradient: ["#8b5a2b", "#a0522d"],
+  },
+  {
     id: "collab-hub",
     title: "CollabHub",
     shortDescription:
@@ -75,10 +112,7 @@ const projectsData = [
     ],
     liveLink: "https://drawsync.vercel.app",
     image: Images.drawsync,
-    additionalImages: [
-      Images.addImage6,
-      Images.addImage7,
-    ],
+    additionalImages: [Images.addImage6, Images.addImage7],
     longDescription:
       "DrawSync is a feature-rich collaborative drawing application that allows users to create, share, and collaborate on digital drawings in real-time. Implemented with Next.js and Canvas API, it features an infinite canvas with pan and zoom capabilities, multiple drawing tools including pen, line, rectangle, and ellipse, and an eraser tool. The app includes user presence indicators showing who's currently drawing, a real-time activity feed tracking changes, and touch screen support for mobile devices. Other features include canvas history with undo/redo functionality, dark/light theme support, and the ability to export drawings as PNG files.",
     technologies: ["Next.js", "Liveblocks", "Canvas API", "Tailwind CSS"],
