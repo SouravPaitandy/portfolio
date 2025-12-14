@@ -95,7 +95,7 @@ const About = memo(() => {
                     <ResumeViewer heading="Resume / CV" />
                 </motion.button>
                 
-                <Link to="project-section" smooth={true} duration={800} className="flex-grow md:flex-grow-0">
+                <Link to="project-section" href='#project-section' smooth={true} duration={800} className="flex-grow md:flex-grow-0">
                   <motion.div 
                       whileHover={{ scale: 1.02, backgroundColor: "rgba(99,102,241,0.05)" }}
                       whileTap={{ scale: 0.98 }}
