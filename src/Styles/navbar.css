@@ -6,25 +6,25 @@
 
 .logo:hover{ 
   .nav-img{
-    box-shadow: 0 0 10px #0f766e;
+    box-shadow: 0 0 10px #6366F1;
     transition: box-shadow ease-in-out;
   }
   .nav-name{
-    text-shadow: 0px 3px 6px  #0f766e;
+    text-shadow: 0px 3px 6px  #6366F1;
     transition: text-shadow ease-in-out;
   }
 }
 
 .dark .logo:hover{
   .nav-img{
-    box-shadow: 0 0 10px #2dd4bf;
+    box-shadow: 0 0 10px #6366F1;
     transition: box-shadow ease-in-out;
   }
   /* .nav-name{
     text-shadow: none;
   } */
   .nav-name{
-    text-shadow: 0px 2px 4px  #0f766e;
+    text-shadow: 0px 2px 4px  #6366F1;
     transition: text-shadow ease-in-out;
   }
 }
@@ -233,194 +233,4 @@
   }
 
 
-  .nav-link {
-    background-image: linear-gradient(
-      to right,
-      rgb(65, 105, 225),
-      rgb(65, 105, 225) 50%,
-      rgb(30, 30, 30) 50%
-    );
-    background-size: 200% 100%;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .dark .nav-link{
-    background-image: linear-gradient(
-      to right,
-      rgb(0, 255, 0),
-      rgb(0, 255, 0) 50%,
-      rgb(209, 207, 207) 50%
-    );
-    background-size: 200% 100%;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .nav-link:before {
-    content: '';
-    background: rgb(65, 105, 225);
-    display: block;
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 0;
-    height: 4px;
-    border-radius: 4px;
-    transition: all 0.3s ease-in-out;
-  }
-
-  .dark .nav-link:before{
-    content: "";
-    background: rgb(0, 255, 0);
-    display: block;
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 0;
-    height: 4px;
-    border-radius: 4px;
-    transition: all 0.3s ease-in-out;
-  }
-
-  /* .nav-link:hover { already done in tailwind class
-    background-position: 0;
-   } */
-
-  /* .nav-link:hover::before {  already done in tailwind class
-    width: 100%;
-  }  */
-
-.active {
-    position: relative; 
-  }
-
-.active {
-  .sliding-content{
-    top: -.5rem;
-  }
-} 
-
-.logo > .active{
-    position: unset;
-}
-/* Styles for the mobile menu */
-/* .mobile-menu {
-  height: calc(100vh - 64px); Adjust this value based on your navbar height
-  overflow-y: auto;
-}
-
-.mobile-menu a {
-  display: block;
-  padding: 0.5rem 0;
-  text-decoration: none;
-  color: inherit;
-} */
-
-/* Transition styles */
-.transition-transform {
-  transition: transform 0.3s ease-in-out;
-}
-
-@media (min-width: 456px) and (max-width: 768px) {
-  .mobile-menu {
-    height: 10rem !important; /* Adjust this value based on your navbar height */
-    /* overflow-y: auto !important ; */
-    gap: 1.5rem !important;
-  }
-
-  .mobile-menu a {
-    display: block !important;
-    padding: 0.5rem 0 !important; 
-    text-decoration: none !important;
-    color: inherit !important;
-    font-size: 12px !important;
-  }
-
-  nav{
-    height: 3rem !important;
-  }
   
-  .nav-img{
-    height: 1.3rem !important;
-    width: 1.3rem !important;
-  }
-
-  .nav-name{
-    font-size: 1.2rem !important;
-    font-weight: 500 !important;
-  }
-  .nav-name span{
-    font-size: 1.5rem !important;
-    font-weight: 500 !important;
-  }
-
-  .theme-switch {
-    --toggle-size: 14px;
-    /* the size is adjusted using font-size,
-       this is not transform scale,
-       so you can choose any size */
-    --container-width: 3.625em;
-    --container-height: 1.6em;
-  }
-}
-
-@media (max-width: 455px) {
-  nav{
-    height: 4.9rem !important;
-  }
-  .nav-name{
-    font-size: 1.4rem !important;
-  }
-  .nav-name span{
-    font-size: 1.8rem !important;
-  }
-  .nav-img{
-    height: 2.3rem !important;
-    width: 2.3rem !important;
-  }
-
-  .theme-switch {
-    --toggle-size: 14px;
-    /* the size is adjusted using font-size,
-       this is not transform scale,
-       so you can choose any size */
-    --container-width: 3.625em;
-    --container-height: 1.6em;
-  }
-  .mobile-menu{
-    top: 4.6rem !important;
-  }
-}
-
-@media (min-width: 769px) and ( max-width: 1000px) {
-
-  /* nav{
-    height: 3rem !important;
-  } */
-  
-  .nav-img{
-    height: 2.3rem !important;
-    width: 2.3rem !important;
-  }
-
-  .nav-name{
-    font-size: 1.6rem !important;
-    /* font-weight: 500 !important; */
-  }
-  .nav-name span{
-    font-size: 1.7rem !important;
-    /* font-weight: 500 !important; */
-  }
-
-  .nav-links a{
-    font-size: 1.1rem !important;
-  }
-
-  .theme-switch {
-    --toggle-size: 16px;
-    /* the size is adjusted using font-size,
-       this is not transform scale,
-       so you can choose any size */
-    --container-width: 3.725em;
-    --container-height: 1.8em;
-  }
-}

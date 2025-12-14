@@ -2,79 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root{
-  scroll-behavior: smooth;
-} */
-
-/* html {
-  scroll-behavior: smooth;
-} */
-
-
-.dark ::selection{
-  background-color: var(--selection-bg-color, #00ff00);
-  color: rgb(33, 33, 33);
-
+html.lenis, html.lenis body {
+  height: auto;
 }
 
-::selection{
-  background-color: var(--selection-bg-color, blue);
-  color: rgb(238, 238, 238);
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
-.dark body{
-  margin: 0;
-  padding: 0;
-  font-family: "Space Mono", monospace; 
-  background-color: rgb(33, 33, 33);
-  color: rgb(209, 207, 207);
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
-body{
-  margin: 0;
-  padding: 0;
-  font-family: "Space Mono", monospace; 
-  background-color: rgb(238, 238, 238);
-  color: rgb(19, 19, 19);
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
-body .hero-image{
-  filter: opacity(.25) grayscale(.75) invert(1);
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
-.dark body .hero-image{
-  filter: opacity(.25) grayscale(.75);
-}
-.space-mono-regular {
-    font-family: "Space Mono", monospace;
-    font-weight: 400;
-    font-style: normal;
-}
-  
-.space-mono-bold {
-    font-family: "Space Mono", monospace;
-    font-weight: 700;
-    font-style: normal;
-}
-
-.roboto-regular {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-
-.roboto-regular-italic {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-style: italic;
+@layer base {
+  body {
+    @apply bg-rich-black text-gray-200 font-sans antialiased;
   }
   
-  
-.roboto-bold {
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-style: normal;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight text-white;
   }
+}
+
+::selection {
+  background-color: #6366f1; /* electric-indigo */
+  color: #ffffff;
+}
+
+/* Custom Scrollbar for Chrome/Safari/Webkit */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333; 
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6366f1; 
+}
 
 
   

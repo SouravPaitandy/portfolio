@@ -9,6 +9,8 @@ import { ThemeProvider } from './Contexts/theme'
 import { useState, useEffect, useRef } from 'react'
 import useLocalStorage from 'use-local-storage'
 
+import ScrollManager from './Components/ScrollManager'
+
 function App() {
   const [themeMode, setThemeMode] = useLocalStorage('dark', 'dark')
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
@@ -34,13 +36,6 @@ function App() {
       }
     };
 
-    // const changeSelectionColor = (color) => {
-    //   const rootElement = document.documentElement;
-    //   rootElement.style.setProperty('--selection-bg-color', color);
-    //   // Optionally, save to local storage
-    //   localStorage.setItem('selectionColor', color);
-    // };
-
     // Load previously saved color
     const savedColor = localStorage.getItem('selectionColor');
     if (savedColor) {
@@ -58,6 +53,7 @@ function App() {
   return (
     <ThemeProvider value={{themeMode, darkTheme, lightTheme}}>
       <div className={`App ${themeMode}`} ref={bodyRef}>
+        <ScrollManager />
         <ColorPickerModal
           isOpen={isColorPickerOpen}
           onClose={() => setIsColorPickerOpen(false)}
