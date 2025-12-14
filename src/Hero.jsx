@@ -344,9 +344,9 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0, transition: { delay: 0.7, duration: 0.8 }}}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full"
         >
-          <Link to="project-section" smooth={true} duration={500} className="w-full sm:w-auto">
+          <Link to="project-section" smooth={true} duration={500} href="#project-section" className="w-full sm:w-auto">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -366,7 +366,7 @@ export default function Hero() {
              <ResumeViewer heading="View Resume" className="px-8 py-3 md:px-8 md:py-4 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-transparent text-gray-900 dark:text-white font-medium text-base md:text-lg hover:border-black dark:hover:border-white transition-colors w-full cursor-pointer flex justify-center items-center" />
           </motion.div>
 
-          <Link to="contact-section" smooth={true} duration={500} className="w-full sm:w-auto">
+          <Link to="contact-section" smooth={true} duration={500} href="#contact-section" className="w-full sm:w-auto">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

@@ -65,6 +65,7 @@ export default function Navbar() {
         (
           <Link
             to={to}
+            href={`#${to}`}
             smooth={true}
             duration={1000}
             offset={-100}
@@ -94,6 +95,7 @@ export default function Navbar() {
     >
       <Link
         to={to}
+        href={`#${to}`}
         smooth={true}
         duration={1000}
         offset={-70}
@@ -122,6 +124,7 @@ export default function Navbar() {
         <div className="logo cursor-pointer flex items-center z-50">
           <Link
             to="hero-section"
+            href="#hero-section"
             smooth={true}
             duration={1000}
             className="flex items-center space-x-2 group"
