@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
@@ -349,10 +350,10 @@ export default function Hero() {
               <span className="text-sm z-50 font-medium text-gray-600 dark:text-gray-300 group-hover:text-electric-indigo dark:group-hover:text-electric-indigo transition-colors flex items-center gap-2">
                 New Project Onboard:{" "}
                 <span className="font-bold text-gray-900 dark:text-white">
-                  Hexode
+                  Hexode v2.0
                 </span>
                 <span className="hidden sm:inline opacity-70">
-                  - The Next-Gen IDE
+                  - The Next-Gen AI IDE
                 </span>
               </span>
 

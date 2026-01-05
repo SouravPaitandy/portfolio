@@ -40,6 +40,7 @@ export { default as jk3 } from "./jk3.png";
 export { default as jk4 } from "./jk4.png";
 // Hexode
 export { default as hexode } from "./hexode.png";
-export { default as hexode1 } from "./hexode1.png";
-export { default as hexode2 } from "./hexode2.png";
-// ... and so on for all your images
+export { default as hexodeDashboard } from "./hexodeDashboard.png";
+export { default as hexodeIDE } from "./hexodeIDE.png";
+export { default as hexodePlayground } from "./hexodePlayground.png";
+export { default as hexodeDocs } from "./hexodeDocs.png";

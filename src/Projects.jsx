@@ -10,32 +10,48 @@ import "./Styles/projects.css";
 const projectsData = [
   {
     id: "hexode-ide",
-    title: "Hexode: The Next-Gen Collaborative Editor",
+    title: "Hexode v2.0: AI-Native Collaborative Cloud IDE",
     shortDescription:
-      "A high-performance cloud IDE for real-time pair programming.",
-    impact: "Conflict-free data synchronization & sandboxed code execution.",
+      "An AI-powered, real-time collaborative cloud IDE built for pair programming, interviews, and modern web development.",
+    impact:
+      "AI-assisted coding, CRDT-based real-time sync, and secure sandboxed execution in the browser.",
     githubLink: "https://github.com/SouravPaitandy/hexode",
-    skills: ["React", "Vite", "WS", "Node.js", "Express", "MongoDB"],
+    skills: [
+      "React",
+      "Node.js",
+      "Monaco Editor",
+      "Yjs (CRDTs)",
+      "Docker",
+      "WebSockets",
+      "Google Gemini",
+    ],
     liveLink: "https://hexode.vercel.app",
     img: Images.hexode,
-    additionalImages: [Images.hexode1, Images.hexode2],
+    additionalImages: [
+      Images.hexodeDashboard,
+      Images.hexodeIDE,
+      Images.hexodePlayground,
+      Images.hexodeDocs,
+    ],
     description:
-      'Hexode bridges the gap between simple text editors and complex desktop IDEs. It provides a seamless environment for developers to collaborate, debug, and run code instantly without leaving the browser. The goal was to build a "Google Docs for Code" experience that feels native and responsive.',
+      "Hexode is a browser-based collaborative IDE designed to bring AI-native development and real-time collaboration directly into the browser. It combines Monaco Editor with CRDT-based synchronization to enable Google Docs-style multi-user editing. The v2.0 release introduces HexodeAI, a context-aware assistant that understands project structure and active files to generate code, debug issues. Hexode also features a standalone online playground for instant coding and interview practice without login or setup.",
     stack: [
       "React",
       "Node.js",
-      "Express",
-      "WS",
-      "Y.js",
-      "Tailwind CSS",
+      "Monaco Editor",
+      "Yjs (CRDTs)",
+      "WebSockets",
       "MongoDB",
+      "Tailwind CSS",
+      "Framer Motion",
     ],
-    category: "Full Stack IDE",
+    category: "AI-Powered Developer Tools",
     links: {
       site: "https://hexode.vercel.app",
       github: "https://github.com/SouravPaitandy/hexode",
     },
   },
+
   {
     id: "jagjit-kaur-fashion",
     title: "Jagjit Kaur - Heritage Fashion",
