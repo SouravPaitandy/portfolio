@@ -1,0 +1,121 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "language": "Language"
+  },
+  "hero": {
+    "role": "Full Stack Developer (MERN)",
+    "open_to_work": "Open to SDE / Frontend roles in India / Remote",
+    "greeting": "Hi, I'm",
+    "name": "Sourav Paitandy",
+    "tagline": "A passionate developer crafting robust and scalable web applications.",
+    "cta_projects": "View Projects",
+    "cta_contact": "Contact Me",
+    "new_project": "New Project Onboard:"
+  },
+  "about": {
+    "title": "About",
+    "me": "Me",
+    "subtitle_1": "Developing software for",
+    "subtitle_years": "2+ years",
+    "subtitle_2": "Building",
+    "subtitle_dynamic": "dynamic",
+    "subtitle_3": "digital experiences with modern technologies.",
+    "who_i_am": "Who I Am",
+    "bio_p1_1": "Hi there! I'm",
+    "bio_p1_name": "Sourav",
+    "bio_p1_2": ", a Computer Science Engineering student at NSHM Knowledge Campus, Durgapur.",
+    "bio_p2": "I sit at the intersection of design and engineering, crafting applications that not only look great but perform flawlessly. My approach is detail-oriented, focusing on scalable clean code and intuitive user experiences.",
+    "bio_p3_1": "Building performant",
+    "bio_p3_highlight": "fullstack apps",
+    "bio_p3_2": "with",
+    "bio_p3_mern": "MERN",
+    "bio_p3_3": "and",
+    "bio_p3_next": "Next.js",
+    "bio_p3_4": "is where I thrive.",
+    "resume_btn": "Resume / CV",
+    "projects_btn": "View Projects",
+    "linkedin_btn": "LinkedIn",
+    "tech_arsenal": "Technical Arsenal",
+    "always_learning": "Always learning new technologies"
+  },
+  "contact": {
+    "subtitle": "What's Next?",
+    "title": "Get In Touch",
+    "looking_for_opps": "I am actively looking for new opportunities!",
+    "open_inbox": "My inbox is always open. Whether you have a question, a project idea, or just want to say hi, I'll try my best to get back to you!",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send_btn": "Send Message",
+      "sending": "Sending...",
+      "error": "Something went wrong. Please try again."
+    },
+    "success_title": "Message Sent!",
+    "success_message": "Thank you for reaching out. I'll get back to you as soon as possible.",
+    "send_another": "Send another message"
+  },
+  "footer": {
+    "credit": "Designed & Built by Sourav Paitandy"
+  },
+  "welcome": {
+    "hello": "Hello.",
+    "welcome_to": "Welcome to",
+    "name_possessive": "Sourav Paitandy's",
+    "portfolio": "Portfolio",
+    "subtitle": "Crafting digital experiences where logic meets aesthetics.",
+    "enter": "Enter Portfolio"
+  },
+  "projects": {
+    "section_title": "Featured",
+    "section_title_highlight": "Projects.",
+    "selected_works": "Selected Works",
+    "view_details": "View Details",
+    "expand_view": "Expand View",
+    "view_archive": "View Full Archive",
+    "modal": {
+      "technologies": "Technologies",
+      "live_demo": "Live Demo",
+      "source_code": "Source Code"
+    },
+    "hexode-ide": {
+      "title": "Hexode v2.0: AI-Native Collaborative Cloud IDE",
+      "shortDescription": "An AI-powered, real-time collaborative cloud IDE built for pair programming, interviews, and modern web development.",
+      "impact": "AI-assisted coding, CRDT-based real-time sync, and secure sandboxed execution.",
+      "category": "AI-Powered Developer Tools",
+      "description": "Hexode is a browser-based collaborative IDE designed to bring AI-native development and real-time collaboration directly into the browser. It combines Monaco Editor with CRDT-based synchronization to enable Google Docs-style multi-user editing. The v2.0 release introduces HexodeAI, a context-aware assistant that understands project structure and active files to generate code, debug issues. Hexode also features a standalone online playground for instant coding and interview practice without login or setup."
+    },
+    "jagjit-kaur-fashion": {
+      "title": "Jagjit Kaur - Heritage Fashion",
+      "shortDescription": "A premium e-commerce platform for handcrafted Indian traditional wear.",
+      "impact": "Boosted digital presence for a heritage brand with a custom admin dashboard.",
+      "category": "Full Stack E-commerce",
+      "description": "Developed a sophisticated e-commerce platform for Jagjit Kaur's heritage fashion collection, featuring handcrafted Indian traditional wear. The application includes a complete admin management system with product upload, analytics dashboard, and admin account management. Implemented real-time Firebase integration for product management, user authentication, and data storage."
+    },
+    "collab-hub": {
+      "title": "CollabHub",
+      "shortDescription": "A collaborative platform for developers to connect and share projects.",
+      "impact": "Enables real-time developer collaboration via optimized Socket.io connections.",
+      "category": "Full Stack",
+      "description": "Developed a collaborative platform for developers to connect, share projects, and work together in real-time. Utilized Next.js for server-side rendering and Socket.io for real-time communication."
+    },
+    "drawsync": {
+      "title": "DrawSync",
+      "shortDescription": "A real-time collaborative drawing application built with Next.js.",
+      "impact": "Supports low-latency multi-user drawing synchronization using Liveblocks.",
+      "category": "Full Stack",
+      "description": "DrawSync is a feature-rich collaborative drawing application that allows users to create, share, and collaborate on digital drawings in real-time. Implemented with Next.js and Canvas API, it features an infinite canvas with pan and zoom capabilities."
+    },
+    "vox-ai": {
+      "title": "VoxAI Assistant",
+      "shortDescription": "Voice-Activated AI Web Application",
+      "impact": "Integrates Google Gemini API for seamless voice-to-text AI interaction.",
+      "category": "AI Integration",
+      "description": "Developed a cutting-edge voice-activated AI assistant web application leveraging advanced speech recognition, text-to-speech synthesis, and Google's Gemini API for natural language processing."
+    }
+  }
+}

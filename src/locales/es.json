@@ -1,0 +1,121 @@
+{
+  "navbar": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "language": "Idioma"
+  },
+  "hero": {
+    "role": "Desarrollador Full Stack (MERN)",
+    "open_to_work": "Abierto a roles SDE / Frontend en India / Remoto",
+    "greeting": "Hola, soy",
+    "name": "Sourav Paitandy",
+    "tagline": "Un desarrollador apasionado que crea aplicaciones web robustas y escalables.",
+    "cta_projects": "Ver Proyectos",
+    "cta_contact": "Contáctame",
+    "new_project": "Nuevo Proyecto:"
+  },
+  "about": {
+    "title": "Sobre",
+    "me": "Mí",
+    "subtitle_1": "Desarrollando software por",
+    "subtitle_years": "más de 2 años",
+    "subtitle_2": ". Creando experiencias digitales",
+    "subtitle_dynamic": "dinámicas",
+    "subtitle_3": "con tecnologías modernas.",
+    "who_i_am": "Quién Soy",
+    "bio_p1_1": "¡Hola! Soy",
+    "bio_p1_name": "Sourav",
+    "bio_p1_2": ", estudiante de Ingeniería en Ciencias de la Computación en NSHM Knowledge Campus, Durgapur.",
+    "bio_p2": "Me encuentro en la intersección del diseño y la ingeniería, creando aplicaciones que no solo se ven bien sino que funcionan perfectamente. Mi enfoque está orientado a los detalles, centrándose en código limpio escalable y experiencias de usuario intuitivas.",
+    "bio_p3_1": "Crear aplicaciones",
+    "bio_p3_highlight": "fullstack",
+    "bio_p3_2": "con",
+    "bio_p3_mern": "MERN",
+    "bio_p3_3": "y",
+    "bio_p3_next": "Next.js",
+    "bio_p3_4": "es donde prospero.",
+    "resume_btn": "Currículum / CV",
+    "projects_btn": "Ver Proyectos",
+    "linkedin_btn": "LinkedIn",
+    "tech_arsenal": "Arsenal Técnico",
+    "always_learning": "Siempre aprendiendo nuevas tecnologías"
+  },
+  "contact": {
+    "subtitle": "¿Qué sigue?",
+    "title": "Ponte en Contacto",
+    "looking_for_opps": "¡Estoy buscando activamente nuevas oportunidades!",
+    "open_inbox": "Mi bandeja de entrada siempre está abierta. Ya sea que tengas una pregunta, una idea de proyecto o simplemente quieras saludar, ¡haré todo lo posible por responderte!",
+    "form": {
+      "name": "Nombre",
+      "email": "Correo",
+      "message": "Mensaje",
+      "send_btn": "Enviar Mensaje",
+      "sending": "Enviando...",
+      "error": "Algo salió mal. Por favor intenta de nuevo."
+    },
+    "success_title": "¡Mensaje Enviado!",
+    "success_message": "Gracias por contactarme. Te responderé lo antes posible.",
+    "send_another": "Enviar otro mensaje"
+  },
+  "footer": {
+    "credit": "Diseñado y construido por Sourav Paitandy"
+  },
+  "welcome": {
+    "hello": "Hola.",
+    "welcome_to": "Bienvenido a",
+    "name_possessive": "Sourav Paitandy",
+    "portfolio": "Portafolio",
+    "subtitle": "Creando experiencias digitales donde la lógica se encuentra con la estética.",
+    "enter": "Entrar al Portafolio"
+  },
+  "projects": {
+    "section_title": "Proyectos",
+    "section_title_highlight": "Destacados.",
+    "selected_works": "Trabajos Seleccionados",
+    "view_details": "Ver Detalles",
+    "expand_view": "Ampliar Vista",
+    "view_archive": "Ver Archivo Completo",
+    "modal": {
+      "technologies": "Tecnologías",
+      "live_demo": "Demo en Vivo",
+      "source_code": "Código Fuente"
+    },
+    "hexode-ide": {
+      "title": "Hexode v2.0: IDE en la Nube Colaborativo Nativo de IA",
+      "shortDescription": "Un IDE en la nube colaborativo en tiempo real impulsado por IA creado para programación en pareja y entrevistas.",
+      "impact": "Codificación asistida por IA, sincronización en tiempo real basada en CRDT y ejecución segura.",
+      "category": "Herramientas de Desarrollo con IA",
+      "description": "Hexode es un IDE colaborativo basado en navegador diseñado para llevar el desarrollo nativo de IA y la colaboración en tiempo real directamente al navegador. Combina Monaco Editor con sincronización basada en CRDT para permitir la edición multiusuario al estilo de Google Docs. La versión v2.0 introduce HexodeAI, un asistente consciente del contexto que entiende la estructura del proyecto y los archivos activos para generar código y depurar problemas."
+    },
+    "jagjit-kaur-fashion": {
+      "title": "Jagjit Kaur - Moda Patrimonial",
+      "shortDescription": "Una plataforma de comercio electrónico premium para ropa tradicional india hecha a mano.",
+      "impact": "Impulsó la presencia digital de una marca patrimonial con un panel de administración personalizado.",
+      "category": "Comercio Electrónico Full Stack",
+      "description": "Desarrollé una sofisticada plataforma de comercio electrónico para la colección de moda patrimonial de Jagjit Kaur. La aplicación incluye un sistema completo de gestión administrativa con carga de productos, panel de análisis y gestión de cuentas de administrador. Se implementó la integración de Firebase en tiempo real para la gestión de productos, autenticación de usuarios y almacenamiento de datos."
+    },
+    "collab-hub": {
+      "title": "CollabHub",
+      "shortDescription": "Una plataforma colaborativa para que los desarrolladores se conecten y compartan proyectos.",
+      "impact": "Permite la colaboración de desarrolladores en tiempo real a través de conexiones Socket.io optimizadas.",
+      "category": "Full Stack",
+      "description": "Desarrollé una plataforma colaborativa para que los desarrolladores se conecten, compartan proyectos y trabajen juntos en tiempo real. Utilicé Next.js para el renderizado del lado del servidor y Socket.io para la comunicación en tiempo real."
+    },
+    "drawsync": {
+      "title": "DrawSync",
+      "shortDescription": "Una aplicación de dibujo colaborativo en tiempo real construida con Next.js.",
+      "impact": "Admite la sincronización de dibujos multiusuario de baja latencia utilizando Liveblocks.",
+      "category": "Full Stack",
+      "description": "DrawSync es una aplicación de dibujo colaborativo rica en funciones que permite a los usuarios crear, compartir y colaborar en dibujos digitales en tiempo real. Implementada con Next.js y Canvas API, cuenta con un lienzo infinito con capacidades de desplazamiento y zoom."
+    },
+    "vox-ai": {
+      "title": "Asistente VoxAI",
+      "shortDescription": "Aplicación web de IA activada por voz",
+      "impact": "Integra la API de Google Gemini para una interacción de IA de voz a texto perfecta.",
+      "category": "Integración de IA",
+      "description": "Desarrollé una aplicación web de asistente de IA activada por voz de vanguardia que aprovecha el reconocimiento de voz avanzado, la síntesis de texto a voz y la API Gemini de Google para el procesamiento del lenguaje natural."
+    }
+  }
+}

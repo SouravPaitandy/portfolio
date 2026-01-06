@@ -1,29 +1,28 @@
-import "./Styles/App.css";
 import Navbar from "./Components/Navbar";
 import Hero from "./Hero";
 import About from "./About";
 import Projects from "./Projects";
 import Contact from "./Contact";
 import ColorPickerModal from "./ColorPicker";
-import WelcomeScreen from "./Components/WelcomeScreen"; // Import
+import WelcomeScreen from "./Components/WelcomeScreen";
 import { ThemeProvider } from "./Contexts/theme";
 import { useState, useEffect, useRef } from "react";
 import useLocalStorage from "use-local-storage";
-import { AnimatePresence } from "framer-motion"; // Import
-
+import { AnimatePresence } from "framer-motion";
+import useAnalytics from "./Hooks/useAnalytics";
 import ScrollManager from "./Components/ScrollManager";
 
 function App() {
+  const { initGA } = useAnalytics();
   const [themeMode, setThemeMode] = useLocalStorage("dark", "dark");
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
   const [isFirstSelection, setIsFirstSelection] = useState(true);
-  const [showWelcome, setShowWelcome] = useState(true); // State for welcome screen
+  const [showWelcome, setShowWelcome] = useState(true);
   const bodyRef = useRef(null);
 
   const darkTheme = () => setThemeMode("dark");
   const lightTheme = () => setThemeMode("light");
 
-  // Check session storage for welcome screen
   useEffect(() => {
     const hasVisited = sessionStorage.getItem("hasVisited");
     if (hasVisited) {
@@ -31,18 +30,20 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    initGA();
+  }, []);
+
   const handleWelcomeComplete = () => {
     setShowWelcome(false);
     sessionStorage.setItem("hasVisited", "true");
   };
 
-  // Theme mode effect
   useEffect(() => {
     document.querySelector("html").classList.remove("dark", "light");
     document.querySelector("html").classList.add(themeMode);
   }, [themeMode]);
 
-  // Selection color change logic
   useEffect(() => {
     const handleMouseUp = () => {
       const selection = window.getSelection().toString();
@@ -52,7 +53,6 @@ function App() {
       }
     };
 
-    // Load previously saved color
     const savedColor = localStorage.getItem("selectionColor");
     if (savedColor) {
       document.documentElement.style.setProperty(

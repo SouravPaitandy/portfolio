@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Code, Terminal } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const WelcomeScreen = ({ onEnter }) => {
   const [textStage, setTextStage] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const timer1 = setTimeout(() => setTextStage(1), 1000); // "Hello"
@@ -74,11 +76,11 @@ const WelcomeScreen = ({ onEnter }) => {
               exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
               transition={{ duration: 0.6 }}
             >
-              Hello.
+              {t("welcome.hello")}
             </motion.h1>
           )}
 
-          {textStage >= 2 && ( // Keep visible or switch
+          {textStage >= 2 && (
             <motion.div
               key="stage-2"
               initial={{ opacity: 0 }}
@@ -88,16 +90,16 @@ const WelcomeScreen = ({ onEnter }) => {
             >
               <h1 className="text-4xl md:text-7xl font-extrabold text-gray-900 dark:text-white tracking-tight">
                 <span className="text-gray-400 dark:text-gray-600 block text-lg md:text-2xl font-normal mb-2 tracking-widest uppercase">
-                  Welcome to
+                  {t("welcome.welcome_to")}
                 </span>
-                Sourav Paitandy's{" "}
+                {t("welcome.name_possessive")}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-indigo to-purple-600">
-                  Portfolio
+                  {t("welcome.portfolio")}
                 </span>
               </h1>
 
               <p className="max-w-md text-gray-500 dark:text-gray-400 text-sm md:text-base leading-relaxed">
-                Crafting digital experiences where logic meets aesthetics.
+                {t("welcome.subtitle")}
               </p>
 
               {textStage >= 3 && (
@@ -109,7 +111,7 @@ const WelcomeScreen = ({ onEnter }) => {
                   whileTap={{ scale: 0.95 }}
                   className="mt-8 flex items-center gap-2 px-8 py-3 rounded-full bg-electric-indigo text-white font-medium text-lg hover:bg-indigo-600 transition-all shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(99,102,241,0.5)]"
                 >
-                  Enter Portfolio <ArrowRight size={20} />
+                  {t("welcome.enter")} <ArrowRight size={20} />
                 </motion.button>
               )}
             </motion.div>

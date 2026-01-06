@@ -8,6 +8,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import useTheme from "./Contexts/theme";
 import useAnalytics from "./Hooks/useAnalytics";
 import ResumeViewer from "./ResumeViewer";
+import { useTranslation } from "react-i18next";
 
 // Antigravity physics particle system
 const AntigravityParticles = React.memo(() => {
@@ -262,6 +263,7 @@ const AnimatedSocialIcon = React.memo(({ path, color, href, ariaLabel }) => {
 export default function Hero() {
   const { themeMode } = useTheme();
   const { trackEvent } = useAnalytics();
+  const { t } = useTranslation();
 
   const [text] = useTypewriter({
     words: [
@@ -320,7 +322,13 @@ export default function Hero() {
           transition={{ delay: 0.1, duration: 0.8 }}
           className="mb-8"
         >
-          <Link to="hexode-ide" smooth={true} duration={1200} offset={-100}>
+          <Link
+            to="hexode-ide"
+            href="#hexode-ide"
+            smooth={true}
+            duration={1200}
+            offset={-100}
+          >
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -348,7 +356,7 @@ export default function Hero() {
               </span>
 
               <span className="text-sm z-50 font-medium text-gray-600 dark:text-gray-300 group-hover:text-electric-indigo dark:group-hover:text-electric-indigo transition-colors flex items-center gap-2">
-                New Project Onboard:{" "}
+                {t("hero.new_project")}{" "}
                 <span className="font-bold text-gray-900 dark:text-white">
                   Hexode v2.0
                 </span>
@@ -372,7 +380,7 @@ export default function Hero() {
           className="flex flex-col items-center gap-2 mb-4 md:mb-6"
         >
           <div className="px-4 py-1 w-fit-content rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-electric-indigo font-mono text-xs md:text-sm tracking-[0.2em] uppercase">
-            Full Stack Developer (MERN)
+            {t("hero.role")}
           </div>
           <motion.span
             initial={{ opacity: 0 }}
@@ -380,7 +388,7 @@ export default function Hero() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="text-xs md:text-sm text-gray-500 dark:text-gray-400 font-medium tracking-wide"
           >
-            Open to SDE / Frontend roles in India / Remote
+            {t("hero.open_to_work")}
           </motion.span>
         </motion.div>
 
@@ -393,7 +401,7 @@ export default function Hero() {
           }}
           className="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter mb-4 md:mb-6 text-gray-900 dark:text-white leading-tight"
         >
-          Sourav Paitandy
+          {t("hero.name")}
         </motion.h1>
 
         <motion.h2
@@ -418,22 +426,7 @@ export default function Hero() {
           }}
           className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-xl md:max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed px-4"
         >
-          Crafting high-performance digital experiences with a focus on
-          <span className="text-gray-900 dark:text-white font-medium">
-            {" "}
-            precision
-          </span>
-          ,
-          <span className="text-gray-900 dark:text-white font-medium">
-            {" "}
-            aesthetics
-          </span>
-          , and
-          <span className="text-gray-900 dark:text-white font-medium">
-            {" "}
-            scalability
-          </span>
-          .
+          {t("hero.tagline")}
         </motion.p>
 
         <motion.div
@@ -456,9 +449,9 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => trackEvent("Hero", "Click", "View Projects")}
-              className="px-8 py-3 md:px-8 md:py-4 rounded-full bg-electric-indigo text-white font-bold text-base md:text-lg hover:bg-indigo-600 transition-colors shadow-[0_0_20px_rgba(99,102,241,0.3)] sm:w-auto"
+              className="px-8 py-3 md:px-8 md:py-4 rounded-full bg-indigo-600 text-white font-bold text-base md:text-lg transition-colors shadow-[0_0_20px_rgba(99,102,241,0.3)] sm:w-auto"
             >
-              View Projects
+              {t("hero.cta_projects")}
             </motion.button>
           </Link>
 
@@ -487,7 +480,7 @@ export default function Hero() {
               onClick={() => trackEvent("Hero", "Click", "Contact Me")}
               className="px-8 py-3 md:px-8 md:py-4 rounded-full border border-transparent text-gray-500 dark:text-gray-400 font-medium text-base md:text-lg hover:text-electric-indigo dark:hover:text-electric-indigo transition-colors w-full sm:w-auto"
             >
-              Contact Me
+              {t("hero.cta_contact")}
             </motion.button>
           </Link>
         </motion.div>

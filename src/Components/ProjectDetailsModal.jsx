@@ -3,17 +3,19 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
-  Github,
   ExternalLink,
   Code2,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 import useAnalytics from "../Hooks/useAnalytics";
+import { useTranslation } from "react-i18next";
 
 export default function ProjectDetailsModal({ project, isOpen, onClose }) {
   const { trackEvent } = useAnalytics();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { t } = useTranslation();
 
   // Reset index when modal opens or project changes
   useEffect(() => {
@@ -84,7 +86,7 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
                     <motion.img
                       key={currentImageIndex}
                       src={allImages[currentImageIndex]}
-                      alt={project.title}
+                      alt={t(`projects.${project.id}.title`)}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
@@ -141,10 +143,10 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
                 <div className="flex justify-between items-start mb-4">
                   <div className="pr-8 md:pr-0">
                     <h3 className="text-electric-indigo font-mono text-sm mb-2 uppercase tracking-wider">
-                      {project.category || "Development"}
+                      {t(`projects.${project.id}.category`)}
                     </h3>
                     <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                      {project.title}
+                      {t(`projects.${project.id}.title`)}
                     </h2>
                   </div>
                   {/* Close Button (Desktop) */}
@@ -157,7 +159,7 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
                 </div>
 
                 <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow text-sm md:text-base">
-                  {project.description || "A detailed look into this project."}
+                  {t(`projects.${project.id}.description`)}
                 </p>
 
                 <div className="space-y-6">
@@ -165,7 +167,7 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
                   <div>
                     <h4 className="text-gray-900 dark:text-white font-semibold mb-3 flex items-center gap-2">
                       <Code2 size={18} className="text-electric-indigo" />
-                      Technologies
+                      {t("projects.modal.technologies")}
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {project.stack?.map((tech, index) => (
@@ -190,13 +192,13 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
                           trackEvent(
                             "Project Modal",
                             "Live Demo Click",
-                            project.title
+                            t(`projects.${project.id}.title`)
                           )
                         }
                         className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-electric-indigo text-white rounded-xl font-semibold hover:bg-electric-indigo/80 transition-colors text-sm md:text-base"
                       >
                         <ExternalLink size={18} />
-                        Live Demo
+                        {t("projects.modal.live_demo")}
                       </a>
                     )}
                     {project.links?.github && (
@@ -208,13 +210,13 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
                           trackEvent(
                             "Project Modal",
                             "Source Code Click",
-                            project.title
+                            t(`projects.${project.id}.title`)
                           )
                         }
                         className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 text-gray-900 dark:text-white rounded-xl font-semibold hover:bg-black/10 dark:hover:bg-white/10 transition-colors text-sm md:text-base"
                       >
-                        <Github size={18} />
-                        Source Code
+                        <FaGithub size={18} />
+                        {t("projects.modal.source_code")}
                       </a>
                     )}
                   </div>

@@ -10,18 +10,15 @@ Welcome to my personal portfolio website! As a passionate web developer, I’ve 
 
 This portfolio isn’t just a collection of projects—it’s a testament to my growth and commitment to innovative web solutions. Explore my work, and let’s connect to create amazing digital experiences together!
 
-
 ## Author
 
 - [@SouravPaitandy](https://www.github.com/SouravPaitandy)
-
 
 ## Tech Stack
 
 **Client:** React, TailwindCSS
 
 **Libaries:** [Framer Motion](https://www.framer.com/motion/), [EmailJS](https://www.emailjs.com/)
-
 
 ## Features
 
