@@ -97,11 +97,11 @@
       "description": "Developed a sophisticated e-commerce platform for Jagjit Kaur's heritage fashion collection, featuring handcrafted Indian traditional wear. The application includes a complete admin management system with product upload, analytics dashboard, and admin account management. Implemented real-time Firebase integration for product management, user authentication, and data storage."
     },
     "collab-hub": {
-      "title": "CollabHub",
-      "shortDescription": "A collaborative platform for developers to connect and share projects.",
-      "impact": "Enables real-time developer collaboration via optimized Socket.io connections.",
+      "title": "Coordly",
+      "shortDescription": "A real-time collaborative platform for remote teams and students to brainstorm, plan, and execute projects together.",
+      "impact": "Streamlines project workflows with real-time task management, file sharing, and video conferencing.",
       "category": "Full Stack",
-      "description": "Developed a collaborative platform for developers to connect, share projects, and work together in real-time. Utilized Next.js for server-side rendering and Socket.io for real-time communication."
+      "description": "Coordly (formerly CollabHub) is a comprehensive collaboration platform designed to bridge communication gaps for remote teams and students. It combines a dynamic task management system, secure file sharing, and integrated video conferencing into a seamless interface. Built with Next.js, it supports real-time collaboration, ensuring that teams can stay synchronized, organized, and productive whether they're miles apart or in the same room."
     },
     "drawsync": {
       "title": "DrawSync",

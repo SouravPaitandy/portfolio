@@ -1,18 +1,103 @@
 import useTheme from "../Contexts/theme";
+import { flushSync } from "react-dom";
+import { useRef } from "react";
 
 const Toggler = () => {
   const { themeMode, darkTheme, lightTheme } = useTheme();
+  const labelRef = useRef(null);
+
+  const spawnRipple = (x, y, isDark) => {
+    const ripple = document.createElement("div");
+    const size = Math.hypot(window.innerWidth, window.innerHeight) * 2;
+
+    // Glow color: warm gold for light mode, cool indigo for dark mode
+    const color = isDark
+      ? "rgba(99,102,241,0.35)"   // going dark → indigo
+      : "rgba(251,191,36,0.35)";  // going light → golden
+
+    Object.assign(ripple.style, {
+      position: "fixed",
+      top: `${y}px`,
+      left: `${x}px`,
+      width: "0px",
+      height: "0px",
+      borderRadius: "50%",
+      transform: "translate(-50%, -50%)",
+      background: `radial-gradient(circle, ${color} 0%, transparent 70%)`,
+      boxShadow: isDark
+        ? "0 0 60px 30px rgba(99,102,241,0.5), 0 0 120px 60px rgba(139,92,246,0.25)"
+        : "0 0 60px 30px rgba(251,191,36,0.5), 0 0 120px 60px rgba(253,224,71,0.25)",
+      pointerEvents: "none",
+      zIndex: 99999,
+      transition: "width 0.55s ease-out, height 0.55s ease-out, opacity 0.55s ease-out",
+      opacity: "1",
+    });
+
+    document.body.appendChild(ripple);
+
+    // Double-RAF: first frame paints the 0×0 state, second triggers the transition
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        ripple.style.width = `${size}px`;
+        ripple.style.height = `${size}px`;
+        // Delay the fade so the burst is visible while expanding
+        setTimeout(() => { ripple.style.opacity = "0"; }, 180);
+      });
+    });
+
+    // Cleanup after the longest transition (opacity at ~735ms total)
+    setTimeout(() => ripple.remove(), 800);
+  };
 
   const onChangeBtn = (e) => {
-    if (e.currentTarget.checked) {
-      darkTheme();
-    } else {
-      lightTheme();
+    const isDark = e.currentTarget.checked;
+
+    // Get the center of the toggle button (label) — checkboxes carry no clientX/Y
+    const rect = labelRef.current?.getBoundingClientRect();
+    const x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
+    const y = rect ? rect.top + rect.height / 2 : window.innerHeight / 2;
+
+    // Spawn the glowing ripple burst immediately
+    spawnRipple(x, y, isDark);
+
+    if (!document.startViewTransition) {
+      if (isDark) darkTheme();
+      else lightTheme();
+      return;
     }
+
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y),
+    );
+
+    const transition = document.startViewTransition(() => {
+      flushSync(() => {
+        if (isDark) darkTheme();
+        else lightTheme();
+      });
+    });
+
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 600,
+          easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+          pseudoElement: "::view-transition-new(root)",
+        },
+      );
+    });
   };
 
   return (
     <label
+      ref={labelRef}
       className="theme-switch"
       title="Toggle Theme"
       aria-label="Toggle Theme"

@@ -5,19 +5,33 @@ import { useTranslation } from "react-i18next";
 
 const WelcomeScreen = ({ onEnter }) => {
   const [textStage, setTextStage] = useState(0);
+  const [helloIndex, setHelloIndex] = useState(0);
+  const hellos = ["Hello", "नमस्ते", "নমস্কার", "Hola"];
   const { t } = useTranslation();
 
   useEffect(() => {
-    const timer1 = setTimeout(() => setTextStage(1), 1000); // "Hello"
-    const timer2 = setTimeout(() => setTextStage(2), 2500); // "I am Sourav"
-    const timer3 = setTimeout(() => setTextStage(3), 4000); // Button appears
+    const timer1 = setTimeout(() => setTextStage(1), 500); // "Hello"
+    const timer2 = setTimeout(() => setTextStage(2), 4000); // "I am Sourav"
+    // const timer3 = setTimeout(() => setTextStage(3), 5000); // Button appears
 
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
-      clearTimeout(timer3);
+      // clearTimeout(timer3);
     };
   }, []);
+
+  useEffect(() => {
+    if (textStage !== 1) return;
+    const interval = setInterval(() => {
+      setHelloIndex((prev) => {
+        if (prev < hellos.length - 1) return prev + 1;
+        clearInterval(interval);
+        return prev;
+      });
+    }, 900);
+    return () => clearInterval(interval);
+  }, [textStage, hellos.length]);
 
   return (
     <motion.div
@@ -68,16 +82,26 @@ const WelcomeScreen = ({ onEnter }) => {
           )}
 
           {textStage === 1 && (
-            <motion.h1
+            <motion.div
               key="stage-1"
-              className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-              transition={{ duration: 0.6 }}
+              className="relative h-20 w-full flex items-center justify-center"
             >
-              {t("welcome.hello")}
-            </motion.h1>
+              <AnimatePresence mode="wait">
+                <motion.h1
+                  key={helloIndex}
+                  className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white absolute whitespace-nowrap"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {hellos[helloIndex]}
+                </motion.h1>
+              </AnimatePresence>
+            </motion.div>
           )}
 
           {textStage >= 2 && (
@@ -102,18 +126,21 @@ const WelcomeScreen = ({ onEnter }) => {
                 {t("welcome.subtitle")}
               </p>
 
-              {textStage >= 3 && (
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  onClick={onEnter}
-                  whileHover={{ scale: 1.05, gap: "12px" }}
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-8 flex items-center gap-2 px-8 py-3 rounded-full bg-electric-indigo text-white font-medium text-lg hover:bg-indigo-600 transition-all shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(99,102,241,0.5)]"
-                >
-                  {t("welcome.enter")} <ArrowRight size={20} />
-                </motion.button>
-              )}
+              {/* {textStage >= 3 && ( */}
+              <motion.button
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                onClick={onEnter}
+                whileTap={{ scale: 0.95 }}
+                className="group mt-8 flex items-center gap-2 px-8 py-3 rounded-full bg-electric-indigo text-white font-medium text-lg hover:bg-indigo-600 ease-in-out transition-all shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(99,102,241,0.5)]"
+              >
+                {t("welcome.enter")}{" "}
+                <ArrowRight
+                  size={20}
+                  className="group-hover:translate-x-1 duration-300 transition-all ease-in-out"
+                />
+              </motion.button>
+              {/* )} */}
             </motion.div>
           )}
         </AnimatePresence>

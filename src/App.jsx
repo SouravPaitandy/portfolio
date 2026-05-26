@@ -20,8 +20,17 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(true);
   const bodyRef = useRef(null);
 
-  const darkTheme = () => setThemeMode("dark");
-  const lightTheme = () => setThemeMode("light");
+  const darkTheme = () => {
+    document.documentElement.classList.remove("light");
+    document.documentElement.classList.add("dark");
+    setThemeMode("dark");
+  };
+
+  const lightTheme = () => {
+    document.documentElement.classList.remove("dark");
+    document.documentElement.classList.add("light");
+    setThemeMode("light");
+  };
 
   useEffect(() => {
     const hasVisited = sessionStorage.getItem("hasVisited");
@@ -57,7 +66,7 @@ function App() {
     if (savedColor) {
       document.documentElement.style.setProperty(
         "--selection-bg-color",
-        savedColor
+        savedColor,
       );
     }
 

@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -26,8 +27,13 @@ html.lenis, html.lenis body {
   body {
     @apply bg-rich-black text-gray-200 font-sans antialiased;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold tracking-tight text-white;
   }
 }
@@ -43,18 +49,36 @@ html.lenis, html.lenis body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a; 
+  background: #0a0a0a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333; 
+  background: #333;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6366f1; 
+  background: #6366f1;
 }
 
+/* ─── View Transitions: Circular ripple from toggle center ─────────────────
+   Strategy: always clip the INCOMING (new) layer as an expanding circle.
+   The OLD layer sits behind it at z-index 1, new is always on top at z-index 2.
+   This works identically for both dark→light and light→dark directions.
+   DO NOT add .dark:: overrides — they flip the layering and hide the animation.
+────────────────────────────────────────────────────────────────────────── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
 
-  
-  
+/* Old snapshot sits underneath — it's fully visible until the circle covers it */
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+/* New snapshot expands on top via clip-path set from JS */
+::view-transition-new(root) {
+  z-index: 2;
+}

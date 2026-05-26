@@ -97,11 +97,11 @@
       "description": "Desarrollé una sofisticada plataforma de comercio electrónico para la colección de moda patrimonial de Jagjit Kaur. La aplicación incluye un sistema completo de gestión administrativa con carga de productos, panel de análisis y gestión de cuentas de administrador. Se implementó la integración de Firebase en tiempo real para la gestión de productos, autenticación de usuarios y almacenamiento de datos."
     },
     "collab-hub": {
-      "title": "CollabHub",
-      "shortDescription": "Una plataforma colaborativa para que los desarrolladores se conecten y compartan proyectos.",
-      "impact": "Permite la colaboración de desarrolladores en tiempo real a través de conexiones Socket.io optimizadas.",
+      "title": "Coordly",
+      "shortDescription": "Una plataforma colaborativa integral diseñada para cerrar las brechas de comunicación para equipos remotos y estudiantes.",
+      "impact": "Optimiza los flujos de trabajo de proyectos con gestión de tareas en tiempo real, uso compartido seguro de archivos y videoconferencias integradas.",
       "category": "Full Stack",
-      "description": "Desarrollé una plataforma colaborativa para que los desarrolladores se conecten, compartan proyectos y trabajen juntos en tiempo real. Utilicé Next.js para el renderizado del lado del servidor y Socket.io para la comunicación en tiempo real."
+      "description": "Coordly (anteriormente CollabHub) es una plataforma colaborativa integral diseñada para cerrar las brechas de comunicación para equipos remotos y estudiantes. Combina un sistema dinámico de gestión de tareas, uso compartido seguro de archivos y videoconferencias integradas en una interfaz perfecta. Construido con Next.js, admite la colaboración en tiempo real, asegurando que los equipos puedan mantenerse sincronizados, organizados y productivos ya sea que estén a kilómetros de distancia o en la misma habitación."
     },
     "drawsync": {
       "title": "DrawSync",

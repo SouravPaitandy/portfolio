@@ -7,6 +7,7 @@ import {
   Code2,
   ChevronLeft,
   ChevronRight,
+  Maximize2,
 } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import useAnalytics from "../Hooks/useAnalytics";
@@ -15,12 +16,14 @@ import { useTranslation } from "react-i18next";
 export default function ProjectDetailsModal({ project, isOpen, onClose }) {
   const { trackEvent } = useAnalytics();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const { t } = useTranslation();
 
   // Reset index when modal opens or project changes
   useEffect(() => {
     if (isOpen) {
       setCurrentImageIndex(0);
+      setIsLightboxOpen(false);
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
     } else {
@@ -33,17 +36,42 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
     };
   }, [isOpen, project]);
 
+  // Keyboard navigation
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKey = (e) => {
+      if (e.key === "Escape") {
+        if (isLightboxOpen) {
+          setIsLightboxOpen(false);
+        } else {
+          onClose();
+        }
+      }
+      if (isLightboxOpen) {
+        if (e.key === "ArrowRight")
+          setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
+        if (e.key === "ArrowLeft")
+          setCurrentImageIndex(
+            (prev) => (prev - 1 + allImages.length) % allImages.length
+          );
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen, isLightboxOpen, onClose]);
+
   if (!project) return null;
 
   const allImages = [project.img, ...(project.additionalImages || [])];
 
   const handleNext = (e) => {
-    e.stopPropagation();
+    e?.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
   };
 
   const handlePrev = (e) => {
-    e.stopPropagation();
+    e?.stopPropagation();
     setCurrentImageIndex(
       (prev) => (prev - 1 + allImages.length) % allImages.length
     );
@@ -95,8 +123,25 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
                     />
                   </AnimatePresence>
 
-                  {/* Dark gradient for text readability on mobile if needed, or just aesthetic */}
+                  {/* Dark gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+
+                  {/* Click-to-Lightbox Overlay */}
+                  <button
+                    onClick={() => setIsLightboxOpen(true)}
+                    aria-label="View image fullscreen"
+                    className="absolute inset-0 w-full h-full cursor-zoom-in group/zoom flex items-center justify-center"
+                  >
+                    <div className="absolute inset-0 bg-black/0 group-hover/zoom:bg-black/30 transition-colors duration-200" />
+                    <div className="relative flex flex-col items-center gap-2 opacity-0 group-hover/zoom:opacity-100 transition-opacity duration-200">
+                      <div className="p-3 rounded-full bg-white/15 backdrop-blur-md border border-white/20">
+                        <Maximize2 size={22} className="text-white drop-shadow-lg" />
+                      </div>
+                      <span className="text-white text-xs font-medium tracking-wide drop-shadow-md bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full">
+                        Click to expand
+                      </span>
+                    </div>
+                  </button>
                 </div>
 
                 {/* Carousel Controls */}
@@ -104,29 +149,29 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
                   <>
                     <button
                       onClick={handlePrev}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100 z-10"
                       aria-label="Previous Image"
                     >
                       <ChevronLeft size={24} />
                     </button>
                     <button
                       onClick={handleNext}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-white/20 transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100 z-10"
                       aria-label="Next Image"
                     >
                       <ChevronRight size={24} />
                     </button>
 
                     {/* Dots Indicator */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                       {allImages.map((_, idx) => (
                         <button
                           key={idx}
                           onClick={() => setCurrentImageIndex(idx)}
-                          className={`w-2 h-2 rounded-full transition-all ${
+                          className={`h-2 rounded-full transition-all ${
                             idx === currentImageIndex
                               ? "bg-white w-4"
-                              : "bg-white/50 hover:bg-white/80"
+                              : "bg-white/50 hover:bg-white/80 w-2"
                           }`}
                         />
                       ))}
@@ -224,6 +269,109 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
               </div>
             </div>
           </motion.div>
+
+          {/* ── Lightbox ── */}
+          <AnimatePresence>
+            {isLightboxOpen && (
+              <>
+                {/* Lightbox Backdrop */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  onClick={() => setIsLightboxOpen(false)}
+                  className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[80]"
+                />
+
+                {/* Lightbox Shell */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.93 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.93 }}
+                  transition={{ type: "spring", damping: 28, stiffness: 350 }}
+                  className="fixed inset-0 z-[90] flex items-center justify-center pointer-events-none"
+                >
+                  {/* Top bar: counter + close */}
+                  <div className="absolute top-4 left-0 right-0 flex items-center justify-between px-5 pointer-events-auto">
+                    {/* Image counter */}
+                    <span className="text-white/60 font-mono text-sm tracking-widest select-none">
+                      {String(currentImageIndex + 1).padStart(2, "0")}
+                      <span className="text-white/30 mx-1">/</span>
+                      {String(allImages.length).padStart(2, "0")}
+                    </span>
+
+                    {/* Project name */}
+                    <span className="hidden sm:block text-white/50 text-sm font-medium truncate max-w-[40%] text-center">
+                      {t(`projects.${project.id}.title`)}
+                    </span>
+
+                    {/* Close button */}
+                    <button
+                      onClick={() => setIsLightboxOpen(false)}
+                      aria-label="Close lightbox"
+                      className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/70 hover:text-white transition-all"
+                    >
+                      <X size={20} />
+                    </button>
+                  </div>
+
+                  {/* Main image */}
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={currentImageIndex}
+                      src={allImages[currentImageIndex]}
+                      alt={`${t(`projects.${project.id}.title`)} — image ${currentImageIndex + 1}`}
+                      initial={{ opacity: 0, x: 40 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -40 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className="max-h-[82vh] max-w-[88vw] object-contain rounded-xl shadow-2xl pointer-events-auto select-none"
+                      draggable={false}
+                    />
+                  </AnimatePresence>
+
+                  {/* Prev / Next arrows */}
+                  {allImages.length > 1 && (
+                    <>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+                        aria-label="Previous image"
+                        className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-all pointer-events-auto backdrop-blur-sm"
+                      >
+                        <ChevronLeft size={28} />
+                      </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handleNext(); }}
+                        aria-label="Next image"
+                        className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-all pointer-events-auto backdrop-blur-sm"
+                      >
+                        <ChevronRight size={28} />
+                      </button>
+                    </>
+                  )}
+
+                  {/* Bottom dot strip */}
+                  {allImages.length > 1 && (
+                    <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 pointer-events-auto">
+                      {allImages.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setCurrentImageIndex(idx)}
+                          aria-label={`Go to image ${idx + 1}`}
+                          className={`h-1.5 rounded-full transition-all duration-300 ${
+                            idx === currentImageIndex
+                              ? "bg-white w-6"
+                              : "bg-white/35 hover:bg-white/60 w-1.5"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
         </>
       )}
     </AnimatePresence>

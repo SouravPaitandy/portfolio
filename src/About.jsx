@@ -3,7 +3,7 @@ import { memo } from "react";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 import ResumeViewer from "./ResumeViewer";
-import useTheme from "./Contexts/theme";
+// import useTheme from "./Contexts/theme";
 import { Briefcase, Terminal, User } from "lucide-react";
 import {
   SiReact,
@@ -23,7 +23,7 @@ import FloatingSkills from "./Components/FloatingSkills";
 import { useTranslation } from "react-i18next";
 
 const About = memo(() => {
-  const { themeMode } = useTheme();
+  // const { themeMode } = useTheme();
   const { t } = useTranslation();
 
   const skillIcons = [
