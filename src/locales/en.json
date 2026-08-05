@@ -71,6 +71,12 @@
     "enter": "Enter Portfolio"
   },
   "projects": {
+    "sort": {
+      "featured": "Featured",
+      "latest": "Latest",
+      "category": "By Type",
+      "all": "All"
+    },
     "section_title": "Featured",
     "section_title_highlight": "Projects.",
     "selected_works": "Selected Works",
@@ -82,12 +88,19 @@
       "live_demo": "Live Demo",
       "source_code": "Source Code"
     },
+    "mirror-mind": {
+      "title": "MirrorMind: AI Professional Digital Twin",
+      "shortDescription": "An AI-powered digital twin that interacts with recruiters and evaluates job descriptions in real-time.",
+      "impact": "Automates initial recruiter screenings with structured knowledge grounding and zero hallucinations.",
+      "category": "AI-Powered Application",
+      "description": "MirrorMind is an AI-powered professional digital twin that represents me to recruiters, hiring managers, and visitors. It leverages FastAPI and the Groq API on the backend with a premium React frontend. It features an intelligent LLM router to dynamically switch between general conversation and structured Job Description (JD) matching, sliding window memory context, and real-time streaming responses."
+    },
     "hexode-ide": {
-      "title": "Hexode v2.0: AI-Native Collaborative Cloud IDE",
+      "title": "Hexode v3.0: AI-Native Collaborative Cloud IDE",
       "shortDescription": "An AI-powered, real-time collaborative cloud IDE built for pair programming, interviews, and modern web development.",
       "impact": "AI-assisted coding, CRDT-based real-time sync, and secure sandboxed execution.",
       "category": "AI-Powered Developer Tools",
-      "description": "Hexode is a browser-based collaborative IDE designed to bring AI-native development and real-time collaboration directly into the browser. It combines Monaco Editor with CRDT-based synchronization to enable Google Docs-style multi-user editing. The v2.0 release introduces HexodeAI, a context-aware assistant that understands project structure and active files to generate code, debug issues. Hexode also features a standalone online playground for instant coding and interview practice without login or setup."
+      "description": "Hexode is a browser-based collaborative IDE designed to bring AI-native development and real-time collaboration directly into the browser. It combines Monaco Editor with CRDT-based synchronization to enable Google Docs-style multi-user editing. The v3.0 release introduces more power to HexodeAI, a context-aware assistant that understands project structure and active files to generate code, debug issues. Hexode also features a standalone online playground for instant coding and interview practice without login or setup, introduced modern and premium themes, distraction free Full Screen mode and more power Shortcuts."
     },
     "jagjit-kaur-fashion": {
       "title": "Jagjit Kaur - Heritage Fashion",

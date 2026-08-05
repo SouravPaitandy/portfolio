@@ -8,8 +8,8 @@ export { default as CoordlyDashboard } from "./CoordlyDashboard.png";
 export { default as CoordlyCollabs } from "./CoordlyCollabs.png";
 export { default as CoordlyWorkspace } from "./CoordlyWorkspace.png";
 export { default as CoordlyWorkspaceAllFeatures } from "./CoordlyWorkspaceAllFeatures.png";
-export { default as CoordlyTaskboard } from "./CoordlyTaskboard.png"
-export { default as CoordlyVideocallInterface } from "./CoordlyVideocallInterface.png"
+export { default as CoordlyTaskboard } from "./CoordlyTaskboard.png";
+export { default as CoordlyVideocallInterface } from "./CoordlyVideocallInterface.png";
 //Drawsync
 export { default as drawsync } from "./drawsync.png";
 export { default as Dscreenshot1 } from "./Dscreenshot1.png";
@@ -26,3 +26,7 @@ export { default as hexodeDashboard } from "./hexodeDashboard.png";
 export { default as hexodeIDE } from "./hexodeIDE.png";
 export { default as hexodePlayground } from "./hexodePlayground.png";
 export { default as hexodeDocs } from "./hexodeDocs.png";
+//MirrorMind
+export { default as MirrorMind } from "./MirrorMind.png";
+export { default as InAction } from "./MM-In-Action.png";
+export { default as ResponsiveView } from "./MM-Responsive-View.png";

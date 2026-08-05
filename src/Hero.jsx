@@ -24,7 +24,7 @@ const AntigravityParticles = React.memo(() => {
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      1000
+      1000,
     );
     camera.position.z = 30;
 
@@ -168,7 +168,7 @@ const AntigravityParticles = React.memo(() => {
 
       lineGeometry.setAttribute(
         "position",
-        new THREE.Float32BufferAttribute(linePositions, 3)
+        new THREE.Float32BufferAttribute(linePositions, 3),
       );
 
       renderer.render(scene, camera);
@@ -314,17 +314,17 @@ export default function Hero() {
       <AntigravityParticles />
 
       {/* Content */}
-      <div className="relative flex flex-col justify-center items-center z-10 max-w-5xl px-4 md:px-6 text-center mt-20">
+      <div className="relative flex flex-col justify-center items-center z-10 max-w-5xl px-4 md:px-6 text-center mt-10 md:mt-20">
         {/* New Project CTA */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.8 }}
-          className="mb-8"
+          className="mb-8 md:mb-4"
         >
           <Link
-            to="hexode-ide"
-            href="#hexode-ide"
+            to="mirror-mind"
+            href="#mirror-mind"
             smooth={true}
             duration={1200}
             offset={-100}
@@ -358,10 +358,10 @@ export default function Hero() {
               <span className="text-sm z-50 font-medium text-gray-600 dark:text-gray-300 group-hover:text-electric-indigo dark:group-hover:text-electric-indigo transition-colors flex items-center gap-2">
                 {t("hero.new_project")}{" "}
                 <span className="font-bold text-gray-900 dark:text-white">
-                  Hexode v2.0
+                  MirrorMind
                 </span>
                 <span className="hidden sm:inline opacity-70">
-                  - The Next-Gen AI IDE
+                  - AI Professional Digital Twin
                 </span>
               </span>
 

@@ -52,7 +52,7 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
           setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
         if (e.key === "ArrowLeft")
           setCurrentImageIndex(
-            (prev) => (prev - 1 + allImages.length) % allImages.length
+            (prev) => (prev - 1 + allImages.length) % allImages.length,
           );
       }
     };
@@ -73,7 +73,7 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
   const handlePrev = (e) => {
     e?.stopPropagation();
     setCurrentImageIndex(
-      (prev) => (prev - 1 + allImages.length) % allImages.length
+      (prev) => (prev - 1 + allImages.length) % allImages.length,
     );
   };
 
@@ -98,7 +98,7 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
             className="fixed inset-0 z-[70] flex items-center justify-center p-4 pointer-events-none"
           >
-            <div className="bg-white dark:bg-charcoal border border-black/10 dark:border-white/10 rounded-2xl w-full max-w-4xl h-[90vh] md:h-auto md:max-h-[90vh] overflow-hidden pointer-events-auto shadow-2xl flex flex-col md:flex-row transition-colors duration-300 relative">
+            <div className="bg-white dark:bg-charcoal border border-black/10 dark:border-white/10 rounded-2xl w-full max-w-[95vw] md:max-w-[85vw] h-[95vh] md:h-auto md:max-h-[90vh] overflow-hidden pointer-events-auto shadow-2xl flex flex-col md:flex-row transition-colors duration-300 relative">
               {/* Close Button (Mobile) */}
               <button
                 onClick={onClose}
@@ -135,7 +135,10 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
                     <div className="absolute inset-0 bg-black/0 group-hover/zoom:bg-black/30 transition-colors duration-200" />
                     <div className="relative flex flex-col items-center gap-2 opacity-0 group-hover/zoom:opacity-100 transition-opacity duration-200">
                       <div className="p-3 rounded-full bg-white/15 backdrop-blur-md border border-white/20">
-                        <Maximize2 size={22} className="text-white drop-shadow-lg" />
+                        <Maximize2
+                          size={22}
+                          className="text-white drop-shadow-lg"
+                        />
                       </div>
                       <span className="text-white text-xs font-medium tracking-wide drop-shadow-md bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full">
                         Click to expand
@@ -237,13 +240,15 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
                           trackEvent(
                             "Project Modal",
                             "Live Demo Click",
-                            t(`projects.${project.id}.title`)
+                            t(`projects.${project.id}.title`),
                           )
                         }
                         className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-electric-indigo text-white rounded-xl font-semibold hover:bg-electric-indigo/80 transition-colors text-sm md:text-base"
                       >
                         <ExternalLink size={18} />
-                        {t("projects.modal.live_demo")}
+                        <span className="hidden md:inline">
+                          {t("projects.modal.live_demo")}
+                        </span>
                       </a>
                     )}
                     {project.links?.github && (
@@ -255,13 +260,15 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
                           trackEvent(
                             "Project Modal",
                             "Source Code Click",
-                            t(`projects.${project.id}.title`)
+                            t(`projects.${project.id}.title`),
                           )
                         }
                         className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 text-gray-900 dark:text-white rounded-xl font-semibold hover:bg-black/10 dark:hover:bg-white/10 transition-colors text-sm md:text-base"
                       >
                         <FaGithub size={18} />
-                        {t("projects.modal.source_code")}
+                        <span className="hidden md:inline">
+                          {t("projects.modal.source_code")}
+                        </span>
                       </a>
                     )}
                   </div>
@@ -335,14 +342,20 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
                   {allImages.length > 1 && (
                     <>
                       <button
-                        onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handlePrev();
+                        }}
                         aria-label="Previous image"
                         className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-all pointer-events-auto backdrop-blur-sm"
                       >
                         <ChevronLeft size={28} />
                       </button>
                       <button
-                        onClick={(e) => { e.stopPropagation(); handleNext(); }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleNext();
+                        }}
                         aria-label="Next image"
                         className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-all pointer-events-auto backdrop-blur-sm"
                       >

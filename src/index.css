@@ -39,7 +39,14 @@ html.lenis body {
 }
 
 ::selection {
-  background-color: #6366f1; /* electric-indigo */
+  background-color: #4F46E5;
+  /* electric-indigo */
+  color: #ffffff;
+}
+
+.dark ::selection {
+  background-color: #6366f1;
+  /* electric-indigo */
   color: #ffffff;
 }
 

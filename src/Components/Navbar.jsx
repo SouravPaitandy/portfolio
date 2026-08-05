@@ -95,28 +95,27 @@ export default function Navbar() {
   // Desktop Navigation Links
   const NavLink = useMemo(
     () =>
-      ({ to, children }) =>
-        (
-          <Link
-            to={to}
-            href={`#${to}`}
-            smooth={true}
-            duration={1000}
-            offset={-100}
-            aria-current={activeLink === to ? "page" : undefined}
-            className={`relative px-4 py-2 text-sm font-medium rounded-lg
+      ({ to, children }) => (
+        <Link
+          to={to}
+          href={`#${to}`}
+          smooth={true}
+          duration={1000}
+          offset={-100}
+          aria-current={activeLink === to ? "page" : undefined}
+          className={`relative px-4 py-2 text-sm font-medium rounded-lg
         transition-all duration-300 ease-in-out cursor-pointer 
         ${
           activeLink === to
             ? "text-electric-indigo bg-electric-indigo/10"
             : "text-gray-600 dark:text-gray-300 hover:text-electric-indigo dark:hover:text-electric-indigo hover:bg-gray-100 dark:hover:bg-white/5"
         }`}
-            onClick={() => setActiveLink(to)}
-          >
-            {children}
-          </Link>
-        ),
-    [activeLink]
+          onClick={() => setActiveLink(to)}
+        >
+          {children}
+        </Link>
+      ),
+    [activeLink],
   );
 
   // Mobile Full Screen Menu Links
@@ -245,11 +244,45 @@ export default function Navbar() {
         <div className="md:hidden flex items-center gap-4 z-50">
           {!isMenuOpen && <Toggler />}
           <button
-            className="text-gray-800 dark:text-white focus:outline-none p-2"
+            className="text-gray-800 dark:text-white focus:outline-none relative flex items-center justify-center w-12 h-12"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
-            {isMenuOpen ? <XIcon size={32} /> : <Menu size={32} />}
+            <motion.svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              animate={isMenuOpen ? "open" : "closed"}
+            >
+              <motion.path
+                variants={{
+                  closed: { d: "M4 6L20 6" },
+                  open: { d: "M6 6L18 18" },
+                }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              />
+              <motion.path
+                d="M4 12L20 12"
+                variants={{
+                  closed: { opacity: 1, scale: 1 },
+                  open: { opacity: 0, scale: 0.5 },
+                }}
+                transition={{ duration: 0.2 }}
+                style={{ transformOrigin: "center" }}
+              />
+              <motion.path
+                variants={{
+                  closed: { d: "M4 18L20 18" },
+                  open: { d: "M6 18L18 6" },
+                }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              />
+            </motion.svg>
           </button>
         </div>
       </nav>
@@ -262,13 +295,13 @@ export default function Navbar() {
             animate={{ opacity: 1, clipPath: "circle(150% at 100% 0)" }}
             exit={{ opacity: 0, clipPath: "circle(0% at 100% 0)" }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="fixed inset-0 z-40 bg-white dark:bg-rich-black flex flex-col justify-center items-center md:hidden"
+            className="fixed inset-0 z-40 bg-white dark:bg-rich-black gap-20 flex flex-col justify-center items-center md:hidden"
           >
             <div className="absolute top-28 left-0 w-full flex justify-center opacity-10">
               <div className="w-64 h-64 rounded-full bg-electric-indigo blur-3xl"></div>
             </div>
 
-            <nav className="flex flex-col items-center space-y-6 relative z-10 text-center">
+            <nav className="flex flex-col items-center space-y-8 relative z-10 text-center">
               <MobileMenuLink to="hero-section" index={0}>
                 {t("navbar.home")}
               </MobileMenuLink>
@@ -287,7 +320,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
-              className="absolute bottom-16 flex flex-col items-center gap-6"
+              className="flex flex-col items-center gap-6"
             >
               <div className="flex gap-8">
                 <a

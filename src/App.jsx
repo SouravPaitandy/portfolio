@@ -5,6 +5,7 @@ import Projects from "./Projects";
 import Contact from "./Contact";
 import ColorPickerModal from "./ColorPicker";
 import WelcomeScreen from "./Components/WelcomeScreen";
+import MirrorMindWidget from "./Components/MirrorMindWidget";
 import { ThemeProvider } from "./Contexts/theme";
 import { useState, useEffect, useRef } from "react";
 import useLocalStorage from "use-local-storage";
@@ -105,6 +106,7 @@ function App() {
               <About />
               <Projects />
               <Contact />
+              <MirrorMindWidget />
             </>
           )}
         </AnimatePresence>
