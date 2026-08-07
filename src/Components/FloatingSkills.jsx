@@ -8,16 +8,24 @@ import {
   SiTailwindcss,
   SiHtml5,
   SiCss3,
+  SiPython,
+  SiFastapi,
+  SiTypescript,
 } from "react-icons/si";
+import { FaJava } from "react-icons/fa";
 
 const FloatingSkills = () => {
   const skills = [
     { Icon: SiReact, name: "React" },
     { Icon: SiNextdotjs, name: "Next.js" },
-    { Icon: SiTailwindcss, name: "Tailwind" },
-    { Icon: SiNodedotjs, name: "Node.js" },
-    { Icon: SiMongodb, name: "MongoDB" },
     { Icon: SiJavascript, name: "JavaScript" },
+    { Icon: SiTypescript, name: "TypeScript" },
+    { Icon: SiNodedotjs, name: "Node.js" },
+    { Icon: SiTailwindcss, name: "Tailwind" },
+    { Icon: SiMongodb, name: "MongoDB" },
+    { Icon: SiPython, name: "Python" },
+    { Icon: SiFastapi, name: "FastAPI" },
+    { Icon: FaJava, name: "Java" },
     { Icon: SiHtml5, name: "HTML5" },
     { Icon: SiCss3, name: "CSS3" },
   ];

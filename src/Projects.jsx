@@ -10,31 +10,8 @@ import { useTranslation } from "react-i18next";
 
 const projectsList = [
   {
-    id: "mirror-mind",
-    year: 2024,
-    category: "AI",
-    githubLink: "https://github.com/SouravPaitandy/mirror-mind",
-    skills: ["React", "FastAPI", "Tailwind v4", "Groq AI", "Framer Motion"],
-    liveLink: "https://mirror-mind-xi.vercel.app",
-    img: Images.MirrorMind,
-    additionalImages: [Images.InAction, Images.ResponsiveView],
-    stack: [
-      "React",
-      "Vite",
-      "Tailwind CSS v4",
-      "Framer Motion",
-      "FastAPI",
-      "Python",
-      "Groq API",
-    ],
-    links: {
-      site: "https://mirror-mind-frontend.vercel.app", // Update this with your actual live link
-      github: "https://github.com/SouravPaitandy/mirror-mind",
-    },
-  },
-  {
     id: "hexode-ide",
-    year: 2024,
+    date: "2025-12-01",
     category: "AI",
     githubLink: "https://github.com/SouravPaitandy/hexode",
     skills: [
@@ -68,31 +45,9 @@ const projectsList = [
       github: "https://github.com/SouravPaitandy/hexode",
     },
   },
-
-  {
-    id: "jagjit-kaur-fashion",
-    year: 2024,
-    category: "Full Stack",
-    githubLink: "https://github.com/SouravPaitandy/jagjitkaur-website",
-    skills: ["Next.js", "Firebase", "Tailwind CSS", "Framer Motion"],
-    liveLink: "https://jkbyjagjitkaur.com",
-    img: Images.jagjitkaur,
-    additionalImages: [Images.jk1, Images.jk2, Images.jk3, Images.jk4],
-    stack: [
-      "Next.js",
-      "Firebase",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Google Analytics",
-    ],
-    links: {
-      site: "https://jkbyjagjitkaur.com",
-      github: "https://github.com/SouravPaitandy/jagjitkaur-website",
-    },
-  },
   {
     id: "collab-hub",
-    year: 2023,
+    date: "2025-04-01",
     category: "Full Stack",
     githubLink: "https://github.com/SouravPaitandy/collabhub",
     skills: ["Next.js", "MongoDB", "Socket.io", "Tailwind CSS"],
@@ -113,8 +68,53 @@ const projectsList = [
     },
   },
   {
+    id: "mirror-mind",
+    date: "2026-08-01",
+    category: "AI",
+    githubLink: "https://github.com/SouravPaitandy/mirror-mind",
+    skills: ["React", "FastAPI", "Tailwind v4", "Groq AI", "Framer Motion"],
+    liveLink: "https://mirror-mind-xi.vercel.app",
+    img: Images.MirrorMind,
+    additionalImages: [Images.InAction, Images.ResponsiveView],
+    stack: [
+      "React",
+      "Vite",
+      "Tailwind CSS v4",
+      "Framer Motion",
+      "FastAPI",
+      "Python",
+      "Groq API",
+    ],
+    links: {
+      site: "https://mirror-mind-frontend.vercel.app", // Update this with your actual live link
+      github: "https://github.com/SouravPaitandy/mirror-mind",
+    },
+  },
+
+  {
+    id: "jagjit-kaur-fashion",
+    date: "2025-06-01",
+    category: "Full Stack",
+    githubLink: "https://github.com/SouravPaitandy/jagjitkaur-website",
+    skills: ["Next.js", "Firebase", "Tailwind CSS", "Framer Motion"],
+    liveLink: "https://jkbyjagjitkaur.com",
+    img: Images.jagjitkaur,
+    additionalImages: [Images.jk1, Images.jk2, Images.jk3, Images.jk4],
+    stack: [
+      "Next.js",
+      "Firebase",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Google Analytics",
+    ],
+    links: {
+      site: "https://jkbyjagjitkaur.com",
+      github: "https://github.com/SouravPaitandy/jagjitkaur-website",
+    },
+  },
+  {
     id: "drawsync",
-    year: 2023,
+    date: "2025-05-01",
     category: "Full Stack",
     githubLink: "https://github.com/SouravPaitandy/drawsync",
     skills: ["Next.js", "Liveblocks", "Canvas API", "Tailwind CSS"],
@@ -129,7 +129,7 @@ const projectsList = [
   },
   {
     id: "vox-ai",
-    year: 2023,
+    date: "2024-09-01",
     category: "Frontend",
     githubLink: "https://github.com/SouravPaitandy/voxai-virtual-ai-assistant",
     skills: ["React", "Tailwind CSS", "Gemini API", "Web Speech API"],
@@ -233,7 +233,12 @@ const ProjectTextBlock = ({ project, index, onInView, onOpenModal }) => {
   );
 };
 
-const ProjectSortBar = ({ sortMode, setSortMode, activeCategory, setActiveCategory }) => {
+const ProjectSortBar = ({
+  sortMode,
+  setSortMode,
+  activeCategory,
+  setActiveCategory,
+}) => {
   const { t } = useTranslation();
   const sortOptions = [
     { id: "featured", label: t("projects.sort.featured") },
@@ -263,7 +268,7 @@ const ProjectSortBar = ({ sortMode, setSortMode, activeCategory, setActiveCatego
           </button>
         ))}
       </div>
-      
+
       <AnimatePresence>
         {sortMode === "category" && (
           <motion.div
@@ -304,7 +309,8 @@ export default function Projects() {
 
   const displayedProjects = useMemo(() => {
     let list = [...projectsList];
-    if (sortMode === "latest") return list.sort((a, b) => b.year - a.year);
+    if (sortMode === "latest")
+      return list.sort((a, b) => new Date(b.date) - new Date(a.date));
     if (sortMode === "category" && activeCategory !== "All")
       return list.filter((p) => p.category === activeCategory);
     return list; // "featured" = default array order
@@ -353,7 +359,7 @@ export default function Projects() {
             </span>
           </h2>
         </div>
-        
+
         <ProjectSortBar
           sortMode={sortMode}
           setSortMode={setSortMode}

@@ -18,7 +18,11 @@ import {
   SiMysql,
   SiRedux,
   SiBootstrap,
+  SiPython,
+  SiFastapi,
+  SiTypescript,
 } from "react-icons/si";
+import { FaJava } from "react-icons/fa";
 import FloatingSkills from "./Components/FloatingSkills";
 import { useTranslation } from "react-i18next";
 
@@ -28,17 +32,21 @@ const About = memo(() => {
 
   const skillIcons = [
     { src: SiJavascript, alt: "Javascript", name: "Javascript" },
-    { src: SiExpress, alt: "Express", name: "Express" },
-    { src: SiMongodb, alt: "MongoDB", name: "MongoDB" },
+    { src: SiTypescript, alt: "TypeScript", name: "TypeScript" },
     { src: SiReact, alt: "React", name: "React" },
     { src: SiNextdotjs, alt: "Next.js", name: "Next.js" },
+    { src: SiNodedotjs, alt: "Node.js", name: "Node.js" },
+    { src: SiExpress, alt: "Express", name: "Express" },
+    { src: SiPython, alt: "Python", name: "Python" },
+    { src: SiFastapi, alt: "FastAPI", name: "FastAPI" },
+    { src: SiMongodb, alt: "MongoDB", name: "MongoDB" },
     { src: SiMysql, alt: "SQL", name: "SQL" },
+    { src: FaJava, alt: "Java", name: "Java" },
     { src: SiHtml5, alt: "HTML5", name: "HTML5" },
     { src: SiCss3, alt: "CSS3", name: "CSS3" },
     { src: SiRedux, alt: "Redux", name: "Redux" },
     { src: SiBootstrap, alt: "Bootstrap", name: "Bootstrap" },
     { src: SiTailwindcss, alt: "Tailwind", name: "Tailwind" },
-    { src: SiNodedotjs, alt: "Node.js", name: "Node.js" },
   ];
 
   return (
@@ -66,9 +74,10 @@ const About = memo(() => {
             <span className="text-electric-indigo">{t("about.me")}</span>
           </h2>
           <div className="w-24 h-1 bg-electric-indigo mx-auto rounded-full opacity-80" />
-          <p className="mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">
-            {t("about.subtitle_1")}{" "}
-            <span className="text-gray-900 dark:text-white font-medium">
+          <p className="mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-light leading-relaxed wrap-break-word">
+            {t("about.subtitle_1")}
+            {"  "}
+            <span className="inline-block text-gray-900 dark:text-white font-medium">
               {t("about.subtitle_years")}
             </span>
             .{t("about.subtitle_2")}{" "}
@@ -191,15 +200,15 @@ const About = memo(() => {
                 {skillIcons.map((skill, index) => (
                   <motion.div
                     key={skill.name}
-                    className="group relative flex flex-col items-center justify-center p-3 sm:p-4 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/5 hover:border-electric-indigo/30 transition-all duration-300 cursor-default"
+                    className="group relative flex flex-col items-center justify-center p-2 sm:p-3 rounded-2xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/5 hover:border-electric-indigo/30 transition-all duration-300 cursor-default"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.05 }}
                     whileHover={{ y: -5 }}
                   >
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center mb-2 text-gray-600 group-hover:text-electric-indigo transition-colors">
-                      <skill.src className="w-full h-full p-2" />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center mb-2 text-gray-600 group-hover:text-electric-indigo transition-colors">
+                      <skill.src className="w-full h-full p-1" />
                     </div>
                     <span className="text-[10px] sm:text-xs text-gray-700 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors text-center">
                       {skill.name}
