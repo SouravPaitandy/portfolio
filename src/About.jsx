@@ -80,7 +80,7 @@ const About = memo(() => {
             <span className="inline-block text-gray-900 dark:text-white font-medium">
               {t("about.subtitle_years")}
             </span>
-            .{t("about.subtitle_2")}{" "}
+            {t("about.subtitle_2")}{" "}
             <span className="text-electric-indigo font-medium">
               {t("about.subtitle_dynamic")}
             </span>{" "}
