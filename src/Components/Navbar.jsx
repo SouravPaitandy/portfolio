@@ -1,21 +1,23 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/display-name */
+"use client";
+ 
+ 
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { Link } from "react-scroll";
 import Toggler from "./Theme_btn";
 import { motion, AnimatePresence } from "framer-motion";
-import { X as XIcon, Menu, ChevronDown, Languages } from "lucide-react";
+import { ChevronDown, Languages } from "lucide-react";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import "../Styles/navbar.css";
-import { useTranslation } from "react-i18next";
+import { usePathname, useRouter } from "next/navigation";
 import navImg from "../assets/nav-img.png";
 
-export default function Navbar() {
+export default function Navbar({ dict, lang = "en" }) {
   const [isHidden, setIsHidden] = useState(true);
   const [activeLink, setActiveLink] = useState("hero-section");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
-  const { t, i18n } = useTranslation();
+  const pathname = usePathname();
+  const router = useRouter();
   const langDropdownRef = useRef(null);
 
   const languages = [
@@ -25,13 +27,32 @@ export default function Navbar() {
     { code: "es", label: "Español", flag: "🇪🇸" },
   ];
 
+  const redirectedPathName = (locale) => {
+    if (!pathname) return "/";
+    const segments = pathname.split("/");
+    const isCurrentLocale = ["hi", "es", "bn"].includes(segments[1]);
+    if (isCurrentLocale) {
+      if (locale === "en") {
+        segments.splice(1, 1);
+        return segments.join("/") || "/";
+      } else {
+        segments[1] = locale;
+        return segments.join("/");
+      }
+    } else {
+      if (locale === "en") return pathname;
+      return `/${locale}${pathname === "/" ? "" : pathname}`;
+    }
+  };
+
   const changeLanguage = (langCode) => {
-    i18n.changeLanguage(langCode);
+    document.cookie = `NEXT_LOCALE=${langCode}; path=/; max-age=31536000`;
+    router.push(redirectedPathName(langCode));
     setIsLangDropdownOpen(false);
   };
 
   const currentLang =
-    languages.find((l) => l.code === i18n.language) || languages[0];
+    languages.find((l) => l.code === lang) || languages[0];
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -166,7 +187,7 @@ export default function Navbar() {
             <div
               className="nav-img h-10 w-10 rounded-full border-2 
               border-electric-indigo transition-transform duration-300 group-hover:scale-110 bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: `url(${navImg})` }}
+              style={{ backgroundImage: `url(${navImg?.src || navImg})` }}
             ></div>
             <span
               className={`nav-name font-bold text-lg md:text-xl tracking-tight transition-colors duration-300 ${
@@ -180,12 +201,11 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-1">
-          <NavLink to="hero-section">{t("navbar.home")}</NavLink>
-          <NavLink to="about-section">{t("navbar.about")}</NavLink>
-          <NavLink to="project-section">{t("navbar.projects")}</NavLink>
-          <NavLink to="contact-section">{t("navbar.contact")}</NavLink>
+          <NavLink to="hero-section">{dict.navbar.home}</NavLink>
+          <NavLink to="about-section">{dict.navbar.about}</NavLink>
+          <NavLink to="project-section">{dict.navbar.projects}</NavLink>
+          <NavLink to="contact-section">{dict.navbar.contact}</NavLink>
 
           <div className="ml-2 pl-2 border-l border-gray-300 dark:border-white/10 flex items-center gap-2">
             {/* Language Dropdown */}
@@ -303,16 +323,16 @@ export default function Navbar() {
 
             <nav className="flex flex-col items-center space-y-8 relative z-10 text-center">
               <MobileMenuLink to="hero-section" index={0}>
-                {t("navbar.home")}
+                {dict.navbar.home}
               </MobileMenuLink>
               <MobileMenuLink to="about-section" index={1}>
-                {t("navbar.about")}
+                {dict.navbar.about}
               </MobileMenuLink>
               <MobileMenuLink to="project-section" index={2}>
-                {t("navbar.projects")}
+                {dict.navbar.projects}
               </MobileMenuLink>
               <MobileMenuLink to="contact-section" index={3}>
-                {t("navbar.contact")}
+                {dict.navbar.contact}
               </MobileMenuLink>
             </nav>
 
