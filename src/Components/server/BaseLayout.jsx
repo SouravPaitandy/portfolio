@@ -157,19 +157,6 @@ const jsonLd = {
       publisher: { "@id": "https://souravpaitandy.dev/#person" },
       inLanguage: ["en", "hi", "bn", "es"],
     },
-    {
-      "@type": "WebPage",
-      "@id": "https://souravpaitandy.dev/#homepage",
-      url: "https://souravpaitandy.dev",
-      name: "Sourav Paitandy | Full Stack Developer",
-      isPartOf: { "@id": "https://souravpaitandy.dev/#website" },
-      about: { "@id": "https://souravpaitandy.dev/#person" },
-      primaryImageOfPage: {
-        "@type": "ImageObject",
-        url: "https://souravpaitandy.dev/portfolio-preview.png",
-      },
-      inLanguage: ["en", "hi", "bn", "es"],
-    },
   ],
 };
 

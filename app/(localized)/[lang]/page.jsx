@@ -2,6 +2,7 @@ import HomePage from "../../../src/Components/server/HomePage";
 import { getDictionary } from "../../../src/get-dictionary";
 import { i18nConfig } from "../../../src/i18n-config";
 import { notFound } from "next/navigation";
+import { HomepageJsonLd } from "../../../src/Components/server/HomepageJsonLd";
 
 export function generateStaticParams() {
   // Exclude defaultLocale from localized routes since it's served at the root `/`
@@ -18,5 +19,10 @@ export default async function LocalizedHome({ params }) {
   }
 
   const dict = await getDictionary(lang);
-  return <HomePage dict={dict} lang={lang} />;
+  return (
+    <>
+      <HomepageJsonLd lang={lang} />
+      <HomePage dict={dict} lang={lang} />
+    </>
+  );
 }

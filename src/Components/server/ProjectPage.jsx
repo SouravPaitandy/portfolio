@@ -40,6 +40,7 @@ export default function ProjectPage({ dict, lang, project, slug }) {
     url: canonicalUrl,
     name: `${title} | Sourav Paitandy`,
     description: description || shortDescription,
+    isPartOf: { "@id": "https://souravpaitandy.dev/#website" },
     mainEntity: {
       "@type": isWebProject ? "WebApplication" : "SoftwareApplication",
       "@id": `${canonicalUrl}#software`,
