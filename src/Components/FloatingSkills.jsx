@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "framer-motion";
 import {
   SiReact,
@@ -35,7 +36,7 @@ const FloatingSkills = () => {
       <div className="max-w-4xl mx-auto px-4">
         {/* Floating Layout - Centered Cluster */}
         <div className="flex flex-wrap justify-center gap-6 md:gap-10">
-          {skills.map((skill, index) => {
+          {skills.map((skill) => {
             const floatDuration = 3 + Math.random() * 2;
             const floatY = 15 + Math.random() * 30;
             const delay = Math.random() * 2;

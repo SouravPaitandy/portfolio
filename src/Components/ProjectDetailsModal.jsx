@@ -11,13 +11,16 @@ import {
 } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import useAnalytics from "../Hooks/useAnalytics";
-import { useTranslation } from "react-i18next";
 
-export default function ProjectDetailsModal({ project, isOpen, onClose }) {
+export default function ProjectDetailsModal({ project, isOpen, onClose, dict }) {
   const { trackEvent } = useAnalytics();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const { t } = useTranslation();
+
+  // Helper to resolve translation keys like "projects.hexode-ide.title"
+  const t = (path) => {
+    return path.split('.').reduce((acc, part) => acc && acc[part], dict) || path;
+  };
 
   // Reset index when modal opens or project changes
   useEffect(() => {
@@ -113,7 +116,7 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={currentImageIndex}
-                      src={allImages[currentImageIndex]}
+                      src={allImages[currentImageIndex].src || allImages[currentImageIndex]}
                       alt={t(`projects.${project.id}.title`)}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -327,7 +330,7 @@ export default function ProjectDetailsModal({ project, isOpen, onClose }) {
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={currentImageIndex}
-                      src={allImages[currentImageIndex]}
+                      src={allImages[currentImageIndex].src || allImages[currentImageIndex]}
                       alt={`${t(`projects.${project.id}.title`)} — image ${currentImageIndex + 1}`}
                       initial={{ opacity: 0, x: 40 }}
                       animate={{ opacity: 1, x: 0 }}
