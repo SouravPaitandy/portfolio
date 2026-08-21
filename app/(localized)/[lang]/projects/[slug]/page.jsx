@@ -27,6 +27,8 @@ export async function generateMetadata({ params }) {
   return generateProjectMetadata(params.slug, params.lang);
 }
 
+import HexodeCaseStudy from "../../../../../src/Components/server/HexodeCaseStudy";
+
 export default async function LocalizedProjectPage({ params }) {
   const { lang, slug } = params;
 
@@ -40,5 +42,10 @@ export default async function LocalizedProjectPage({ params }) {
   }
 
   const dict = await getDictionary(lang);
+
+  if (slug === "hexode-ide") {
+    return <HexodeCaseStudy dict={dict} lang={lang} project={project} slug={slug} />;
+  }
+
   return <ProjectPage dict={dict} lang={lang} project={project} slug={slug} />;
 }

@@ -26,3 +26,6 @@ dist
 *.sw?
 vercel.json
 .vercel
+
+# Extra
+hexode_engineering_dossier.md

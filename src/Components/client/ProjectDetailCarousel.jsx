@@ -15,7 +15,11 @@ import Image from "next/image";
  *   images    string[]  — Array of image URL strings
  *   projectTitle string — For alt text
  */
-export default function ProjectDetailCarousel({ images, projectTitle }) {
+export default function ProjectDetailCarousel({
+  images,
+  projectTitle,
+  onImageChange,
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
@@ -23,12 +27,16 @@ export default function ProjectDetailCarousel({ images, projectTitle }) {
 
   const handleNext = (e) => {
     e?.stopPropagation();
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    const nextIdx = (currentIndex + 1) % images.length;
+    setCurrentIndex(nextIdx);
+    onImageChange?.(nextIdx);
   };
 
   const handlePrev = (e) => {
     e?.stopPropagation();
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    const prevIdx = (currentIndex - 1 + images.length) % images.length;
+    setCurrentIndex(prevIdx);
+    onImageChange?.(prevIdx);
   };
 
   return (
@@ -94,7 +102,11 @@ export default function ProjectDetailCarousel({ images, projectTitle }) {
               {images.map((_, idx) => (
                 <button
                   key={idx}
-                  onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentIndex(idx);
+                    onImageChange?.(idx);
+                  }}
                   aria-label={`Go to image ${idx + 1}`}
                   className={`h-2 rounded-full transition-all ${
                     idx === currentIndex
@@ -114,7 +126,10 @@ export default function ProjectDetailCarousel({ images, projectTitle }) {
           {images.map((src, idx) => (
             <button
               key={idx}
-              onClick={() => setCurrentIndex(idx)}
+              onClick={() => {
+                setCurrentIndex(idx);
+                onImageChange?.(idx);
+              }}
               aria-label={`View screenshot ${idx + 1}`}
               className={`flex-shrink-0 w-20 h-14 rounded-lg overflow-hidden border-2 transition-all ${
                 idx === currentIndex
@@ -146,7 +161,7 @@ export default function ProjectDetailCarousel({ images, projectTitle }) {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setIsLightboxOpen(false)}
-              className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[80]"
+              className="fixed inset-0 bg-white/60 dark:bg-black/95 backdrop-blur-xl z-[80]"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.93 }}
@@ -157,18 +172,20 @@ export default function ProjectDetailCarousel({ images, projectTitle }) {
             >
               {/* Top bar */}
               <div className="absolute top-4 left-0 right-0 flex items-center justify-between px-5 pointer-events-auto">
-                <span className="text-white/60 font-mono text-sm tracking-widest select-none">
+                <span className="text-charcoal dark:text-white/60 font-mono text-sm tracking-widest select-none">
                   {String(currentIndex + 1).padStart(2, "0")}
-                  <span className="text-white/30 mx-1">/</span>
+                  <span className="text-charcoal/50 dark:text-white/30 mx-1">
+                    /
+                  </span>
                   {String(images.length).padStart(2, "0")}
                 </span>
-                <span className="hidden sm:block text-white/50 text-sm font-medium truncate max-w-[40%] text-center">
+                <span className="hidden sm:block text-charcoal dark:text-white/50 text-sm font-medium truncate max-w-[40%] text-center">
                   {projectTitle}
                 </span>
                 <button
                   onClick={() => setIsLightboxOpen(false)}
                   aria-label="Close lightbox"
-                  className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/70 hover:text-white transition-all"
+                  className="p-2.5 rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 border border-black/10 dark:border-white/10 text-charcoal dark:text-white/70 hover:text-charcoal dark:hover:text-white transition-all"
                 >
                   <X size={20} />
                 </button>
@@ -199,16 +216,22 @@ export default function ProjectDetailCarousel({ images, projectTitle }) {
               {images.length > 1 && (
                 <>
                   <button
-                    onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePrev();
+                    }}
                     aria-label="Previous image"
-                    className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-all pointer-events-auto backdrop-blur-sm"
+                    className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 border border-black/10 dark:border-white/10 text-charcoal dark:text-white/80 hover:text-charcoal dark:hover:text-white transition-all pointer-events-auto backdrop-blur-sm"
                   >
                     <ChevronLeft size={24} />
                   </button>
                   <button
-                    onClick={(e) => { e.stopPropagation(); handleNext(); }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleNext();
+                    }}
                     aria-label="Next image"
-                    className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-all pointer-events-auto backdrop-blur-sm"
+                    className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 border border-black/10 dark:border-white/10 text-charcoal dark:text-white/80 hover:text-charcoal dark:hover:text-white transition-all pointer-events-auto backdrop-blur-sm"
                   >
                     <ChevronRight size={24} />
                   </button>

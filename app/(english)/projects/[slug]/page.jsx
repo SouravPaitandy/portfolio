@@ -13,6 +13,8 @@ export async function generateMetadata({ params }) {
   return generateProjectMetadata(params.slug, "en");
 }
 
+import HexodeCaseStudy from "../../../../src/Components/server/HexodeCaseStudy";
+
 export default async function EnglishProjectPage({ params }) {
   const { slug } = params;
   const project = getProjectBySlug(slug);
@@ -22,5 +24,10 @@ export default async function EnglishProjectPage({ params }) {
   }
 
   const dict = await getDictionary("en");
+
+  if (slug === "hexode-ide") {
+    return <HexodeCaseStudy dict={dict} lang="en" project={project} slug={slug} />;
+  }
+
   return <ProjectPage dict={dict} lang="en" project={project} slug={slug} />;
 }

@@ -63,15 +63,20 @@ export default function ProjectTextBlockStatic({ project, index, dict, lang }) {
                 ? `/projects/${project.id}`
                 : `/${lang}/projects/${project.id}`
             }
-            className="text-gray-900 dark:text-white border-b border-electric-indigo pb-1 hover:text-electric-indigo dark:hover:text-electric-indigo transition-colors flex items-center gap-2 text-sm font-medium"
+            className="group text-gray-900 dark:text-white border-b border-electric-indigo pb-1 hover:text-electric-indigo dark:hover:text-electric-indigo transition-colors flex items-center gap-2 text-sm font-medium"
           >
-            {t.view_details} <ArrowRight size={16} />
+            {t.view_details}{" "}
+            <ArrowRight
+              size={16}
+              className="group-hover:translate-x-1.5 transition-transform duration-300"
+            />
           </Link>
           {/* Keep data-modal-trigger so the existing interactive modal still works */}
           <button
             className="text-gray-500 dark:text-gray-400 text-sm hover:text-electric-indigo dark:hover:text-electric-indigo transition-colors"
             data-modal-trigger={project.id}
             aria-label="Open project details modal"
+            title="View Important Project Details in Brief"
           >
             Quick View
           </button>

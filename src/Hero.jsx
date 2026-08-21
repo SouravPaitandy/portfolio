@@ -69,19 +69,19 @@ export default function Hero({ dict }) {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full">
           <a
             href="#project-section"
-            className="w-full sm:w-auto px-8 py-3 md:px-8 md:py-4 rounded-full bg-indigo-600 text-white font-bold text-base md:text-lg transition-colors shadow-[0_0_20px_rgba(99,102,241,0.3)] text-center"
+            className="w-full sm:w-auto px-8 py-3 md:px-8 md:py-4 rounded-full bg-indigo-600 text-white font-bold text-base md:text-lg hover:-translate-y-1 ease-in-out transition-all shadow-[0_0_20px_rgba(99,102,241,0.3)] text-center"
           >
             {t.cta_projects}
           </a>
 
           <ResumeViewer
             heading="View Resume"
-            className="w-full sm:w-auto px-8 py-3 md:px-8 md:py-4 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-transparent text-gray-900 dark:text-white font-medium text-base md:text-lg hover:border-black dark:hover:border-white transition-colors flex justify-center items-center text-center"
+            className="w-full sm:w-auto px-8 py-3 md:px-8 md:py-4 rounded-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-transparent text-gray-900 dark:text-white font-medium text-base md:text-lg hover:border-black dark:hover:border-white/40 transition-colors flex justify-center items-center text-center"
           />
 
           <a
             href="#contact-section"
-            className="w-full sm:w-auto px-8 py-3 md:px-8 md:py-4 rounded-full border border-transparent text-gray-500 dark:text-gray-400 font-medium text-base md:text-lg hover:text-electric-indigo dark:hover:text-electric-indigo transition-colors text-center"
+            className="w-full sm:w-auto px-8 py-3 md:px-8 md:py-4 rounded-full border border-transparent text-gray-500 dark:text-gray-400 font-medium text-base md:text-lg hover:text-electric-indigo dark:hover:text-electric-indigo transition-all text-center"
           >
             {t.cta_contact}
           </a>
