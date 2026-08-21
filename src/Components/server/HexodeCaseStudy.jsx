@@ -1,8 +1,5 @@
-import React from "react";
 import Link from "next/link";
 import {
-  Home,
-  ChevronRight,
   ExternalLink,
   Code2,
   Calendar,
