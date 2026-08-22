@@ -12,14 +12,21 @@ import {
 import { FaGithub } from "react-icons/fa";
 import useAnalytics from "../Hooks/useAnalytics";
 
-export default function ProjectDetailsModal({ project, isOpen, onClose, dict }) {
+export default function ProjectDetailsModal({
+  project,
+  isOpen,
+  onClose,
+  dict,
+}) {
   const { trackEvent } = useAnalytics();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   // Helper to resolve translation keys like "projects.hexode-ide.title"
   const t = (path) => {
-    return path.split('.').reduce((acc, part) => acc && acc[part], dict) || path;
+    return (
+      path.split(".").reduce((acc, part) => acc && acc[part], dict) || path
+    );
   };
 
   // Reset index when modal opens or project changes
@@ -116,7 +123,10 @@ export default function ProjectDetailsModal({ project, isOpen, onClose, dict }) 
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={currentImageIndex}
-                      src={allImages[currentImageIndex].src || allImages[currentImageIndex]}
+                      src={
+                        allImages[currentImageIndex].src ||
+                        allImages[currentImageIndex]
+                      }
                       alt={t(`projects.${project.id}.title`)}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -291,7 +301,7 @@ export default function ProjectDetailsModal({ project, isOpen, onClose, dict }) 
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                   onClick={() => setIsLightboxOpen(false)}
-                  className="fixed inset-0 bg-black/95 backdrop-blur-xl z-[80]"
+                  className="fixed inset-0 bg-white/60 dark:bg-black/95 backdrop-blur-xl z-[80]"
                 />
 
                 {/* Lightbox Shell */}
@@ -305,14 +315,16 @@ export default function ProjectDetailsModal({ project, isOpen, onClose, dict }) 
                   {/* Top bar: counter + close */}
                   <div className="absolute top-4 left-0 right-0 flex items-center justify-between px-5 pointer-events-auto">
                     {/* Image counter */}
-                    <span className="text-white/60 font-mono text-sm tracking-widest select-none">
+                    <span className="text-charcoal dark:text-white/60 font-mono text-sm tracking-widest select-none">
                       {String(currentImageIndex + 1).padStart(2, "0")}
-                      <span className="text-white/30 mx-1">/</span>
+                      <span className="text-charcoal/60 dark:text-white/30 mx-1">
+                        /
+                      </span>
                       {String(allImages.length).padStart(2, "0")}
                     </span>
 
                     {/* Project name */}
-                    <span className="hidden sm:block text-white/50 text-sm font-medium truncate max-w-[40%] text-center">
+                    <span className="hidden sm:block text-charcoal dark:text-white/50 text-sm font-medium truncate max-w-[40%] text-center">
                       {t(`projects.${project.id}.title`)}
                     </span>
 
@@ -320,7 +332,7 @@ export default function ProjectDetailsModal({ project, isOpen, onClose, dict }) 
                     <button
                       onClick={() => setIsLightboxOpen(false)}
                       aria-label="Close lightbox"
-                      className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/70 hover:text-white transition-all"
+                      className="p-2.5 rounded-full bg-black/10 hover:bg-black/20 dark:bg-white/10 hover:dark:bg-white/20 border border-black/10 hover:dark:border-white/10 text-charcoal dark:text-white/70 hover:dark:text-white hover:text-black transition-all"
                     >
                       <X size={20} />
                     </button>
@@ -330,7 +342,10 @@ export default function ProjectDetailsModal({ project, isOpen, onClose, dict }) 
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={currentImageIndex}
-                      src={allImages[currentImageIndex].src || allImages[currentImageIndex]}
+                      src={
+                        allImages[currentImageIndex].src ||
+                        allImages[currentImageIndex]
+                      }
                       alt={`${t(`projects.${project.id}.title`)} — image ${currentImageIndex + 1}`}
                       initial={{ opacity: 0, x: 40 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -350,7 +365,7 @@ export default function ProjectDetailsModal({ project, isOpen, onClose, dict }) 
                           handlePrev();
                         }}
                         aria-label="Previous image"
-                        className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-all pointer-events-auto backdrop-blur-sm"
+                        className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/10 hover:bg-black/20 dark:bg-white/10 hover:dark:bg-white/20 border border-black/10 hover:dark:border-white/10 text-charcoal dark:text-white/70 hover:dark:text-white hover:text-black transition-all pointer-events-auto backdrop-blur-sm"
                       >
                         <ChevronLeft size={28} />
                       </button>
@@ -360,7 +375,7 @@ export default function ProjectDetailsModal({ project, isOpen, onClose, dict }) 
                           handleNext();
                         }}
                         aria-label="Next image"
-                        className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-all pointer-events-auto backdrop-blur-sm"
+                        className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/10 hover:bg-black/20 dark:bg-white/10 hover:dark:bg-white/20 border border-black/10 hover:dark:border-white/10 text-charcoal dark:text-white/70 hover:dark:text-white hover:text-black transition-all pointer-events-auto backdrop-blur-sm"
                       >
                         <ChevronRight size={28} />
                       </button>
@@ -377,8 +392,8 @@ export default function ProjectDetailsModal({ project, isOpen, onClose, dict }) 
                           aria-label={`Go to image ${idx + 1}`}
                           className={`h-1.5 rounded-full transition-all duration-300 ${
                             idx === currentImageIndex
-                              ? "bg-white w-6"
-                              : "bg-white/35 hover:bg-white/60 w-1.5"
+                              ? "bg-black dark:bg-white w-6"
+                              : "bg-black/35 hover:bg-black/60 dark:bg-white/35 hover:dark:bg-white/60 w-1.5"
                           }`}
                         />
                       ))}

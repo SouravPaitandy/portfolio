@@ -1,6 +1,5 @@
 "use client";
- 
- 
+
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { Link } from "react-scroll";
 import Toggler from "./Theme_btn";
@@ -51,8 +50,7 @@ export default function Navbar({ dict, lang = "en" }) {
     setIsLangDropdownOpen(false);
   };
 
-  const currentLang =
-    languages.find((l) => l.code === lang) || languages[0];
+  const currentLang = languages.find((l) => l.code === lang) || languages[0];
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -164,7 +162,7 @@ export default function Navbar({ dict, lang = "en" }) {
   return (
     <>
       <nav
-        className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 
+        className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-40 
           w-[90%] max-w-5xl h-16 rounded-2xl
           flex justify-between items-center px-6
           transition-all duration-500 ease-in-out
@@ -175,7 +173,7 @@ export default function Navbar({ dict, lang = "en" }) {
           }`}
         aria-label="Main Navigation"
       >
-        <div className="logo cursor-pointer flex items-center z-50">
+        <div className="logo cursor-pointer flex items-center z-40">
           <Link
             to="hero-section"
             href="#hero-section"
