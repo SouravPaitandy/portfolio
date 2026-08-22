@@ -1,14 +1,22 @@
 import ProjectPage from "../../../../../src/Components/server/ProjectPage";
 import { getDictionary } from "../../../../../src/get-dictionary";
-import { getAllProjectSlugs, getProjectBySlug } from "../../../../../src/data/projectsServer";
+import {
+  getAllProjectSlugs,
+  getProjectBySlug,
+} from "../../../../../src/data/projectsServer";
 import { i18nConfig } from "../../../../../src/i18n-config";
 import { generateProjectMetadata } from "../../../../../src/Components/server/ProjectMetadata";
 import { notFound } from "next/navigation";
 
+import HexodeCaseStudy from "../../../../../src/Components/server/HexodeCaseStudy";
+import DrawSyncCaseStudy from "../../../../../src/Components/server/DrawSyncCaseStudy";
+import CoordlyCaseStudy from "../../../../../src/Components/server/CoordlyCaseStudy";
+import { getCaseStudy } from "../../../../../src/data/caseStudyResolver";
+
 export async function generateStaticParams() {
   const slugs = getAllProjectSlugs();
   const nonDefaultLocales = i18nConfig.locales.filter(
-    (locale) => locale !== i18nConfig.defaultLocale
+    (locale) => locale !== i18nConfig.defaultLocale,
   );
 
   const params = [];
@@ -21,13 +29,14 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  if (!i18nConfig.locales.includes(params.lang) || params.lang === i18nConfig.defaultLocale) {
+  if (
+    !i18nConfig.locales.includes(params.lang) ||
+    params.lang === i18nConfig.defaultLocale
+  ) {
     return { title: "Not Found" };
   }
   return generateProjectMetadata(params.slug, params.lang);
 }
-
-import HexodeCaseStudy from "../../../../../src/Components/server/HexodeCaseStudy";
 
 export default async function LocalizedProjectPage({ params }) {
   const { lang, slug } = params;
@@ -42,9 +51,30 @@ export default async function LocalizedProjectPage({ params }) {
   }
 
   const dict = await getDictionary(lang);
+  let caseStudyData = null;
 
-  if (slug === "hexode-ide") {
-    return <HexodeCaseStudy dict={dict} lang={lang} project={project} slug={slug} />;
+  try {
+    caseStudyData = await getCaseStudy(slug, lang);
+  } catch (e) {
+    // Non-case-study projects won't have a resolver dir, ignore.
+  }
+
+  if (slug === "hexode-ide" && caseStudyData) {
+    return (
+      <HexodeCaseStudy dict={dict} lang={lang} project={project} slug={slug} technical={caseStudyData.technical} prose={caseStudyData.prose} />
+    );
+  }
+
+  if (slug === "drawsync" && caseStudyData) {
+    return (
+      <DrawSyncCaseStudy dict={dict} lang={lang} project={project} slug={slug} technical={caseStudyData.technical} prose={caseStudyData.prose} />
+    );
+  }
+
+  if (slug === "collab-hub" && caseStudyData) {
+    return (
+      <CoordlyCaseStudy dict={dict} lang={lang} project={project} slug={slug} technical={caseStudyData.technical} prose={caseStudyData.prose} />
+    );
   }
 
   return <ProjectPage dict={dict} lang={lang} project={project} slug={slug} />;

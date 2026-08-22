@@ -5,22 +5,7 @@ import { Link as ScrollLink } from "react-scroll";
 import { ChevronDown, List } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const sections = [
-  { id: "overview", label: "Overview" },
-  { id: "why-i-built-it", label: "Why I Built It" },
-  { id: "architecture", label: "Architecture" },
-  { id: "collaboration", label: "Real-Time Collaboration" },
-  { id: "sync-bug", label: "Synchronization Bug" },
-  { id: "execution", label: "Multi-File Execution" },
-  { id: "hexodeai", label: "HexodeAI" },
-  { id: "challenges", label: "Engineering Challenges" },
-  { id: "decisions", label: "Technical Decisions" },
-  { id: "tradeoffs", label: "Trade-offs" },
-  { id: "lessons", label: "What I Learned" },
-  { id: "tech-stack", label: "Tech Stack" }
-];
-
-export default function HexodeTOC() {
+export default function ProjectTOC({ sections }) {
   const [activeId, setActiveId] = useState("");
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -42,7 +27,7 @@ export default function HexodeTOC() {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [sections]);
 
   const closeMobile = () => setIsMobileOpen(false);
 

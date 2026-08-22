@@ -3,6 +3,10 @@ import { getDictionary } from "../../../../src/get-dictionary";
 import { getAllProjectSlugs, getProjectBySlug } from "../../../../src/data/projectsServer";
 import { generateProjectMetadata } from "../../../../src/Components/server/ProjectMetadata";
 import { notFound } from "next/navigation";
+import HexodeCaseStudy from "../../../../src/Components/server/HexodeCaseStudy";
+import DrawSyncCaseStudy from "../../../../src/Components/server/DrawSyncCaseStudy";
+import CoordlyCaseStudy from "../../../../src/Components/server/CoordlyCaseStudy";
+import { getCaseStudy } from "../../../../src/data/caseStudyResolver";
 
 export async function generateStaticParams() {
   const slugs = getAllProjectSlugs();
@@ -13,8 +17,6 @@ export async function generateMetadata({ params }) {
   return generateProjectMetadata(params.slug, "en");
 }
 
-import HexodeCaseStudy from "../../../../src/Components/server/HexodeCaseStudy";
-
 export default async function EnglishProjectPage({ params }) {
   const { slug } = params;
   const project = getProjectBySlug(slug);
@@ -24,9 +26,22 @@ export default async function EnglishProjectPage({ params }) {
   }
 
   const dict = await getDictionary("en");
+  let caseStudyData = null;
 
-  if (slug === "hexode-ide") {
-    return <HexodeCaseStudy dict={dict} lang="en" project={project} slug={slug} />;
+  try {
+    caseStudyData = await getCaseStudy(slug, "en");
+  } catch (e) {
+    // Non-case-study projects won't have a resolver dir, ignore.
+  }
+
+  if (slug === "hexode-ide" && caseStudyData) {
+    return <HexodeCaseStudy dict={dict} lang="en" project={project} slug={slug} technical={caseStudyData.technical} prose={caseStudyData.prose} />;
+  }
+  if (slug === "drawsync" && caseStudyData) {
+    return <DrawSyncCaseStudy dict={dict} lang="en" project={project} slug={slug} technical={caseStudyData.technical} prose={caseStudyData.prose} />;
+  }
+  if (slug === "collab-hub" && caseStudyData) {
+    return <CoordlyCaseStudy dict={dict} lang="en" project={project} slug={slug} technical={caseStudyData.technical} prose={caseStudyData.prose} />;
   }
 
   return <ProjectPage dict={dict} lang="en" project={project} slug={slug} />;

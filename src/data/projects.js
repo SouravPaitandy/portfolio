@@ -60,6 +60,21 @@ export const projectsList = [
     },
   },
   {
+    id: "drawsync",
+    date: "2025-05-01",
+    category: "Full Stack",
+    githubLink: "https://github.com/SouravPaitandy/drawsync",
+    skills: ["Next.js", "Liveblocks", "Canvas API", "Tailwind CSS"],
+    liveLink: "https://drawsync.vercel.app",
+    img: Images.drawsync,
+    additionalImages: [Images.Dscreenshot1, Images.Dscreenshot2],
+    stack: ["Next.js", "Liveblocks", "Canvas API", "Tailwind CSS"],
+    links: {
+      site: "https://drawsync.vercel.app",
+      github: "https://github.com/SouravPaitandy/drawsync",
+    },
+  },
+  {
     id: "mirror-mind",
     date: "2026-08-01",
     category: "AI",
@@ -101,21 +116,6 @@ export const projectsList = [
     links: {
       site: "https://jkbyjagjitkaur.com",
       github: "https://github.com/SouravPaitandy/jagjitkaur-website",
-    },
-  },
-  {
-    id: "drawsync",
-    date: "2025-05-01",
-    category: "Full Stack",
-    githubLink: "https://github.com/SouravPaitandy/drawsync",
-    skills: ["Next.js", "Liveblocks", "Canvas API", "Tailwind CSS"],
-    liveLink: "https://drawsync.vercel.app",
-    img: Images.drawsync,
-    additionalImages: [Images.Dscreenshot1, Images.Dscreenshot2],
-    stack: ["Next.js", "Liveblocks", "Canvas API", "Tailwind CSS"],
-    links: {
-      site: "https://drawsync.vercel.app",
-      github: "https://github.com/SouravPaitandy/drawsync",
     },
   },
   {
